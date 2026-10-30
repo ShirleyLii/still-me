@@ -321,6 +321,281 @@ body.locked{overflow:hidden}
 .drawer-who h2{font-size:22px}
 .drawer-who p{font-size:14px;color:var(--muted);overflow:hidden;text-overflow:ellipsis}
 
+/* history */
+.hx-open{display:inline-flex;align-items:center;gap:7px;height:42px;padding:0 13px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-size:14px;font-weight:500;color:var(--ink);transition:border-color .2s}
+.hx-open:hover,.hx-open[aria-expanded="true"]{border-color:var(--accent);color:var(--accent)}
+.hx-open svg{width:18px;height:18px}
+.app .brand{white-space:nowrap}
+.lang-chip{white-space:nowrap}
+@media (max-width:480px){.app .top-right{gap:6px}.lang-chip{padding:6px 9px;font-size:13px;gap:5px}.lang-chip svg{width:12px}.app .brand{font-size:18px}}
+@media (max-width:360px){.lang-chip{display:none}}
+@media (max-width:900px){.hx-open span{display:none}.hx-open{width:42px;padding:0;justify-content:center}}
+.hx{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:24px}
+.hx-backdrop{position:absolute;inset:0;background:rgba(37,40,61,.42);opacity:0;transition:opacity .3s}
+.hx.is-open .hx-backdrop{opacity:1}
+.hx-sheet{position:relative;width:min(1240px,100%);height:calc(100vh - 48px);display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:20px;box-shadow:0 40px 80px -40px rgba(37,40,61,.6);overflow:hidden;transform-origin:0 0;opacity:0;transition:opacity .2s}
+.hx.is-open .hx-sheet{opacity:1}
+.hx-top{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;align-items:center;gap:16px;padding:16px 20px 16px 26px;border-bottom:1px solid var(--line);background:var(--surface)}
+.hx-top h2{font-size:26px;letter-spacing:-.01em}
+.hx-search{position:relative;max-width:560px}
+.hx-search svg{position:absolute;left:13px;top:50%;width:18px;height:18px;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.hx-search input{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:12px 60px 12px 40px;font-size:16px}
+.hx-search input:focus-visible{outline:3px solid var(--accent);outline-offset:1px;border-color:var(--accent);background:var(--surface)}
+.hx-search kbd{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-family:var(--sans);font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:2px 6px;background:var(--surface)}
+.hx-dates{display:inline-grid;grid-template-columns:repeat(4,auto);background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:3px}
+.hx-dates button{border:0;background:transparent;border-radius:9px;min-height:36px;padding:0 14px;font-size:14px;font-weight:500;color:var(--muted);white-space:nowrap}
+.hx-dates button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(37,40,61,.12)}
+.hx-close{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-size:22px;line-height:1;color:var(--ink);transition:border-color .15s,background .15s}
+.hx-close:hover{border-color:var(--ink);background:var(--soft)}
+.hx-body{flex:1;display:grid;grid-template-columns:260px minmax(0,1fr);min-height:0}
+.hx-side{border-right:1px solid var(--line);background:var(--soft);padding:18px 12px;overflow-y:auto}
+.hx-side h3{font-size:13px;font-weight:500;color:var(--muted);margin:0 12px 8px}
+.hx-cats{display:flex;flex-direction:column;gap:2px}
+.hx-cats button{display:flex;align-items:center;gap:10px;width:100%;text-align:start;border:1px solid transparent;background:transparent;border-radius:10px;padding:10px 12px;font-size:15px;font-weight:500;color:var(--ink);transition:background .15s,border-color .15s}
+.hx-cats button:hover{background:var(--surface);border-color:var(--line)}
+.hx-cats button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.hx-cats i{width:9px;height:9px;border-radius:50%;display:inline-block;flex:none}
+.hx-cats b{margin-left:auto;font-weight:500;opacity:.65;font-size:13px}
+.hx-results{display:flex;flex-direction:column;min-height:0}
+.hx-count{padding:16px 26px 2px;font-size:14px;color:var(--muted)}
+.hx-list{flex:1;overflow-y:auto;padding:4px 26px 28px;display:grid;grid-template-columns:minmax(0,880px);gap:10px;align-content:start}
+.hx-list .hx-day,.hx-list .hx-empty{grid-column:1/-1}
+.hx-list .hx-day{margin:14px 6px 0}
+.hx-list .hx-item + .hx-item{margin-top:0}
+.hx-list .hx-main{height:100%;background:var(--surface);border-color:var(--line);align-content:start;padding:14px 48px 14px 16px;gap:6px}
+.hx-list .hx-msg{font-size:17px}
+.hx-list .hx-pick{-webkit-line-clamp:2;font-size:15px}
+.hx-list .hx-main:hover,.hx-list .hx-main:focus-visible{border-color:var(--accent);background:var(--surface)}
+@media (max-width:1060px){.hx-top{grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"title search close" "dates dates dates"}.hx-top h2{grid-area:title}.hx-search{grid-area:search;max-width:none}.hx-close{grid-area:close}.hx-dates{grid-area:dates;justify-self:start}}
+@media (max-width:760px){
+  .hx{padding:0}
+  .hx-sheet{height:100%;border-radius:0;border:0}
+  .hx-top{grid-template-columns:1fr auto;grid-template-areas:"title close" "search search" "dates dates";gap:10px;padding:12px 14px}
+  .hx-top h2{font-size:22px}
+  .hx-dates{display:grid;grid-template-columns:repeat(4,1fr);justify-self:stretch}
+  .hx-body{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+  .hx-side{border-right:0;border-bottom:1px solid var(--line);padding:10px 12px;overflow:visible}
+  .hx-side h3{display:none}
+  .hx-cats{flex-direction:row;flex-wrap:wrap;gap:6px}
+  .hx-cats button{width:auto;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:13px;gap:7px}
+  .hx-cats b{margin-left:2px}
+  .hx-count{padding:12px 16px 0}
+  .hx-list{padding:4px 12px 24px}
+}
+.hx-day{font-size:13px;font-weight:500;color:var(--muted);margin:14px 8px 6px}
+.hx-item{position:relative;border-radius:12px;transition:background .15s}
+.hx-item + .hx-item{margin-top:4px}
+.hx-main{display:grid;gap:5px;width:100%;text-align:start;border:1px solid transparent;background:transparent;border-radius:12px;padding:12px 44px 12px 12px;transition:background .15s,border-color .15s}
+.hx-main:hover,.hx-main:focus-visible{background:var(--surface);border-color:var(--line)}
+.hx-item.is-current .hx-main{background:var(--surface);border-color:var(--accent)}
+.hx-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted)}
+.hx-cat{display:inline-flex;align-items:center;gap:6px;font-weight:500}
+.hx-cat i{width:7px;height:7px;border-radius:50%;display:inline-block}
+.hx-msg{font-size:16px;line-height:1.5;color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hx-pick{font-size:14px;line-height:1.45;color:var(--muted);display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.hx-list.searching .hx-pick{-webkit-line-clamp:2}
+@media (hover:none){.hx-search kbd{display:none}.hx-search input{padding-right:14px}}
+.hx-tags{display:flex;gap:6px;flex-wrap:wrap}
+.hx-tags span{font-size:12px;color:var(--muted);background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:1px 8px}
+.hx-mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 .08em}
+.hx-del{position:absolute;right:8px;top:10px;width:32px;height:32px;border-radius:8px;border:0;background:transparent;color:var(--muted);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s,background .15s,color .15s}
+.hx-del svg{width:16px;height:16px}
+.hx-item:hover .hx-del,.hx-del:focus-visible{opacity:1}
+.hx-del:hover{background:#fbeef0;color:#8a2f3b}
+@media (hover:none){.hx-del{opacity:.7}}
+.hx-empty{padding:28px 12px;text-align:center;color:var(--muted);font-size:15px;line-height:1.55}
+.hx-empty .link{margin-top:10px;display:inline-block}
+.recent{margin-top:22px}
+.recent-head{display:flex;justify-content:space-between;align-items:baseline;margin:0 4px 8px}
+.recent-head h2{font-size:15px;font-weight:500;color:var(--muted)}
+.recent-list{display:grid;gap:2px}
+.recent-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;width:100%;text-align:start;border:1px solid transparent;background:transparent;border-radius:10px;padding:9px 10px;transition:background .15s,border-color .15s}
+.recent-row:hover,.recent-row:focus-visible{background:var(--surface);border-color:var(--line)}
+.recent-row i{width:8px;height:8px;border-radius:50%}
+.recent-row .m{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.recent-row .t{font-size:13px;color:var(--muted);white-space:nowrap}
+.app-main.is-record > :not(#record){display:none!important}
+.record{padding-top:4px;animation:sm-fadeup .3s cubic-bezier(.2,.8,.2,1)}
+.rec-back{display:inline-flex;align-items:center;gap:6px;border:0;background:none;padding:6px 10px 6px 4px;margin:0 0 14px -4px;border-radius:8px;font-size:15px;font-weight:500;color:var(--muted);transition:color .15s,background .15s}
+.rec-back:hover{color:var(--accent);background:var(--tint)}
+.rec-back svg{width:16px;height:16px;transition:transform .2s}
+.rec-back:hover svg{transform:translateX(-2px)}
+.rec-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14px;color:var(--muted);margin-bottom:10px}
+.rec-meta i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.rec-meta .cat{font-weight:500;color:var(--ink)}
+.rec-msg{font-size:clamp(24px,2.6vw,30px);font-weight:500;line-height:1.5;letter-spacing:0}
+.rec-msg:focus{outline:none}
+.rec-ctx{margin:18px 0 0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 16px;font-size:15px}
+.rec-ctx dt{color:var(--muted)}
+.rec-ctx dd{margin:0}
+.rec-read{margin-top:18px;background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:15px;line-height:1.6}
+.rec-read .k{color:var(--muted)}
+.rec-h{font-size:clamp(22px,2.4vw,26px);margin:26px 0 6px}
+.rec-pick{font-size:15px;color:var(--muted);margin-bottom:10px}
+.rec-pick strong{color:var(--ink);font-weight:500}
+.rec-cards{display:grid;gap:12px;margin-top:10px}
+.rec-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px 12px;display:grid;gap:10px}
+.rec-card.is-pick{border-color:var(--accent);background:#FBF5FA;box-shadow:inset 0 0 0 1px var(--accent)}
+.rec-card .head{display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:500;color:var(--muted)}
+.rec-card .badge{display:inline-flex;align-items:center;gap:5px;font-size:13px;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:1px 9px;background:var(--surface)}
+.rec-card .badge svg{width:12px;height:12px}
+.rec-card .text{font-size:clamp(18px,1.7vw,21px);line-height:1.45}
+.rec-card .foot{display:flex;justify-content:flex-end}
+.rec-saved{margin-top:24px}
+.rec-saved h3{font-size:17px;margin-bottom:8px}
+.rec-saved ol{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.rec-saved li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line)}
+.rec-saved .meta{grid-column:1/-1;font-size:13px;color:var(--muted)}
+.rec-saved p{font-size:16px;line-height:1.5}
+@media (min-width:1100px){
+  #app-main.is-record{width:min(1180px,calc(100% - 64px));display:block}
+  .rec-grid{display:grid;grid-template-columns:minmax(320px,400px) minmax(0,1fr);gap:48px;align-items:start}
+  .rec-side{position:sticky;top:88px}
+  .rec-h{margin-top:0}
+}
+.pref-box{margin-top:12px;animation:sm-fadeup .3s cubic-bezier(.2,.8,.2,1)}
+.pref-ask{border:1px solid var(--mark);background:#FBF5FA;border-radius:12px;padding:12px 14px}
+.pref-q{font-size:15px;line-height:1.45;display:flex;gap:8px;align-items:flex-start}
+.pref-q svg,.pref-line svg,.sug-k svg{width:14px;height:14px;color:var(--accent);flex:none;margin-top:3px}
+.pref-q b,.pref-line b{font-weight:500}
+.pref-notes{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0 22px}
+.pref-notes span{font-size:13px;line-height:1.4;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.pref-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:12px 0 0 22px}
+.pref-actions .btn{min-height:36px;padding:7px 14px;font-size:14px;border-radius:9px}
+.pref-actions .check{font-size:13px;color:var(--muted);gap:7px}
+.pref-actions .check input{width:16px;height:16px}
+.pref-line{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:14px;color:var(--muted);padding:2px 2px}
+.pref-line.on{color:var(--ink)}
+.pref-line .pref-notes{margin:0;flex-basis:100%;margin-left:22px}
+.pref-line .link{font-size:14px}
+.pref-note{display:flex;gap:8px;align-items:flex-start;font-size:14px;color:var(--muted);margin:-4px 2px 12px}
+.pref-note svg{width:13px;height:13px;color:var(--accent);flex:none;margin-top:3px}
+.card .out-tag{font-size:12px;font-weight:500;color:var(--muted);border:1px dashed var(--line);border-radius:999px;padding:1px 8px;margin-left:8px}
+.rec-card .out-tag{font-size:12px;font-weight:500;color:var(--muted);border:1px dashed var(--line);border-radius:999px;padding:1px 8px}
+.pdot{display:inline-block;width:9px;height:9px;border-radius:50%;flex:none}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.sec-head h3{margin-bottom:0}
+.style-over{display:grid;gap:6px}
+.drawer .av-grid.av-row{grid-template-columns:repeat(8,minmax(0,1fr));gap:6px}
+.style-place{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;width:100%;text-align:start;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 12px;transition:border-color .15s,background .15s}
+.style-place:hover,.style-place:focus-visible{border-color:var(--accent);background:#FBF5FA}
+.style-place svg{width:15px;height:15px;color:var(--muted)}
+.sp-text{display:grid;gap:1px;min-width:0}
+.sp-name{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:500}
+.sp-sum{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.auto-badge{font-size:11px;font-weight:500;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:0 7px}
+.pref-q{display:flex;align-items:flex-start;gap:8px;font-size:15px;line-height:1.45}
+.pref-q > span:first-of-type{flex:1}
+.pref-edit{font-size:14px;white-space:nowrap}
+.pref-links{display:inline-flex;gap:14px;white-space:nowrap}
+.pref-links .link{font-size:14px}
+.pref-rows{display:grid;gap:6px;margin:10px 0 0 22px}
+.pref-row{display:grid;grid-template-columns:minmax(96px,auto) minmax(0,1fr);gap:4px 10px;align-items:start}
+.pref-place{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;color:var(--muted);padding-top:4px;white-space:nowrap}
+.pref-rows .pref-notes{margin:0}
+.pref-notes span.is-note{border-style:dashed}
+@media (max-width:560px){.pref-row{grid-template-columns:1fr}.pref-rows{margin-left:0}}
+.sty-modal{position:fixed;inset:0;z-index:75;display:flex;align-items:center;justify-content:center;padding:24px}
+.sty-backdrop{position:absolute;inset:0;background:rgba(37,40,61,.42);opacity:0;transition:opacity .22s}
+.sty-card{position:relative;width:min(980px,100%);height:min(760px,calc(100vh - 48px));display:flex;flex-direction:column;background:var(--bg);border:1px solid var(--line);border-radius:20px;box-shadow:0 30px 70px -30px rgba(37,40,61,.55);opacity:0;transform:translateY(14px) scale(.98);transition:opacity .25s cubic-bezier(.2,.8,.2,1),transform .32s cubic-bezier(.2,.8,.2,1);overflow:hidden}
+.sty-modal.is-open .sty-backdrop{opacity:1}
+.sty-modal.is-open .sty-card{opacity:1;transform:none}
+.sty-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:24px 28px 16px;border-bottom:1px solid var(--line)}
+.sty-top h2{font-size:28px;letter-spacing:-.01em}
+.sty-top p{font-size:15px;color:var(--muted);margin-top:4px;line-height:1.5;max-width:60ch}
+.sty-body{flex:1;display:grid;grid-template-columns:250px minmax(0,1fr);min-height:0}
+.sty-rail{display:flex;flex-direction:column;gap:6px;padding:16px 14px;border-right:1px solid var(--line);background:var(--soft);overflow-y:auto}
+.sty-rail button{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:10px;text-align:start;border:1px solid transparent;background:transparent;border-radius:12px;padding:12px;transition:background .15s,border-color .15s}
+.sty-rail button:hover{background:var(--surface)}
+.sty-rail button[aria-selected="true"]{background:var(--surface);border-color:var(--line);box-shadow:inset 3px 0 0 var(--accent)}
+.sty-panel{overflow-y:auto;padding:20px 28px 24px;animation:sm-fadeup .22s cubic-bezier(.2,.8,.2,1)}
+.sty-panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:16px}
+.sty-panel-head h3{display:flex;align-items:center;gap:10px;font-size:22px}
+.sty-panel-head p{font-size:14px;color:var(--muted);margin-top:4px;line-height:1.5}
+.sty-panel-head .auto{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--ink);cursor:pointer;white-space:nowrap;padding-top:4px}
+.opt-groups{display:grid;gap:0;border-top:1px solid var(--line)}
+.opt-row{display:grid;grid-template-columns:150px minmax(0,1fr);gap:8px 16px;align-items:start;padding:14px 0;border-bottom:1px solid var(--line)}
+.opt-name{font-size:15px;font-weight:500;padding-top:8px}
+.opt-name span{display:block;font-size:12px;font-weight:400;color:var(--muted)}
+.opt-choices{display:flex;flex-wrap:wrap;gap:8px}
+.opt{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:15px;font-weight:500;color:var(--ink);transition:background .15s,border-color .15s,color .15s,transform .15s}
+.opt:hover{border-color:var(--accent);transform:translateY(-1px)}
+.opt[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.opt svg{width:14px;height:14px}
+.opt.inherit{border-style:dashed;border-color:var(--accent);color:var(--accent);background:#FBF5FA}
+.opt .opt-from{font-size:11px;font-weight:500;opacity:.85;border-left:1px solid currentColor;padding-left:6px;margin-left:2px;line-height:1.2}
+.sty-notes{margin-top:22px}
+.sty-notes h4{font-size:16px}
+.sty-notes > p{font-size:13px;color:var(--muted);margin:2px 0 8px}
+.sty-notes .sty-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.sty-notes .sty-item{padding:10px 0;border-top:0;border-bottom:1px solid var(--line)}
+.sty-notes .sty-item .t{font-size:16px}
+.sty-notes .sty-add{margin-top:10px}
+.sty-notes .sty-add input{font-size:15px;padding:10px 12px;border-radius:10px}
+.sty-notes .sty-add .chip{min-height:42px;padding:6px 16px}
+.sty-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 28px 18px;border-top:1px solid var(--line);background:var(--surface)}
+.sty-sum{font-size:14px;color:var(--muted);line-height:1.5}
+.sty-sum b{color:var(--ink);font-weight:500}
+.sty-foot .btn{min-height:44px;border-radius:10px;padding:10px 26px;flex:none}
+@media (max-width:760px){
+  .sty-modal{align-items:flex-end;padding:0}
+  .sty-card{width:100%;height:94vh;border-radius:20px 20px 0 0;transform:translateY(40px)}
+  .sty-top{padding:18px 18px 12px}
+  .sty-top h2{font-size:24px}
+  .sty-body{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+  .sty-rail{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:10px 12px}
+  .sty-rail button{flex:none;padding:8px 12px}
+  .sty-rail .sp-sum{display:none}
+  .sty-panel{padding:16px 18px 20px}
+  .opt-row{grid-template-columns:1fr}
+  .opt-name{padding-top:0}
+  .sty-foot{padding:12px 18px 16px;flex-direction:column;align-items:stretch}
+}
+.sty-group{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:10px 12px;margin-top:10px}
+.sty-head{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:15px;font-weight:500}
+.sty-head .check{font-size:13px;font-weight:400;color:var(--muted);gap:6px}
+.sty-head .check input{width:15px;height:15px}
+.sty-list{list-style:none;margin:6px 0 0;padding:0}
+.sty-item{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;align-items:center;gap:8px;padding:6px 0;border-top:1px solid var(--line)}
+.sty-item:first-child{border-top:0}
+.sty-item .t{font-size:15px;line-height:1.4}
+.sty-item.off .t{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)}
+.sty-item .src{display:block;font-size:12px;color:var(--accent)}
+.sty-item input[type="text"]{font-size:15px;padding:6px 8px;border-radius:8px}
+.icon-btn{width:30px;height:30px;border:0;background:transparent;border-radius:8px;color:var(--muted);display:inline-flex;align-items:center;justify-content:center;font-size:16px}
+.icon-btn:hover{background:var(--tint);color:var(--ink)}
+.icon-btn.del:hover{background:#fbeef0;color:#8a2f3b}
+.icon-btn svg{width:15px;height:15px}
+.mini-switch{position:relative;display:inline-flex;cursor:pointer}
+.mini-switch input{position:absolute;opacity:0;width:1px;height:1px}
+.mini-switch .track{width:30px;height:18px;border-radius:999px;background:var(--line);position:relative;transition:background .2s}
+.mini-switch .thumb{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff;transition:transform .2s}
+.mini-switch input:checked + .track{background:var(--accent)}
+.mini-switch input:checked + .track .thumb{transform:translateX(12px)}
+.mini-switch input:focus-visible + .track{outline:3px solid var(--accent);outline-offset:2px}
+.sty-add{display:flex;gap:6px;margin-top:8px}
+.sty-add input{flex:1;font-size:14px;padding:7px 10px;border-radius:8px}
+.sty-add .chip{min-height:34px}
+.sty-empty{font-size:13px;color:var(--muted);padding:4px 0 0}
+.sug{position:fixed;right:24px;bottom:24px;z-index:70;width:min(380px,calc(100% - 32px));background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;box-shadow:0 24px 48px -24px rgba(37,40,61,.45);animation:sug-in .45s cubic-bezier(.2,.9,.25,1.15)}
+@keyframes sug-in{from{opacity:0;transform:translateY(16px) scale(.98)}}
+.sug-x{position:absolute;right:10px;top:10px;width:30px;height:30px;border:0;background:transparent;border-radius:8px;font-size:18px;color:var(--muted)}
+.sug-x:hover{background:var(--tint)}
+.sug-k{display:flex;gap:7px;align-items:flex-start;font-size:13px;color:var(--muted);padding-right:30px}
+.sug-k b{font-weight:500;color:var(--ink)}
+.sug-text{font-size:18px;font-weight:500;line-height:1.45;margin-top:8px}
+.sug-why{font-size:14px;color:var(--muted);line-height:1.5;margin-top:6px}
+.sug-ev-btn{font-size:13px;margin-top:8px}
+.sug-ev{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:4px}
+.sug-ev button{width:100%;text-align:start;border:1px solid var(--line);background:var(--soft);border-radius:8px;padding:6px 10px;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sug-ev button:hover{border-color:var(--accent)}
+.sug-ev .ev-when{font-size:12px;color:var(--muted);margin-right:8px}
+.sug-actions{display:flex;gap:8px;margin-top:14px}
+.sug-actions .btn{flex:1;min-height:42px;font-size:15px;border-radius:10px}
+.sug-never{display:block;margin:10px auto 0;font-size:13px;color:var(--muted);border-bottom-color:var(--line)}
+@media (max-width:560px){.sug{right:16px;left:16px;bottom:16px;width:auto}}
+.toast .link{color:#fff;border-bottom-color:rgba(255,255,255,.7);margin-left:10px;font-size:15px}
+
 /* source language */
 .echo{min-height:1.7em;text-align:center;font-size:clamp(18px,1.8vw,22px);font-weight:500;color:var(--accent);margin-top:14px;opacity:0;transform:translateY(4px);transition:opacity .2s,transform .2s}
 .echo.on{opacity:1;transform:none}
@@ -522,6 +797,21 @@ body.locked{overflow:hidden}
 .history .empty-li{padding:10px 0;font-size:15px;color:var(--muted)}
 
 .orig-bar{position:sticky;top:69px;z-index:15;height:0}
+/* wide screens: write on the left, compare on the right */
+@media (min-width:1100px){
+  .app .top .wrap,.app .orig-bar .wrap{width:min(1280px,calc(100% - 64px))}
+  .app-main.wrap.split{width:min(1280px,calc(100% - 64px));display:grid;grid-template-columns:minmax(360px,430px) minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:48px;align-items:start}
+  .split > .app-head{grid-column:1;grid-row:1}
+  .split > .app-head h1{font-size:34px}
+  .split > .app-head .app-sub{font-size:16px}
+  .split > #composer{grid-column:1;grid-row:2;position:sticky;top:88px;align-self:start;max-height:calc(100vh - 108px);overflow-y:auto}
+  .split > #results{grid-column:2;grid-row:1 / span 2;margin-top:4px}
+  .split #msg{font-size:20px;min-height:110px}
+  .split .composer-foot{flex-direction:column;align-items:stretch;gap:14px}
+  .split .go{width:100%;margin-left:0}
+  .split .go-btn{flex:1}
+  .split .results-head{position:sticky;top:68px;z-index:5;background:var(--bg);padding:12px 0 10px;margin:-12px 0 4px}
+}
 .orig-inner{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.97);border:1px solid var(--line);border-top:0;border-radius:0 0 12px 12px;padding:9px 16px;opacity:0;transform:translateY(-6px);visibility:hidden;transition:opacity .2s,transform .2s,visibility .2s}
 .orig-bar.is-visible .orig-inner{opacity:1;transform:none;visibility:visible}
 .orig-text{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:16px;font-weight:500}
@@ -607,6 +897,7 @@ body.locked{overflow:hidden}
     <div class="wrap">
       <div class="brand">Still Me</div>
       <div class="top-right">
+        <button class="hx-open" type="button" id="hx-open" aria-controls="hx-panel" aria-expanded="false" aria-label="History"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10 6v4.3l2.8 1.7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span>History</span></button>
         <button class="lang-chip" type="button" id="lang-chip"></button>
         <button class="me" type="button" id="me" aria-haspopup="true" aria-expanded="false" aria-controls="switcher"></button>
         <button class="burger" type="button" id="burger" aria-label="Settings" aria-controls="drawer" aria-expanded="false">
@@ -624,7 +915,7 @@ body.locked{overflow:hidden}
     </div></div>
   </div>
 
-  <main class="wrap app-main">
+  <main class="wrap app-main" id="app-main">
     <div class="app-head">
       <p class="hello" id="hello"></p>
       <h1 id="app-title" tabindex="-1">What do you want to say?</h1>
@@ -647,6 +938,7 @@ body.locked{overflow:hidden}
           <button class="add-opt" type="button" id="add-reader" aria-expanded="false" aria-controls="reader-field">+ Who it’s for</button>
           <button class="add-opt" type="button" id="add-keep" aria-expanded="false" aria-controls="keep-field">+ What to keep</button>
         </div>
+        <div class="pref-box" id="pref-box" hidden></div>
         <div class="opt" id="reader-field" hidden>
           <label for="reader">Who is it for?</label>
           <input type="text" id="reader" dir="auto" maxlength="120">
@@ -664,6 +956,32 @@ body.locked{overflow:hidden}
         </div>
       </div>
       <p class="status" id="gen-status" role="status"></p>
+    </section>
+
+    <section class="record" id="record" aria-labelledby="rec-title" hidden>
+      <button class="rec-back" type="button" id="rec-back"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3.5L5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Back to writing</span></button>
+      <div class="rec-grid">
+        <div class="rec-side">
+          <p class="rec-meta" id="rec-meta"></p>
+          <h1 class="rec-msg" id="rec-title" tabindex="-1" dir="auto"></h1>
+          <dl class="rec-ctx" id="rec-ctx"></dl>
+          <div class="rec-read" id="rec-read"></div>
+        </div>
+        <div class="rec-main">
+          <h2 class="rec-h" id="rec-h">English versions</h2>
+          <p class="rec-pick" id="rec-pick" hidden></p>
+          <div class="rec-cards" id="rec-cards"></div>
+          <div class="rec-saved" id="rec-saved-wrap" hidden>
+            <h3>Saved versions</h3>
+            <ol id="rec-saved"></ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="recent" id="recent" aria-labelledby="recent-title" hidden>
+      <div class="recent-head"><h2 id="recent-title">Recent</h2><button class="link" type="button" id="recent-all">See all</button></div>
+      <div class="recent-list" id="recent-list"></div>
     </section>
 
     <section class="results" id="results" aria-labelledby="results-title" hidden>
@@ -702,6 +1020,7 @@ body.locked{overflow:hidden}
 
       <div id="out" hidden>
         <div class="readback-line" id="readback"></div>
+        <p class="pref-note" id="pref-note" hidden></p>
         <fieldset>
           <legend class="sr-only">Which version is closest to what you meant?</legend>
           <div class="vlist" id="cards"></div>
@@ -771,19 +1090,20 @@ body.locked{overflow:hidden}
       <div class="drawer-who"><h2 id="drawer-title">Settings</h2><p id="drawer-email"></p></div>
       <button class="close" type="button" id="drawer-close" aria-label="Close settings">×</button>
     </div>
-    <section aria-labelledby="set-details">
-      <h3 id="set-details">Your details</h3>
+    <section aria-labelledby="set-profile">
+      <h3 id="set-profile">Profile</h3>
+      <div class="field" role="group" aria-labelledby="set-av-label"><div class="field-head"><span class="flabel" id="set-av-label">Avatar</span></div><div class="av-grid av-row" id="set-avatars"></div></div>
       <div class="field"><div class="field-head"><label for="set-name">Name</label></div><input type="text" id="set-name" maxlength="24"></div>
       <div class="field"><div class="field-head"><label for="set-about">How do you usually come across?</label><span>Optional</span></div>
         <textarea id="set-about" maxlength="240" placeholder="e.g. I joke a lot with friends, and I’m direct at work."></textarea></div>
       <div class="field"><div class="field-head"><label for="set-audience">Who do you usually write to?</label><span>Optional</span></div>
         <input type="text" id="set-audience" maxlength="120" placeholder="e.g. classmates, my team, friends back home"></div>
       <p class="small muted" style="margin-top:10px">Claude reads these as background when it writes your versions.</p>
-      <div class="row"><button class="btn" type="button" id="set-save">Save details</button><span class="status" id="set-status" role="status"></span></div>
+      <div class="row"><button class="btn" type="button" id="set-save">Save profile</button><span class="status" id="set-status" role="status"></span></div>
     </section>
-    <section aria-labelledby="set-avatar">
-      <h3 id="set-avatar">Avatar</h3>
-      <div class="av-grid" id="set-avatars"></div>
+    <section aria-labelledby="set-style" id="set-style-sec">
+      <div class="sec-head"><h3 id="set-style">Your style</h3><button class="link" type="button" id="style-open" aria-haspopup="dialog">Open</button></div>
+      <div class="style-over" id="style-over"></div>
     </section>
     <section aria-labelledby="set-langs">
       <h3 id="set-langs">Languages</h3>
@@ -800,6 +1120,59 @@ body.locked{overflow:hidden}
       <p style="margin-top:14px"><button class="link" type="button" data-sm-exit hidden>Back to the website</button></p>
     </section>
   </div>
+</div>
+<div class="hx" id="hx-panel" role="dialog" aria-modal="true" aria-labelledby="hx-title" hidden>
+  <div class="hx-backdrop" id="hx-backdrop"></div>
+  <div class="hx-sheet">
+    <div class="hx-top">
+      <h2 id="hx-title">History</h2>
+      <div class="hx-search"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="5.6" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M13.2 13.2L17 17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><input type="search" id="hx-q" placeholder="Search messages, versions, people…" aria-label="Search history" autocomplete="off"><kbd id="hx-kbd"></kbd></div>
+      <div class="hx-dates" role="group" aria-label="When">
+        <button type="button" data-range="all" aria-pressed="true">All</button>
+        <button type="button" data-range="today" aria-pressed="false">Today</button>
+        <button type="button" data-range="7" aria-pressed="false">7 days</button>
+        <button type="button" data-range="30" aria-pressed="false">30 days</button>
+      </div>
+      <button class="hx-close" type="button" id="hx-close" aria-label="Close history">×</button>
+    </div>
+    <div class="hx-body">
+      <aside class="hx-side" aria-labelledby="hx-cat-title">
+        <h3 id="hx-cat-title">Categories</h3>
+        <div class="hx-cats" id="hx-cats" role="group" aria-labelledby="hx-cat-title"></div>
+      </aside>
+      <div class="hx-results">
+        <p class="hx-count" id="hx-count" role="status"></p>
+        <div class="hx-list" id="hx-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="sty-modal" id="sty-modal" role="dialog" aria-modal="true" aria-labelledby="sty-title" hidden>
+  <div class="sty-backdrop" id="sty-backdrop"></div>
+  <div class="sty-card">
+    <div class="sty-top">
+      <div><h2 id="sty-title">Your style</h2><p>Choose how you like to sound in each place. Still Me asks before using it, unless you turn on Use without asking.</p></div>
+      <button class="close" type="button" id="sty-close" aria-label="Close">×</button>
+    </div>
+    <div class="sty-body">
+      <div class="sty-rail" role="tablist" aria-label="Place" aria-orientation="vertical" id="sty-rail"></div>
+      <div class="sty-panel" role="tabpanel" id="sty-panel"></div>
+    </div>
+    <div class="sty-foot"><p class="sty-sum" id="sty-sum" role="status"></p><button class="btn" type="button" id="sty-done">Done</button></div>
+  </div>
+</div>
+<div class="sug" id="sug" role="dialog" aria-labelledby="sug-title" hidden>
+  <button class="sug-x" type="button" id="sug-x" aria-label="Close">×</button>
+  <p class="sug-k" id="sug-title"></p>
+  <p class="sug-text" id="sug-text" dir="auto"></p>
+  <p class="sug-why" id="sug-why" dir="auto"></p>
+  <button class="link sug-ev-btn" type="button" id="sug-ev-btn" aria-expanded="false" aria-controls="sug-ev"></button>
+  <ul class="sug-ev" id="sug-ev" hidden></ul>
+  <div class="sug-actions">
+    <button class="btn" type="button" id="sug-keep">Remember this</button>
+    <button class="btn outline" type="button" id="sug-later">Not now</button>
+  </div>
+  <button class="link sug-never" type="button" id="sug-never">Don’t suggest this</button>
 </div>
 <div class="toast" id="toast" role="status" hidden></div>
 <div class="sr-only" role="status" aria-live="polite" id="live"></div>
@@ -947,11 +1320,15 @@ var TOOLS = {
     input_schema: { type: 'object', properties: {
       clarify: { type: ['string', 'null'], description: 'One short question, only if truly needed. Otherwise null.' },
       readback: { type: ['object', 'null'], properties: { meaning: { type: 'string' }, tone: { type: 'string' }, keep: { type: 'array', items: { type: 'string' } } } },
-      versions: { type: ['array', 'null'], items: { type: 'string' } } } } },
+      versions: { type: ['array', 'null'], items: { type: 'string' } },
+      topic: { type: 'string', description: 'One of: thanks, plans, jokes, ask, feelings, disagree, updates, other.' } } } },
   notes: { name: 'give_notes', description: 'Return one wording note per version, in order.',
     input_schema: { type: 'object', properties: {
       notes: { type: 'array', items: { type: 'object', properties: { title: { type: 'string' }, note: { type: 'string' }, phrases: { type: 'array', items: { type: 'string' } } }, required: ['title', 'note', 'phrases'] } },
       shared: { type: ['string', 'null'] } }, required: ['notes'] } },
+  suggest: { name: 'give_suggestions', description: 'Return up to two style notes that describe consistent patterns, or none.',
+    input_schema: { type: 'object', properties: {
+      suggestions: { type: 'array', items: { type: 'object', properties: { text: { type: 'string' }, reason: { type: 'string' }, evidence: { type: 'array', items: { type: 'string' } } }, required: ['text'] } } }, required: ['suggestions'] } },
   revision: { name: 'give_revision', description: 'Return the revised version and short notes on what changed.',
     input_schema: { type: 'object', properties: { text: { type: 'string' }, changes: { type: 'array', items: { type: 'string' } } }, required: ['text', 'changes'] } }
 };
@@ -1196,8 +1573,94 @@ function ensureDemo() {
         });
       }).then(function (r) { return remember(r.user, r.token); }).catch(function () {});
     });
-  }, chain).then(refreshDevice);
+  }, chain).then(refreshDevice).then(seedDemoHistory);
 }
+/* ================= history: every comparison, per account =================
+   Kept in this browser for now (Claude storage inside Claude). The backend can later serve it from GET/POST /history. */
+var TOPICS = [
+  { id: 'thanks', label: 'Thanks & apologies', color: '#8F3985' },
+  { id: 'plans', label: 'Plans & timing', color: '#4F6D8F' },
+  { id: 'jokes', label: 'Jokes & play', color: '#C27C5C' },
+  { id: 'ask', label: 'Asking for something', color: '#5E8C7E' },
+  { id: 'feelings', label: 'Feelings & support', color: '#A675A1' },
+  { id: 'disagree', label: 'Disagreeing', color: '#25283D' },
+  { id: 'updates', label: 'Updates & news', color: '#B08A2E' },
+  { id: 'other', label: 'Other', color: '#9A93A0' }
+];
+function topicOf(id) { return TOPICS.filter(function (t) { return t.id === id; })[0] || TOPICS[TOPICS.length - 1]; }
+var WHERE_LABEL = { social: 'Social post', friend: 'To a friend', work: 'At work' };
+function hxKey(uid) { return 'still-me-history-v1:' + uid; }
+var DAY = 864e5;
+function demoHistory() {
+  var now = Date.now();
+  var mk = function (ago, o) { o.id = 'h' + randHex(6); o.created = o.updated = now - ago; o.source = 'zh'; o.target = 'en'; o.saved = o.saved || []; return o; };
+  return [
+    mk(2 * 36e5, { message: '我不知道练拳以后力气有没有变大，反正吃甜品的本事是更上一层楼了。', where: 'social', reader: '朋友和关注我的人', keep: '“吃甜品也是一种本事”这个笑点', topic: 'jokes',
+      readback: { meaning: '不确定练拳有没有让力气变大，但吃甜品的“本事”肯定进步了。', tone: '轻松、自嘲', keep: ['对力气的不确定', '吃甜品是一种本事', '玩笑感'] },
+      versions: ['I’m not sure whether boxing has made me stronger, but it has definitely increased my appetite for desserts.', 'I’m not sure boxing made me stronger, but my dessert appetite definitely leveled up.', 'Can’t tell if boxing made me stronger, but my dessert skills? Absolutely leveled up.'],
+      choice: '2', saved: [{ text: 'Can’t tell if boxing made me stronger, but my dessert skills? Leveled up, absolutely.', who: 'you', reason: 'Edited from version C', parent: 'Can’t tell if boxing made me stronger, but my dessert skills? Absolutely leveled up.' }] }),
+    mk(1 * DAY + 3 * 36e5, { message: '这个我今天做不完，明天上午给你。', where: 'work', reader: '一起做项目的同事', keep: '直接说明时间', topic: 'plans',
+      readback: { meaning: '今天完成不了，明天上午交。', tone: '直接、平实', keep: ['明天上午这个时间', '不额外道歉'] },
+      versions: ['I won’t be able to finish this today. I’ll send it over tomorrow morning.', 'This needs one more day. You’ll have it tomorrow morning.', 'Not done yet. Tomorrow morning, first thing.'], choice: '0',
+      saved: [{ text: 'I won’t finish this today. I’ll send it tomorrow morning.', who: 'you', reason: 'Edited from version A', parent: 'I won’t be able to finish this today. I’ll send it over tomorrow morning.' }] }),
+    mk(3 * DAY, { seed: 'sorry', message: '不好意思昨天没回你，最近真的有点忙乱。', where: 'friend', reader: '好久没联系的朋友', keep: '道歉，但不要太沉重', topic: 'thanks',
+      readback: { meaning: '为昨天没回消息道歉，解释最近比较忙乱。', tone: '随意、带一点歉意', keep: ['道歉但不过分', '最近忙乱的原因'] },
+      versions: ['Sorry I didn’t get back to you yesterday. Things have been a bit hectic lately.', 'My bad for not replying yesterday. It’s been a messy week.', 'Sorry for going quiet yesterday. Life’s been a little chaotic.'], choice: '1' }),
+    mk(6 * DAY, { message: '你今天辛苦了，早点休息吧。', where: 'friend', reader: '刚加完班的朋友', keep: '心疼对方，不是客套', topic: 'feelings',
+      readback: { meaning: '体谅朋友今天很累，劝他早点休息。', tone: '关心、温柔', keep: ['辛苦了的体谅', '早点休息'] },
+      versions: ['You worked so hard today. Get some rest early, okay?', 'Long day, huh? Go rest. You’ve earned it.', 'That sounded exhausting. Try to get to bed early tonight.'], choice: 'unsure' }),
+    mk(12 * DAY, { message: '我觉得这个方案还需要再想想，有几个地方我不太确定。', where: 'work', reader: '项目经理', keep: '直接，但不冲', topic: 'disagree',
+      readback: { meaning: '对方案有保留意见，希望再考虑几个不确定的地方。', tone: '直接、克制', keep: ['还需要再想想', '具体指出不确定'] },
+      versions: ['I think this plan needs more thought. There are a few parts I’m not sure about.', 'I’m not fully convinced yet. A few parts still feel uncertain to me.', 'Before we commit, can we revisit a few points? I’m not sure about them yet.'], choice: '0',
+      saved: [{ text: 'This plan needs more thought. A few parts aren’t clear to me yet.', who: 'you', reason: 'Edited from version A', parent: 'I think this plan needs more thought. There are a few parts I’m not sure about.' }] }),
+    mk(25 * DAY, { message: '能不能帮我看一下简历？不着急，你有空的时候就好。', where: 'friend', reader: '大学室友', keep: '不给对方压力', topic: 'ask',
+      readback: { meaning: '请朋友有空时帮忙看简历，强调不着急。', tone: '客气、轻松', keep: ['不着急', '有空的时候'] },
+      versions: ['Could you take a look at my résumé? No rush, whenever you have time.', 'Would you mind looking over my CV sometime? Totally no hurry.', 'If you get a free moment, could you glance at my résumé? No pressure at all.'], choice: '0',
+      saved: [{ text: 'Could you take a look at my résumé sometime? No rush at all.', who: 'you', reason: 'Edited from version A', parent: 'Could you take a look at my résumé? No rush, whenever you have time.' }] })
+  ];
+}
+var SEED_VERSION = 3;
+var OLD_SEED_FIRST = 'You really didn’t have to go out of your way to drive me. I appreciate it more than I can say.';
+function prefKey(uid) { return 'still-me-prefs-v1:' + uid; }
+function demoStyle() { return { all: { apology: 'none' }, social: { tone: ['playful'], humor: 'keep', emoji: 'none' }, friend: { tone: ['warm'], formality: 'casual' } }; }
+function demoPrefs() {
+  var now = Date.now(), mk = function (context, text) { return { id: 'p' + randHex(5), context: context, text: text, source: 'you', active: true, uses: 0, created: now }; };
+  return { items: [mk('all', '不要加我原文里没有的客套话'), mk('social', '保留自嘲的笑点')], style: demoStyle(), auto: {}, dismissed: [], checked: {} };
+}
+function seedDemoHistory() {
+  if (SERVER_AUTH) return Promise.resolve();
+  var shan = device.filter(function (e) { return e.email === 'shan@stillme.demo'; })[0];
+  if (!shan) return Promise.resolve();
+  var key = hxKey(shan.uid), vkey = key + ':seed';
+  return Store.get(prefKey(shan.uid)).then(function (pf) {
+    if (!pf) return Store.set(prefKey(shan.uid), demoPrefs());
+    if (!pf.style) {
+      pf.style = demoStyle();
+      pf.items = (pf.items || []).map(function (p) { if (p.text === '保留自嘲的笑点，不加 hashtag') p.text = '保留自嘲的笑点'; return p; })
+        .filter(function (p) { return p.text !== '轻松一点，可以用口语'; });
+      return Store.set(prefKey(shan.uid), pf);
+    }
+  }).then(function () { return Store.get(key); }).then(function (list) {
+    if (!Array.isArray(list)) return Store.set(key, demoHistory()).then(function () { return Store.set(vkey, SEED_VERSION); });
+    return Store.get(vkey).then(function (v) {
+      if (v >= SEED_VERSION) return;
+      var kept = list.filter(function (e) { return !(e.versions && e.versions[0] === OLD_SEED_FIRST); });
+      if (v < 3 || !v) {
+        var fresh = demoHistory();
+        kept.forEach(function (e) {
+          if (e.saved && e.saved.length) return;
+          var match = fresh.filter(function (f) { return f.message === e.message && f.saved && f.saved.length; })[0];
+          if (match && e.versions && e.versions[0] === match.versions[0]) { e.saved = match.saved; if (match.choice) e.choice = match.choice; }
+        });
+      }
+      if (kept.length !== list.length && !kept.some(function (e) { return e.seed === 'sorry'; })) {
+        kept = kept.concat(demoHistory().filter(function (e) { return e.seed === 'sorry'; })).sort(function (a, b) { return b.created - a.created; });
+      }
+      return Store.set(key, kept).then(function () { return Store.set(vkey, SEED_VERSION); });
+    });
+  });
+}
+
 function saveUser(fields) {
   if (!P || !token) return Promise.resolve();
   var patch = {}; (fields || USER_FIELDS).forEach(function (f) { patch[f] = P[f]; });
@@ -1223,6 +1686,7 @@ function contextBlock(c, P) {
   if (P.about) lines.push('About the writer, in their words: "' + P.about + '"');
   if (P.audience) lines.push('They usually write to: "' + P.audience + '"');
   if (c.question && c.answer) lines.push('You asked: "' + c.question + '" They answered: "' + c.answer + '"');
+  if (c.prefs && c.prefs.length) lines.push('The style they chose for this kind of message (their own notes are in their words):\n' + c.prefs.map(function (t) { return '- ' + t; }).join('\n'));
   return lines.join('\n');
 }
 function promptGenerate(c, P, avoid) {
@@ -1233,7 +1697,9 @@ function promptGenerate(c, P, avoid) {
   p += (mayAsk ? 'Step 1. Ask ONE short question only if an important part of the meaning is genuinely unclear in a way that would change the result (for example: whether a line is sarcastic, whether it is a refusal or a delay, who a pronoun refers to) and the context does not settle it. If the message is clear enough, do not ask.\n\nStep 2. If you are not asking:\n' : 'Do not ask a question. Write the versions now.\n\n') +
     '- readback: written in ' + src + ', say briefly what the message means and its tone, then 2 to 4 short things they probably want to keep (for example the joke, a contrast, a specific image). Do not add feelings, facts, apologies, or politeness that are not in the original.\n' +
     '- versions: exactly 3 versions in ' + tgt + ', each reasonable for the context. Make them differ in real wording choices (structure, word choice, register, punctuation, how a joke or request lands), not only formal versus casual. Keep their meaning. No added apologies, softening, emojis, or hashtags unless the original or context has them.\n\n' +
-    'Reply with JSON only, no other text:\n{"clarify": null, "readback": {"meaning": "...", "tone": "...", "keep": ["..."]}, "versions": ["...", "...", "..."]}' +
+    (c.prefs && c.prefs.length ? '- style notes: follow their style notes in versions 1 and 2. Make version 3 deliberately step outside those notes while keeping the meaning, so they can compare.\n' : '') +
+    '- topic: the one label that fits the message best: thanks (thanks or apologies), plans (plans, timing, delays), jokes (jokes, play, captions), ask (asking for something), feelings (feelings, comfort, support), disagree (disagreeing, pushing back), updates (news, updates, information), other.\n\n' +
+    'Reply with JSON only, no other text:\n{"clarify": null, "readback": {"meaning": "...", "tone": "...", "keep": ["..."]}, "versions": ["...", "...", "..."], "topic": "..."}' +
     (mayAsk ? '\nor, if asking:\n{"clarify": "your one short question, written in ' + src + '", "readback": null, "versions": null}' : '');
   return p;
 }
@@ -1245,13 +1711,30 @@ function promptExplain(c, P, versions, code) {
     '- "note": point to specific words and what they may do to the meaning or tone, compared with the original and the other versions. Use careful language ("may sound", "some readers may hear"). Never use verdicts such as better, worse, correct, natural, authentic, best.\n' +
     '- "phrases": 1 to 3 short phrases copied exactly from that version (same letters, case, and punctuation) that carry the difference.\n' +
     'Also write "shared": one sentence about something in the original that all versions change or drop, or null.\n\n' +
+    (c.prefs && c.prefs.length ? 'If style notes are listed, say in the note when a word choice follows them or steps outside them.\n' : '') +
     'Write "note" and "shared" in ' + L.model + (code === P.target ? '' : ', keeping quoted words from the versions as they are') + '. Keep each note short (about 45 English words or 90 Chinese characters).\n\n' +
     'Reply with JSON only, no other text:\n{"notes": [{"title": "...", "note": "...", "phrases": ["..."]}], "shared": "..."}';
+}
+function promptSuggest(where, entries, existing) {
+  var src = LANGS[P.source].model, label = WHERE_LABEL[where] || 'all';
+  var block = entries.map(function (e) {
+    var vs = e.versions || [];
+    return '[' + e.id + '] "' + e.message + '"\n  Offered: ' + vs.map(function (v, i) { return 'ABC'[i] + ') ' + v; }).join(' | ') +
+      '\n  Picked: ' + (/^[0-2]$/.test(String(e.choice)) ? 'ABC'[+e.choice] : (e.choice || 'nothing')) +
+      '\n  Saved: ' + (e.saved || []).map(function (h) { return '(' + (h.who === 'claude' ? 'Claude, ' : 'their own edit, ') + (h.reason || '') + ') "' + h.text + '"'; }).join('; ');
+  }).join('\n');
+  return 'You help Still Me notice how a person likes to sound. Their most comfortable language is ' + src + '; they write messages in ' + LANGS[P.target].model + '.\n' +
+    'Below are recent "' + label + '" messages and how they shaped the result: the versions offered, which one they picked, and what they saved (their own edits, or changes they asked for).\n\n' + block + '\n\n' +
+    'Find at most 2 consistent patterns in what they changed, chose, or asked for. Only report a pattern that shows up in at least 2 of these messages; ignore one-off choices.\n' +
+    'Write each as a short note they could have written themselves, in ' + src + ', at most 16 words, phrased as an instruction for this kind of message.\n' +
+    'Give a one-sentence reason in ' + src + ', and the ids of the messages that show it.\n' +
+    (existing.length ? 'Do not repeat or rephrase these existing notes: ' + existing.map(function (t) { return '"' + t + '"'; }).join('; ') + '\n' : '') +
+    'Reply with JSON only, no other text:\n{"suggestions": [{"text": "...", "reason": "...", "evidence": ["id"]}]}\nor {"suggestions": []} if nothing is consistent.';
 }
 function promptRevise(c, P, current, request, keepList, code) {
   return rules(P) + ' Here you revise one version following their request.\n\n' + contextBlock(c, P) +
     '\n\nCurrent version: "' + current + '"\nTheir request: "' + request + '"\nMust stay: ' + (keepList.length ? keepList.map(function (k) { return '"' + k + '"'; }).join('; ') : 'the original meaning') + '\n\n' +
-    'Write one revised version in ' + LANGS[P.target].model + ' that follows the request, keeps what must stay, and keeps the original meaning. Do not add facts, apologies, softening, or feelings that are not in the original unless they ask. If the request conflicts with something that must stay, write the closest version and say so in a change note.\n' +
+    'Write one revised version in ' + LANGS[P.target].model + ' that follows the request, keeps what must stay, and keeps the original meaning.' + (c.prefs && c.prefs.length ? ' Keep following their style notes unless the request says otherwise.' : '') + ' Do not add facts, apologies, softening, or feelings that are not in the original unless they ask. If the request conflicts with something that must stay, write the closest version and say so in a change note.\n' +
     'Then list 1 to 3 short notes naming the concrete words you changed, written in ' + LANGS[code].model + '.\n\nReply with JSON only, no other text:\n{"text": "...", "changes": ["..."]}';
 }
 
@@ -1301,9 +1784,14 @@ function showScreen(name) {
   var h = screenEl(name).querySelector('h1');
   if (h) setTimeout(function () { h.focus({ preventScroll: true }); }, 30);
 }
-function toast(text) {
+function toast(text, actionLabel, onAction) {
   var t = $('toast'); t.textContent = text; t.hidden = false;
-  clearTimeout(toast.timer); toast.timer = setTimeout(function () { t.hidden = true; }, 3600);
+  if (actionLabel) {
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'link'; b.textContent = actionLabel;
+    b.addEventListener('click', function () { t.hidden = true; onAction(); });
+    t.appendChild(b);
+  }
+  clearTimeout(toast.timer); toast.timer = setTimeout(function () { t.hidden = true; }, actionLabel ? 6500 : 3600);
 }
 
 /* ---------- transitions: the clicked avatar opens into the next screen ---------- */
@@ -1314,7 +1802,7 @@ var STAGGER = {
   new: '.shell-top, h1, .new-form',
   source: '.shell-top, h1, .sub, .lang',
   target: '.shell-top, h1, .sub, .targets, .preview',
-  app: '.top, .app-head, .compose, .results'
+  app: '.top, .app-head, .composer, .recent, .results'
 };
 function staggerIn(screen, skip) {
   if (reduced() || !document.body.animate || !screen) return;
@@ -1466,7 +1954,7 @@ function toAccounts() {
   fadeTo(function () { P = null; token = null; toAccountList(); });
 }
 function logout() {
-  captureSession(); closeSwitcher();
+  closeHx(true); captureSession(); closeSwitcher();
   var origin = $('me'), av = P ? P.avatar : null, t = token, e = P && deviceEntry(P.id);
   closeDrawer();
   if (t) Auth.logout(t);
@@ -1714,6 +2202,7 @@ function openDrawer() {
   if (!P) return;
   closeSwitcher();
   $('drawer-av').innerHTML = avatarSVG(P.avatar, P.name);
+  renderStyleOverview();
   $('drawer-title').textContent = P.name; $('drawer-email').textContent = P.email || ''; $('set-demo').hidden = SERVER_AUTH;
   $('set-name').value = P.name; $('set-about').value = P.about || ''; $('set-audience').value = P.audience || ''; $('set-status').textContent = '';
   avatarGrid($('set-avatars'), P.avatar, function (id) {
@@ -1790,8 +2279,12 @@ function resetSessionForLanguages() {
   var fresh = newState(); fresh.history = keep; fresh.msgId = (old.msgId || 0) + 1; sessions[P.id] = fresh;
 }
 function enterApp() {
+  if ($('sty-modal') && !$('sty-modal').hidden) { $('sty-modal').hidden = true; $('sty-modal').classList.remove('is-open'); }
+  sugShown = false; if ($('sug')) $('sug').hidden = true;
+  if (REC.id) { REC.id = null; $('record').hidden = true; $('app-main').classList.remove('is-record'); $('orig-bar').hidden = false; }
   S = sessions[P.id] || (sessions[P.id] = newState());
   renderHeader(); applyLanguage(); renderWorkspace(); showScreen('app');
+  loadHistory(P.id); loadPrefs(P.id);
 }
 
 /* ---------- language-dependent labels ---------- */
@@ -1838,13 +2331,13 @@ msg.addEventListener('input', grow);
 $('orig-edit').addEventListener('click', function () { scrollToEl($('composer'), 'center'); setTimeout(function () { msg.focus({ preventScroll: true }); }, reduced() ? 0 : 350); });
 document.addEventListener('scroll', function () {
   var bar = $('orig-bar'); if (!bar || bar.closest('[hidden]')) return;
-  var show = !$('out').hidden && $('composer').getBoundingClientRect().bottom < 72;
+  var show = !REC.id && !$('out').hidden && !$('app-main').classList.contains('split') && $('composer').getBoundingClientRect().bottom < 72;
   if (show) $('orig-text').textContent = (S.ctx && S.ctx.message) || '';
   bar.classList.toggle('is-visible', show);
 }, true);
 
 /* ---------- form ---------- */
-function setWhere(w) { document.querySelectorAll('#where [data-where]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.where === w)); }); }
+function setWhere(w) { document.querySelectorAll('#where [data-where]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.where === w)); }); if (typeof renderPrefBox === 'function') renderPrefBox(); }
 $('where').addEventListener('click', function (e) {
   var b = e.target.closest('[data-where]'); if (!b) return;
   setWhere(b.getAttribute('aria-pressed') === 'true' ? '' : b.dataset.where); checkStale();
@@ -1861,7 +2354,7 @@ function checkStale() { $('stale').hidden = !(S.ctx && !$('out').hidden && !same
 /* ---------- generate ---------- */
 function generate(opts) {
   opts = opts || {};
-  var c = opts.ctx || readForm(), line = opts.line || $('gen-status'), btn = opts.button || $('generate');
+  var c = opts.ctx || attachPrefs(readForm()), line = opts.line || $('gen-status'), btn = opts.button || $('generate');
   if (!c.message) { line.classList.add('error'); line.textContent = 'Write a short message first.'; msg.focus(); return; }
   if (src().script && !src().script.test(c.message)) { line.classList.add('error'); line.textContent = 'Write the message in ' + src().name + '. Words from other languages inside it are fine.'; msg.focus(); return; }
   var st = S, id = ++st.req, who = P;
@@ -1876,7 +2369,7 @@ function generate(opts) {
     setLoading(false);
     var vs = versionsOf(out);
     if (canAsk && typeof out.clarify === 'string' && out.clarify.trim() && vs.length < 2) { showAsk(c, out.clarify.trim()); return; }
-    showResults(c, out.readback && typeof out.readback === 'object' ? out.readback : {}, vs, !!opts.avoid);
+    showResults(c, out.readback && typeof out.readback === 'object' ? out.readback : {}, vs, !!opts.avoid, out.topic);
   }).catch(function (e) {
     if (st !== S || id !== st.req) return;
     setLoading(false); paintResults();
@@ -1886,15 +2379,33 @@ function generate(opts) {
 $('generate').addEventListener('click', function () { generate(); });
 $('stale-go').addEventListener('click', function () { generate({ button: $('stale-go'), busyText: 'Writing…' }); });
 
+var WIDE = window.matchMedia('(min-width: 1100px)');
+function setSplit(on, animate) {
+  var main = $('app-main'), c = $('composer');
+  on = on && WIDE.matches;
+  if (main.classList.contains('split') === on) return;
+  var first = c.getBoundingClientRect();
+  main.classList.toggle('split', on);
+  if (!animate || reduced() || !c.animate) return;
+  var last = c.getBoundingClientRect();
+  c.animate([{ transform: 'translate(' + (first.left - last.left) + 'px,' + (first.top - last.top) + 'px)', opacity: .7 }, { transform: 'none', opacity: 1 }],
+    { duration: 480, easing: 'cubic-bezier(.2,.8,.2,1)' });
+}
 function syncResults() {
   var loading = $('empty').classList.contains('is-loading');
-  $('results').hidden = !(loading || S.versions.length || !$('ask').hidden);
+  var show = loading || S.versions.length || !$('ask').hidden;
+  $('results').hidden = !show;
+  if ($('recent')) $('recent').hidden = !!show || !HX.list.length;
+  setSplit(!!show, true);
 }
+(WIDE.addEventListener ? WIDE.addEventListener.bind(WIDE, 'change') : WIDE.addListener.bind(WIDE))(function () {
+  setSplit(!$('results').hidden, false);
+});
 function setLoading(on) {
   var ph = $('empty'); ph.classList.toggle('is-loading', on); ph.setAttribute('aria-busy', String(on)); ph.hidden = !on;
   if (on) { $('out').hidden = true; $('ask').hidden = true; $('stale').hidden = true; }
   syncResults();
-  if (on && window.innerWidth < 980) scrollToEl($('results'), 'start');
+  if (on && !WIDE.matches) scrollToEl($('results'), 'start');
 }
 function showAsk(c, q) {
   S.pendingCtx = c; S.pendingQ = q;
@@ -1912,15 +2423,17 @@ $('ask-a').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e
 $('ask-skip').addEventListener('click', function () { generate({ ctx: Object.assign({}, S.pendingCtx, { skipAsk: true }), button: $('ask-go'), busyText: 'Writing…' }); });
 
 /* ---------- results ---------- */
-function showResults(c, rb, vs, isRetry) {
-  if (!S.ctx || S.ctx.message !== c.message) { S.msgId++; S.round = 0; }
+function showResults(c, rb, vs, isRetry, topic) {
+  if (!S.ctx || S.ctx.message !== c.message) { S.msgId++; S.round = 0; S.entryId = null; }
+  if (c.prefs && c.prefs.length) notePrefUse(c);
   S.ctx = c; S.round++; S.versions = vs; S.readback = rb;
   S.choice = null; S.before = null; S.notes = {}; S.phrases = null; S.notesReq++;
   S.keepList = Array.isArray(rb.keep) ? rb.keep.filter(function (k) { return typeof k === 'string' && k.trim(); }).slice(0, 4) : [];
   S.keepSel = [];
+  recordRun(c, rb, vs, topic);
   paintResults();
   if (S.details) loadNotes(S.lang);
-  if (window.innerWidth < 980) scrollToEl($('results-title'));
+  if (!WIDE.matches) scrollToEl($('results-title'));
   setTimeout(function () { $('results-title').focus({ preventScroll: true }); }, reduced() ? 0 : 300);
   announce((isRetry ? 'Three new versions are ready.' : 'Three versions are ready.') + ' Pick the one closest to what you meant.');
 }
@@ -1932,6 +2445,9 @@ function paintResults() {
   var rb = S.readback || {}, tag = src().tag, k = S.keepList;
   $('readback').innerHTML = '<span class="k">Meaning: </span><span lang="' + tag + '" dir="auto">' + esc(rb.meaning || '') + (rb.tone ? ' ' + esc(rb.tone) : '') + '</span>' +
     (k.length ? '<br><span class="k">Worth keeping: </span><span lang="' + tag + '" dir="auto">' + esc(k.join('; ')) + '</span>' : '');
+  var pn = $('pref-note'), used = S.ctx && S.ctx.prefs && S.ctx.prefs.length;
+  pn.hidden = !used;
+  if (used) pn.innerHTML = STAR + '<span>A and B follow your ' + esc(S.ctx.prefLabel || 'saved') + ' style. C steps outside it, so you can compare.</span>';
   renderCards();
   document.querySelectorAll('input[name="pick"]').forEach(function (r) { r.checked = r.value === String(S.choice); });
   $('missing').hidden = S.choice !== 'none';
@@ -1942,7 +2458,7 @@ function renderCards() {
   S.versions.forEach(function (v, i) {
     var lab = document.createElement('label'); lab.className = 'card'; lab.setAttribute('for', 'pick-' + i);
     lab.innerHTML = '<input type="radio" name="pick" id="pick-' + i + '" value="' + i + '">' +
-      '<span class="head"><span>Version ' + LETTERS[i] + '</span><span class="dot" aria-hidden="true"></span></span>' +
+      '<span class="head"><span>Version ' + LETTERS[i] + (i === 2 && S.ctx && S.ctx.prefs && S.ctx.prefs.length ? '<span class="out-tag">Outside your style</span>' : '') + '</span><span class="dot" aria-hidden="true"></span></span>' +
       '<span class="text" data-text="' + i + '" lang="' + tgt().tag + '" dir="auto">' + esc(v) + '</span>' +
       '<span class="vnote" data-note="' + i + '" hidden></span>' +
       '<span class="foot"><span class="pick"><span data-pickl="' + i + '">This feels closer</span><span aria-hidden="true">+</span></span>' +
@@ -1969,6 +2485,7 @@ function choose(v) {
   }
 }
 function renderChoice() {
+  hxTouch();
   var go = $('choice-go'), st = $('choice-status');
   document.querySelectorAll('#cards .card').forEach(function (card, i) {
     var on = String(i) === String(S.choice);
@@ -2143,6 +2660,7 @@ $('save').addEventListener('click', function () {
   afterAdd('Saved as version ' + S.history.length + '. Earlier versions can be restored any time.');
 });
 function afterAdd(message) {
+  setTimeout(function () { maybeSuggest(S.ctx && S.ctx.where); }, 700);
   S.current = S.history.length - 1; var h = S.history[S.current];
   setSeed(h.text, 'saved version ' + S.history.length, 'h' + S.current); editor.value = h.text; S.flash = S.current;
   renderHistory(); renderDiff(); renderStarts();
@@ -2154,6 +2672,7 @@ $('copy').addEventListener('click', function () {
   copyText(t).then(function () { edStatus('Copied.'); }, function () { editor.select(); edStatus('Select all and copy with your keyboard.'); });
 });
 function renderHistory() {
+  hxTouch();
   $('hist-count').textContent = S.history.length;
   var list = $('hist'); list.innerHTML = '';
   if (!S.history.length) { list.innerHTML = '<li class="empty-li">Saved versions stay here. Restore any of them without losing what you’re editing.</li>'; return; }
@@ -2225,11 +2744,652 @@ function renderWorkspace() {
   writeForm(S.form); editor.value = S.editorText || '';
   ['reader', 'keep'].forEach(function (w) { delete $(w + '-field').dataset.open; }); syncOpt(); setTimeout(grow, 0);
   $('empty').classList.remove('is-loading'); $('empty').hidden = true; $('orig-bar').classList.remove('is-visible');
+  if (typeof renderPrefBox === 'function') renderPrefBox();
   $('gen-status').textContent = ''; $('gen-status').classList.remove('error');
   $('ed-status').textContent = ''; $('rev-status').textContent = ''; $('rev-text').value = '';
   if (S.pendingQ && !S.versions.length && S.pendingCtx) { showAsk(S.pendingCtx, S.pendingQ); return; }
   paintResults();
 }
+
+/* ================= history ================= */
+var HX = { uid: null, list: [], q: '', range: 'all', cat: 'all' };
+var hxSaveTimer;
+function loadHistory(uid) {
+  HX.uid = uid; HX.list = []; renderRecent();
+  return Store.get(hxKey(uid)).then(function (list) {
+    if (HX.uid !== uid) return;
+    HX.list = Array.isArray(list) ? list : [];
+    renderRecent(); if (!$('hx-panel').hidden) renderHx();
+  });
+}
+function saveHistory() {
+  var uid = HX.uid, list = HX.list; if (!uid) return;
+  clearTimeout(hxSaveTimer); hxSaveTimer = setTimeout(function () { Store.set(hxKey(uid), list); }, 250);
+}
+function hxEntry(id) { return HX.list.filter(function (e) { return e.id === id; })[0] || null; }
+function savedNow() {
+  return S.history.filter(function (h) { return h.msgId === S.msgId; }).map(function (h) {
+    return { text: h.text, who: h.who, reason: h.reason, parent: h.parent || '', changes: h.changes || null, lang: h.lang || null };
+  });
+}
+function recordRun(c, rb, vs, topic) {
+  if (!P || HX.uid !== P.id) return;
+  var e = S.entryId && hxEntry(S.entryId);
+  if (!e || e.message !== c.message) { e = { id: 'h' + randHex(6), created: Date.now() }; HX.list.unshift(e); S.entryId = e.id; }
+  e.updated = Date.now(); e.message = c.message; e.where = c.where || ''; e.reader = c.reader || ''; e.keep = c.keep || '';
+  e.source = P.source; e.target = P.target; e.readback = rb || {}; e.versions = vs.slice(); e.choice = null;
+  e.topic = TOPICS.some(function (t) { return t.id === topic; }) ? topic : (e.topic || 'other');
+  e.saved = savedNow();
+  e.prefs = c.prefs && c.prefs.length ? { label: c.prefLabel || '', items: (c.prefLabels || c.prefs).slice() } : null;
+  saveHistory(); renderRecent(); if (!$('hx-panel').hidden) renderHx();
+}
+/* keep the open entry in step with the pick and the saved versions */
+function hxTouch() {
+  var e = S && S.entryId && hxEntry(S.entryId); if (!e) return;
+  var saved = savedNow(), choice = S.choice === undefined ? null : S.choice;
+  if (e.choice === choice && JSON.stringify(e.saved || []) === JSON.stringify(saved)) return;
+  e.choice = choice; e.saved = saved; e.updated = Date.now(); saveHistory();
+}
+var REC = { id: null, scroll: 0 };
+function scroller() { return document.getElementById('sm-app') || document.scrollingElement || document.documentElement; }
+function openRecord(id) {
+  var e = hxEntry(id); if (!e || !P) return;
+  closeHx(true);
+  if (!REC.id) REC.scroll = scroller().scrollTop;
+  REC.id = id;
+  var t = topicOf(e.topic), s0 = LANGS[e.source] || {}, t0 = LANGS[e.target] || {};
+  var when = new Date(e.created);
+  $('rec-meta').innerHTML = '<i style="background:' + t.color + '"></i><span class="cat">' + esc(t.label) + '</span><span>' +
+    esc(when.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) + ', ' + timeLabel(e.created)) + '</span>';
+  var title = $('rec-title'); title.textContent = e.message; title.setAttribute('lang', s0.tag || ''); title.style.fontFamily = s0.cjk ? 'var(--sc)' : '';
+  var ctx = [];
+  if (WHERE_LABEL[e.where]) ctx.push(['Where', esc(WHERE_LABEL[e.where])]);
+  if (e.reader) ctx.push(['Who it’s for', '<span lang="' + (s0.tag || '') + '" dir="auto">' + esc(e.reader) + '</span>']);
+  if (e.keep) ctx.push(['Wanted to keep', '<span lang="' + (s0.tag || '') + '" dir="auto">' + esc(e.keep) + '</span>']);
+  if (e.prefs && e.prefs.items && e.prefs.items.length) ctx.push(['Your style', e.prefs.items.map(function (t) { return '<span lang="' + (s0.tag || '') + '" dir="auto">' + esc(t) + '</span>'; }).join('<br>')]);
+  if (s0.native && t0.native) ctx.push(['Languages', '<span lang="' + s0.tag + '">' + esc(s0.native) + '</span> → <span lang="' + t0.tag + '">' + esc(t0.native) + '</span>']);
+  $('rec-ctx').innerHTML = ctx.map(function (r) { return '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; }).join('');
+  var rb = e.readback || {}, keep = Array.isArray(rb.keep) ? rb.keep : [];
+  $('rec-read').hidden = !rb.meaning && !keep.length;
+  $('rec-read').innerHTML = (rb.meaning ? '<span class="k">Meaning: </span><span lang="' + (s0.tag || '') + '" dir="auto">' + esc(rb.meaning) + (rb.tone ? ' ' + esc(rb.tone) : '') + '</span>' : '') +
+    (keep.length ? (rb.meaning ? '<br>' : '') + '<span class="k">Worth keeping: </span><span lang="' + (s0.tag || '') + '" dir="auto">' + esc(keep.join('; ')) + '</span>' : '');
+  $('rec-h').textContent = (t0.name || 'English') + ' versions';
+  var choice = e.choice === undefined ? null : e.choice;
+  $('rec-pick').hidden = !(choice === 'none' || choice === 'unsure');
+  $('rec-pick').innerHTML = choice === 'none' ? 'You picked <strong>None of these</strong>.' : choice === 'unsure' ? 'You picked <strong>Not sure</strong>.' : '';
+  var cards = $('rec-cards'); cards.innerHTML = '';
+  (e.versions || []).forEach(function (v, i) {
+    var pick = String(choice) === String(i);
+    var c = document.createElement('div'); c.className = 'rec-card' + (pick ? ' is-pick' : '');
+    c.innerHTML = '<div class="head"><span>Version ' + LETTERS[i] + (i === 2 && e.prefs && e.prefs.items && e.prefs.items.length ? ' <span class="out-tag">Outside your style</span>' : '') + '</span>' + (pick ? '<span class="badge">' + STAR + 'Your pick</span>' : '') + '</div>' +
+      '<p class="text" lang="' + (t0.tag || 'en') + '" dir="auto">' + esc(v) + '</p>' +
+      '<div class="foot"><button class="mini-btn" type="button" aria-label="Copy version ' + LETTERS[i] + '">Copy</button></div>';
+    var btn = c.querySelector('.mini-btn');
+    btn.addEventListener('click', function () {
+      copyText(v).then(function () { btn.textContent = 'Copied'; }, function () { btn.textContent = 'Select the text to copy'; })
+        .then(function () { setTimeout(function () { btn.textContent = 'Copy'; }, 1600); });
+    });
+    cards.appendChild(c);
+  });
+  var saved = e.saved || [];
+  $('rec-saved-wrap').hidden = !saved.length;
+  var ol = $('rec-saved'); ol.innerHTML = '';
+  saved.slice().reverse().forEach(function (h) {
+    var li = document.createElement('li');
+    li.innerHTML = '<span class="meta">' + (h.who === 'claude' ? 'Claude' : 'You') + '. ' + esc(h.reason || '') + '</span>' +
+      '<p lang="' + (t0.tag || 'en') + '" dir="auto">' + esc(h.text) + '</p><button class="mini-btn" type="button">Copy</button>';
+    var btn = li.querySelector('.mini-btn');
+    btn.addEventListener('click', function () {
+      copyText(h.text).then(function () { btn.textContent = 'Copied'; }, function () { btn.textContent = 'Select the text to copy'; })
+        .then(function () { setTimeout(function () { btn.textContent = 'Copy'; }, 1600); });
+    });
+    ol.appendChild(li);
+  });
+  $('app-main').classList.add('is-record'); $('record').hidden = false; $('orig-bar').classList.remove('is-visible'); $('orig-bar').hidden = true;
+  scroller().scrollTop = 0;
+  setTimeout(function () { title.focus({ preventScroll: true }); }, 40);
+  announce('Viewing a past comparison. Read only.');
+}
+function closeRecord() {
+  if (!REC.id) return;
+  REC.id = null;
+  $('record').hidden = true; $('app-main').classList.remove('is-record'); $('orig-bar').hidden = false;
+  var y = REC.scroll; scroller().scrollTop = y; requestAnimationFrame(function () { scroller().scrollTop = y; });
+  setTimeout(function () { $('app-title').focus({ preventScroll: true }); }, 40);
+}
+$('rec-back').addEventListener('click', closeRecord);
+
+function deleteEntry(id) {
+  var i = -1; HX.list.forEach(function (e, k) { if (e.id === id) i = k; }); if (i < 0) return;
+  var removed = HX.list.splice(i, 1)[0];
+  if (S.entryId === id) S.entryId = null;
+  if (REC.id === id) closeRecord();
+  saveHistory(); renderHx(); renderRecent();
+  toast('Deleted from history.', 'Undo', function () {
+    HX.list.splice(Math.min(i, HX.list.length), 0, removed); saveHistory(); renderHx(); renderRecent();
+  });
+}
+function dayStart(t) { var d = new Date(t); d.setHours(0, 0, 0, 0); return d.getTime(); }
+function dayLabel(t) {
+  var today = dayStart(Date.now()), d = dayStart(t), diff = Math.round((today - d) / DAY);
+  if (diff <= 0) return 'Today'; if (diff === 1) return 'Yesterday';
+  if (diff < 7) return new Date(t).toLocaleDateString('en-US', { weekday: 'long' });
+  return new Date(t).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: new Date(t).getFullYear() === new Date().getFullYear() ? undefined : 'numeric' });
+}
+function timeLabel(t) { return new Date(t).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }); }
+function shortWhen(t) { var l = dayLabel(t); return l === 'Today' ? timeLabel(t) : l; }
+function haystack(e) {
+  return [e.message, e.reader, e.keep, WHERE_LABEL[e.where] || '', topicOf(e.topic).label, (e.versions || []).join(' '),
+    (e.saved || []).map(function (x) { return x.text; }).join(' '), e.readback && e.readback.meaning || '', e.prefs ? e.prefs.items.join(' ') : ''].join(' ').toLowerCase();
+}
+function hxWords() {
+  var q = HX.q.trim().toLowerCase(); if (!q) return [];
+  var words = q.split(/\s+/).filter(Boolean);
+  if (words.length > 1 && HX.list.some(function (e) { return haystack(e).indexOf(q) > -1; })) return [q];
+  return words;
+}
+function matches(e, words) { var h = haystack(e); return words.every(function (w) { return h.indexOf(w) > -1; }); }
+function inRange(e) {
+  var now = Date.now();
+  if (HX.range === 'today') return e.created >= dayStart(now);
+  if (HX.range === '7') return e.created >= now - 7 * DAY;
+  if (HX.range === '30') return e.created >= now - 30 * DAY;
+  return true;
+}
+function mark(text, words) {
+  var out = esc(text || '');
+  words.forEach(function (w) {
+    var re = new RegExp('(' + esc(w).replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    out = out.replace(re, '<mark class="hx-mark">$1</mark>');
+  });
+  return out;
+}
+var TRASH = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.6 8.5h5.8l.6-8.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+function renderHx() {
+  var words = hxWords(), base = HX.list.filter(function (e) { return inRange(e) && (!words.length || matches(e, words)); });
+  var counts = {}; base.forEach(function (e) { counts[e.topic || 'other'] = (counts[e.topic || 'other'] || 0) + 1; });
+  var cats = $('hx-cats'); cats.innerHTML = '';
+  var addCat = function (id, label, n, color) {
+    var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-pressed', String(HX.cat === id));
+    b.innerHTML = (color ? '<i style="background:' + color + '"></i>' : '') + esc(label) + ' <b>' + n + '</b>';
+    b.addEventListener('click', function () { HX.cat = HX.cat === id && id !== 'all' ? 'all' : id; renderHx(); });
+    cats.appendChild(b);
+  };
+  addCat('all', 'All', base.length);
+  TOPICS.slice().sort(function (a, b) { return (counts[b.id] || 0) - (counts[a.id] || 0); }).forEach(function (t) {
+    if (counts[t.id] || HX.cat === t.id) addCat(t.id, t.label, counts[t.id] || 0, t.color);
+  });
+  var items = base.filter(function (e) { return HX.cat === 'all' || (e.topic || 'other') === HX.cat; })
+    .sort(function (a, b) { return b.created - a.created; });
+  var list = $('hx-list'); list.innerHTML = ''; list.classList.toggle('searching', !!words.length);
+  var filtered = words.length || HX.range !== 'all' || HX.cat !== 'all';
+  $('hx-count').textContent = !HX.list.length ? '' : items.length === HX.list.length && !filtered ? HX.list.length + (HX.list.length === 1 ? ' comparison' : ' comparisons')
+    : items.length + (items.length === 1 ? ' match' : ' matches') + (words.length ? ' for “' + HX.q.trim() + '”' : '');
+  if (!HX.list.length) { list.innerHTML = '<p class="hx-empty">Your comparisons will show up here, so you can come back to them.</p>'; return; }
+  if (!items.length) {
+    list.innerHTML = '<p class="hx-empty">Nothing matches.<br>Try another word or a wider date range.<br><button class="link" type="button" id="hx-clear">Clear search and filters</button></p>';
+    $('hx-clear').addEventListener('click', function () { HX.q = ''; HX.range = 'all'; HX.cat = 'all'; $('hx-q').value = ''; syncDates(); renderHx(); $('hx-q').focus(); });
+    return;
+  }
+  var lastDay = '';
+  items.forEach(function (e) {
+    var day = dayLabel(e.created);
+    if (day !== lastDay) { var h = document.createElement('h3'); h.className = 'hx-day'; h.textContent = day; list.appendChild(h); lastDay = day; }
+    var t = topicOf(e.topic), s0 = LANGS[e.source] || {}, t0 = LANGS[e.target] || {};
+    var vs = e.versions || [], picked = /^[0-2]$/.test(String(e.choice)) ? vs[+e.choice] : null;
+    var hit = null;
+    if (words.length) {
+      var all = vs.filter(function (v) { var l = v.toLowerCase(); return words.every(function (w) { return l.indexOf(w) > -1; }); });
+      var any = vs.filter(function (v) { var l = v.toLowerCase(); return words.some(function (w) { return l.indexOf(w) > -1; }); });
+      hit = all[0] || any[0] || null;
+    }
+    var preview = hit || picked || (e.saved && e.saved.length ? e.saved[e.saved.length - 1].text : vs[0]) || '';
+    var tags = [];
+    if (WHERE_LABEL[e.where]) tags.push(WHERE_LABEL[e.where]);
+    if (picked) tags.push('Picked ' + LETTERS[+e.choice]);
+    if (e.saved && e.saved.length) tags.push(e.saved.length + ' saved');
+    if (P && (e.source !== P.source || e.target !== P.target) && s0.native && t0.native) tags.push(s0.native + ' → ' + t0.native);
+    var item = document.createElement('div'); item.className = 'hx-item' + (REC.id === e.id ? ' is-current' : '');
+    item.innerHTML = '<button class="hx-main" type="button">' +
+      '<span class="hx-meta"><span class="hx-cat"><i style="background:' + t.color + '"></i>' + esc(t.label) + '</span><span>' + esc(timeLabel(e.created)) + '</span></span>' +
+      '<span class="hx-msg" lang="' + (s0.tag || '') + '" dir="auto">' + mark(e.message, words) + '</span>' +
+      '<span class="hx-pick" lang="' + (t0.tag || 'en') + '" dir="auto">' + mark(preview, words) + '</span>' +
+      (tags.length ? '<span class="hx-tags">' + tags.map(function (x) { return '<span>' + esc(x) + '</span>'; }).join('') + '</span>' : '') +
+      '</button><button class="hx-del" type="button" aria-label="Delete from history">' + TRASH + '</button>';
+    item.querySelector('.hx-main').setAttribute('aria-label', 'Open: ' + e.message + '. ' + t.label + ', ' + day + ' ' + timeLabel(e.created));
+    item.querySelector('.hx-main').addEventListener('click', function () { openRecord(e.id); });
+    item.querySelector('.hx-del').addEventListener('click', function () { deleteEntry(e.id); });
+    list.appendChild(item);
+  });
+}
+function renderRecent() {
+  var box = $('recent'), list = $('recent-list');
+  var items = HX.list.slice().sort(function (a, b) { return b.created - a.created; }).slice(0, 3);
+  box.hidden = !items.length || !$('results').hidden;
+  list.innerHTML = '';
+  items.forEach(function (e) {
+    var t = topicOf(e.topic), s0 = LANGS[e.source] || {};
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'recent-row';
+    b.innerHTML = '<i style="background:' + t.color + '" title="' + esc(t.label) + '"></i><span class="m" lang="' + (s0.tag || '') + '" dir="auto">' + esc(e.message) + '</span><span class="t">' + esc(shortWhen(e.created)) + '</span>';
+    b.setAttribute('aria-label', 'Open: ' + e.message + ', ' + t.label + ', ' + shortWhen(e.created));
+    b.addEventListener('click', function () { openRecord(e.id); });
+    list.appendChild(b);
+  });
+}
+function syncDates() { document.querySelectorAll('.hx-dates [data-range]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.range === HX.range)); }); }
+function hxMorph(sheet, btn) {
+  var from = btn.getBoundingClientRect(), to = sheet.getBoundingClientRect();
+  if (!from.width || !to.width) return null;
+  return 'translate(' + (from.left - to.left) + 'px,' + (from.top - to.top) + 'px) scale(' + (from.width / to.width) + ',' + (from.height / to.height) + ')';
+}
+function openHx() {
+  if (!P) return;
+  closeDrawer(); closeSwitcher();
+  var d = $('hx-panel'), sheet = d.querySelector('.hx-sheet'), btn = $('hx-open');
+  d.hidden = false; delete d.dataset.closing; renderHx();
+  $('hx-open').setAttribute('aria-expanded', 'true');
+  var start = !reduced() && sheet.animate && btn.offsetParent !== null ? hxMorph(sheet, btn) : null;
+  if (start) {
+    sheet.animate([{ transform: start, borderRadius: '14px', opacity: .5 }, { transform: 'none', borderRadius: '20px', opacity: 1 }], { duration: 520, easing: 'cubic-bezier(.2,.8,.2,1)' });
+    sheet.querySelectorAll('.hx-top, .hx-body').forEach(function (el, i) {
+      el.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], { duration: 300, delay: 220 + i * 70, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'backwards' });
+    });
+  }
+  void d.offsetWidth; d.classList.add('is-open');
+  setTimeout(function () { $('hx-q').focus({ preventScroll: true }); }, start ? 360 : 30);
+}
+function closeHx(quiet) {
+  var d = $('hx-panel'); if (d.hidden || d.dataset.closing) return;
+  var sheet = d.querySelector('.hx-sheet'), btn = $('hx-open');
+  $('hx-open').setAttribute('aria-expanded', 'false');
+  var finish = function () {
+    d.classList.remove('is-open'); d.hidden = true; delete d.dataset.closing;
+    sheet.getAnimations().forEach(function (a) { a.cancel(); });
+    sheet.querySelectorAll('.hx-top, .hx-body').forEach(function (el) { el.getAnimations().forEach(function (a) { a.cancel(); }); });
+  };
+  var end = !quiet && !reduced() && sheet.animate && btn.offsetParent !== null ? hxMorph(sheet, btn) : null;
+  if (end) {
+    d.dataset.closing = '1';
+    d.classList.remove('is-open');
+    sheet.querySelectorAll('.hx-top, .hx-body').forEach(function (el) { el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 140, fill: 'forwards' }); });
+    sheet.animate([{ transform: 'none', borderRadius: '20px', opacity: 1 }, { transform: end, borderRadius: '14px', opacity: .3 }], { duration: 400, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' }).finished.then(finish);
+  } else {
+    d.classList.remove('is-open'); d.dataset.closing = '1';
+    setTimeout(finish, reduced() ? 0 : 200);
+  }
+  if (!quiet) btn.focus({ preventScroll: true });
+}
+$('hx-open').addEventListener('click', function () { if ($('hx-panel').hidden) openHx(); else closeHx(); });
+$('hx-close').addEventListener('click', function () { closeHx(); });
+$('hx-backdrop').addEventListener('click', function () { closeHx(); });
+$('recent-all').addEventListener('click', openHx);
+var hxTyping;
+$('hx-q').addEventListener('input', function () { clearTimeout(hxTyping); hxTyping = setTimeout(function () { HX.q = $('hx-q').value; renderHx(); }, 120); });
+$('hx-q').addEventListener('keydown', function (e) {
+  if (e.key === 'ArrowDown') { var f = $('hx-list').querySelector('.hx-main'); if (f) { e.preventDefault(); f.focus(); } }
+  if (e.key === 'Enter') { var g = $('hx-list').querySelector('.hx-main'); if (g) { e.preventDefault(); g.click(); } }
+});
+$('hx-list').addEventListener('keydown', function (e) {
+  if (['ArrowDown', 'ArrowUp', 'ArrowRight', 'ArrowLeft'].indexOf(e.key) < 0) return;
+  var all = Array.prototype.slice.call($('hx-list').querySelectorAll('.hx-main')), i = all.indexOf(document.activeElement);
+  if (i < 0) return; e.preventDefault();
+  if ((e.key === 'ArrowDown' || e.key === 'ArrowRight') && all[i + 1]) all[i + 1].focus();
+  if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') (all[i - 1] || $('hx-q')).focus();
+});
+$('hx-panel').addEventListener('keydown', function (e) {
+  if (e.key !== 'Tab') return;
+  var f = Array.prototype.filter.call($('hx-panel').querySelectorAll('button, input'), function (x) { return !x.disabled && x.offsetParent !== null && getComputedStyle(x).visibility !== 'hidden'; });
+  if (!f.length) return;
+  if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+  else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+});
+document.querySelectorAll('.hx-dates [data-range]').forEach(function (b) {
+  b.addEventListener('click', function () { HX.range = b.dataset.range; syncDates(); renderHx(); });
+});
+$('hx-kbd').textContent = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent) ? '⌘K' : 'Ctrl K';
+document.addEventListener('keydown', function (e) {
+  if ((e.metaKey || e.ctrlKey) && (e.key === 'k' || e.key === 'K')) {
+    var app = screenEl('app'); if (!app || app.hidden || !P) return;
+    e.preventDefault(); if ($('hx-panel').hidden) openHx(); else $('hx-q').focus();
+  }
+  if (e.key === 'Escape' && !$('hx-panel').hidden) closeHx();
+  else if (e.key === 'Escape' && REC.id && $('drawer').hidden && $('switcher').hidden) closeRecord();
+});
+
+/* ================= your style =================
+   For each place (Everyday applies to every message), a few visual choices plus notes in the person's own words.
+   Never applied silently: the composer asks first, or shows that it's on, and it can be turned off for a message. */
+var PREF = { uid: null, items: [], style: {}, auto: {}, dismissed: [], checked: {} };
+var CTX_ORDER = ['all', 'social', 'friend', 'work'];
+var CTX_LABEL = { all: 'Everyday', social: 'Social post', friend: 'To a friend', work: 'At work' };
+var CTX_COLOR = { all: '#25283D', social: '#C27C5C', friend: '#5E8C7E', work: '#4F6D8F' };
+var CTX_HINT = {
+  all: 'Applies to every message. When a place has its own choice, that one wins.',
+  social: 'Used when you pick Social post. Anything left open here comes from Everyday.',
+  friend: 'Used when you pick To a friend. Anything left open here comes from Everyday.',
+  work: 'Used when you pick At work. Anything left open here comes from Everyday.'
+};
+var STYLE_GROUPS = [
+  { key: 'tone', label: 'Tone', hint: 'Pick up to two', multi: 2, choices: [
+    { id: 'playful', label: 'Playful', say: 'Sound playful.' },
+    { id: 'warm', label: 'Warm', say: 'Sound warm.' },
+    { id: 'direct', label: 'Direct', say: 'Be direct and get to the point.' },
+    { id: 'calm', label: 'Calm', say: 'Keep the tone calm and even.' },
+    { id: 'polite', label: 'Polite', say: 'Keep it polite.' } ] },
+  { key: 'formality', label: 'Formality', choices: [
+    { id: 'casual', label: 'Casual', say: 'Use casual, everyday wording.' },
+    { id: 'between', label: 'In between', tag: 'Neither casual nor formal', say: 'Keep the register between casual and formal.' },
+    { id: 'formal', label: 'Formal', say: 'Use formal wording.' } ] },
+  { key: 'length', label: 'Length', choices: [
+    { id: 'short', label: 'Short', say: 'Keep it short; cut padding.' },
+    { id: 'natural', label: 'As long as it needs', say: 'Let the length follow the original; do not cut meaning to be brief.' } ] },
+  { key: 'humor', label: 'Jokes', choices: [
+    { id: 'keep', label: 'Keep my jokes', say: 'Keep their jokes and wordplay; do not explain them.' },
+    { id: 'soft', label: 'Tone them down', tag: 'Fewer jokes', say: 'Tone jokes down a little.' } ] },
+  { key: 'apology', label: 'Apologies', choices: [
+    { id: 'none', label: 'No extra apologies', say: 'Do not add apologies or softening that are not in the original.' },
+    { id: 'soft', label: 'Soften when it helps', say: 'Soften the wording when it helps the relationship.' } ] },
+  { key: 'emoji', label: 'Emoji & hashtags', choices: [
+    { id: 'none', label: 'None', tag: 'No emoji or hashtags', say: 'No emoji or hashtags.' },
+    { id: 'few', label: 'A few are fine', tag: 'A few emoji are fine', say: 'A few emoji or hashtags are fine if they fit.' } ] }
+];
+var PEN = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10.8 2.7l2.5 2.5L6 12.5 3 13l.5-3z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>';
+var sugShown = false, sugBusy = false;
+function groupOf(key) { return STYLE_GROUPS.filter(function (g) { return g.key === key; })[0]; }
+function choiceOf(key, id) { var g = groupOf(key); return g ? g.choices.filter(function (c) { return c.id === id; })[0] : null; }
+function valuesOf(st, key) { var v = st && st[key]; return Array.isArray(v) ? v.slice() : (v ? [v] : []); }
+function loadPrefs(uid) {
+  PREF = { uid: uid, items: [], style: {}, auto: {}, dismissed: [], checked: {} }; renderPrefBox();
+  return Store.get(prefKey(uid)).then(function (d) {
+    if (PREF.uid !== uid) return;
+    d = d || {};
+    PREF.items = Array.isArray(d.items) ? d.items : []; PREF.style = d.style || {}; PREF.auto = d.auto || {}; PREF.dismissed = d.dismissed || []; PREF.checked = d.checked || {};
+    renderPrefBox(); if (!$('drawer').hidden) renderStyleOverview(); if (!$('sty-modal').hidden) renderStyleModal();
+  });
+}
+function savePrefs() {
+  if (!PREF.uid) return;
+  Store.set(prefKey(PREF.uid), { items: PREF.items, style: PREF.style, auto: PREF.auto, dismissed: PREF.dismissed, checked: PREF.checked });
+}
+function currentWhere() { var w = document.querySelector('#where [aria-pressed="true"]'); return w ? w.dataset.where : ''; }
+function prefScope(where) { return where || 'all'; }
+function styleLabel(where) { return CTX_LABEL[prefScope(where)]; }
+/* what applies in a place: its own choices first, Everyday for anything it leaves open, plus notes from both */
+function effective(where) {
+  var place = prefScope(where), out = [];
+  STYLE_GROUPS.forEach(function (g) {
+    var own = place === 'all' ? [] : valuesOf(PREF.style[place], g.key), base = valuesOf(PREF.style.all, g.key);
+    var use = own.length ? own : base, scope = own.length ? place : 'all';
+    use.forEach(function (id) { var c = choiceOf(g.key, id); if (c) out.push({ scope: scope, label: c.tag || c.label, say: c.say, kind: 'option' }); });
+  });
+  PREF.items.forEach(function (p) { if (p.active && (p.context === 'all' || p.context === place)) out.push({ scope: p.context, label: p.text, say: p.text, kind: 'note' }); });
+  return out;
+}
+function prefsFor(where) { return effective(where); }
+function ownList(ctx) {
+  var out = [], st = PREF.style[ctx] || {};
+  STYLE_GROUPS.forEach(function (g) { valuesOf(st, g.key).forEach(function (id) { var c = choiceOf(g.key, id); if (c) out.push(c.tag || c.label); }); });
+  PREF.items.forEach(function (p) { if (p.context === ctx && p.active) out.push(p.text); });
+  return out;
+}
+function prefDecision(where) {
+  var key = prefScope(where);
+  if (S.prefUse && key in S.prefUse) return S.prefUse[key];
+  return PREF.auto[key] ? true : undefined;
+}
+function attachPrefs(c) {
+  var list = prefsFor(c.where), use = prefDecision(c.where) === true;
+  c.prefs = use ? list.map(function (x) { return x.say; }) : [];
+  c.prefLabels = use ? list.map(function (x) { return x.label; }) : [];
+  c.prefLabel = styleLabel(c.where);
+  return c;
+}
+function notePrefUse(c) {
+  var changed = false;
+  PREF.items.forEach(function (p) { if (c.prefs.indexOf(p.text) > -1) { p.uses = (p.uses || 0) + 1; p.lastUsed = Date.now(); changed = true; } });
+  if (changed) savePrefs();
+}
+function dot(ctx) { return '<i class="pdot" style="background:' + CTX_COLOR[ctx] + '"></i>'; }
+/* chips grouped by place, with the same dot and name the pop-up uses */
+function styleRows(list, where) {
+  var tag = (LANGS[P && P.source] || {}).tag || '', place = prefScope(where);
+  var order = place === 'all' ? ['all'] : [place, 'all'];
+  return '<div class="pref-rows">' + order.map(function (scope) {
+    var items = list.filter(function (x) { return x.scope === scope; }); if (!items.length) return '';
+    return '<div class="pref-row"><span class="pref-place">' + dot(scope) + esc(CTX_LABEL[scope]) + '</span><span class="pref-notes">' +
+      items.map(function (x) { return '<span' + (x.kind === 'note' ? ' class="is-note" lang="' + tag + '" dir="auto"' : '') + '>' + esc(x.label) + '</span>'; }).join('') + '</span></div>';
+  }).join('') + '</div>';
+}
+function renderPrefBox() {
+  var box = $('pref-box'); if (!box) return;
+  if (!P || !PREF.uid) { box.hidden = true; return; }
+  var where = currentWhere(), list = prefsFor(where), key = prefScope(where), label = styleLabel(where);
+  if (!list.length) { box.hidden = true; box.innerHTML = ''; return; }
+  var d = prefDecision(where);
+  box.hidden = false;
+  var edit = '<button class="link pref-edit" type="button" data-pref="edit">Edit style</button>';
+  if (d === undefined) {
+    box.innerHTML = '<div class="pref-ask" role="group" aria-label="Your style">' +
+      '<div class="pref-q">' + STAR + '<span>Use your <b>' + esc(label) + '</b> style for this message?</span>' + edit + '</div>' + styleRows(list, where) +
+      '<div class="pref-actions"><button class="btn" type="button" data-pref="use">Use it</button><button class="link" type="button" data-pref="skip">Not this time</button>' +
+      '<label class="check"><input type="checkbox" id="pref-auto"> Always use for ' + esc(label) + '</label></div></div>';
+  } else if (d) {
+    box.innerHTML = '<div class="pref-line on"><div class="pref-q">' + STAR + '<span>Using your <b>' + esc(label) + '</b> style' + (PREF.auto[key] && !(S.prefUse && key in S.prefUse) ? ' automatically' : '') + '</span>' +
+      '<span class="pref-links"><button class="link" type="button" data-pref="off">Turn off</button>' + edit + '</span></div>' + styleRows(list, where) + '</div>';
+  } else {
+    box.innerHTML = '<div class="pref-line"><div class="pref-q"><span>Not using your ' + esc(label) + ' style for this message.</span><span class="pref-links"><button class="link" type="button" data-pref="use">Use it</button>' + edit + '</span></div></div>';
+  }
+}
+$('pref-box').addEventListener('click', function (e) {
+  var b = e.target.closest('[data-pref]'); if (!b) return;
+  var where = currentWhere(), key = prefScope(where), act = b.dataset.pref;
+  S.prefUse = S.prefUse || {};
+  if (act === 'edit') { openStyleModal(key, b); return; }
+  if (act === 'use') { S.prefUse[key] = true; var a = $('pref-auto'); if (a && a.checked) { PREF.auto[key] = true; savePrefs(); } announce('Your ' + styleLabel(where) + ' style will be used.'); }
+  if (act === 'skip' || act === 'off') { S.prefUse[key] = false; announce('Not using your style for this message.'); }
+  renderPrefBox();
+});
+
+/* settings: a compact overview, one row per place, each opening the pop-up there */
+function summaryOf(ctx) {
+  var own = ownList(ctx);
+  if (!own.length) return ctx === 'all' ? 'Nothing set yet' : 'Uses Everyday';
+  return own.slice(0, 3).join(', ') + (own.length > 3 ? ' +' + (own.length - 3) : '');
+}
+function renderStyleOverview() {
+  var box = $('style-over'); if (!box) return;
+  box.innerHTML = '';
+  var tag = (LANGS[P && P.source] || {}).tag || '';
+  CTX_ORDER.forEach(function (ctx) {
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'style-place';
+    b.innerHTML = dot(ctx) + '<span class="sp-text"><span class="sp-name">' + esc(CTX_LABEL[ctx]) + (PREF.auto[ctx] && ownList(ctx).length ? '<span class="auto-badge">Auto</span>' : '') + '</span>' +
+      '<span class="sp-sum" lang="' + tag + '">' + esc(summaryOf(ctx)) + '</span></span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5L10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    b.setAttribute('aria-label', 'Edit your ' + CTX_LABEL[ctx] + ' style. ' + summaryOf(ctx));
+    b.addEventListener('click', function () { openStyleModal(ctx, b); });
+    box.appendChild(b);
+  });
+}
+
+/* the pop-up: places on the left, choices on the right */
+var STY = { ctx: 'all', opener: null };
+function renderStyleModal(focusKey) {
+  var ctx = STY.ctx, tag = (LANGS[P.source] || {}).tag || '';
+  var rail = $('sty-rail'); rail.innerHTML = '';
+  CTX_ORDER.forEach(function (c) {
+    var b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'tab'); b.id = 'sty-tab-' + c;
+    b.setAttribute('aria-selected', String(c === ctx)); b.tabIndex = c === ctx ? 0 : -1;
+    b.innerHTML = dot(c) + '<span class="sp-text"><span class="sp-name">' + esc(CTX_LABEL[c]) + (PREF.auto[c] && ownList(c).length ? '<span class="auto-badge">Auto</span>' : '') + '</span><span class="sp-sum" lang="' + tag + '">' + esc(summaryOf(c)) + '</span></span>';
+    b.addEventListener('click', function () { STY.ctx = c; renderStyleModal(); $('sty-tab-' + c).focus(); });
+    rail.appendChild(b);
+  });
+  var st = PREF.style[ctx] || {}, base = PREF.style.all || {};
+  var panel = $('sty-panel'); panel.setAttribute('aria-labelledby', 'sty-tab-' + ctx);
+  var html = '<div class="sty-panel-head"><div><h3>' + dot(ctx) + esc(CTX_LABEL[ctx]) + '</h3><p>' + esc(CTX_HINT[ctx]) + '</p></div>' +
+    '<label class="auto"><span class="mini-switch"><input type="checkbox" id="sty-auto"' + (PREF.auto[ctx] ? ' checked' : '') + '><span class="track"><span class="thumb"></span></span></span>Use without asking</label></div>';
+  html += '<div class="opt-groups">';
+  STYLE_GROUPS.forEach(function (g) {
+    var own = valuesOf(st, g.key), inherit = ctx !== 'all' && !own.length ? valuesOf(base, g.key) : [];
+    html += '<div class="opt-row"><div class="opt-name">' + esc(g.label) + (g.hint ? '<span>' + esc(g.hint) + '</span>' : '') + '</div><div class="opt-choices" role="group" aria-label="' + esc(g.label) + '">' +
+      g.choices.map(function (c) {
+        var on = own.indexOf(c.id) > -1, inh = inherit.indexOf(c.id) > -1;
+        return '<button type="button" class="opt' + (inh ? ' inherit' : '') + '" data-key="' + g.key + '" data-id="' + c.id + '" aria-pressed="' + on + '"' +
+          (inh ? ' title="From your Everyday style. Tap to set it for ' + esc(CTX_LABEL[ctx]) + ' too."' : '') + '>' + (on ? '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>' : '') + esc(c.label) +
+          (inh ? '<span class="opt-from">Everyday</span>' : '') + '</button>';
+      }).join('') + '</div></div>';
+  });
+  html += '</div>';
+  var items = PREF.items.filter(function (p) { return p.context === ctx; });
+  html += '<div class="sty-notes"><h4>Your own words</h4><p>Anything the choices above don’t cover, in your own language.</p>' +
+    (items.length ? '<ul class="sty-list"></ul>' : '') +
+    '<div class="sty-add"><input type="text" maxlength="80" lang="' + tag + '" dir="auto" placeholder="Add a note, e.g. ' + esc(ctx === 'work' ? '直接说重点' : ctx === 'social' ? '保留我的玩笑' : ctx === 'friend' ? '可以用口语' : '不要替我加客套话') + '" aria-label="Add a note for ' + esc(CTX_LABEL[ctx]) + '"><button class="chip" type="button">Add</button></div></div>';
+  panel.innerHTML = html;
+  panel.querySelectorAll('.opt').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var key = b.dataset.key, id = b.dataset.id, g = groupOf(key), place = PREF.style[ctx] || (PREF.style[ctx] = {});
+      var cur = valuesOf(place, key), at = cur.indexOf(id);
+      if (g.multi) {
+        if (at > -1) cur.splice(at, 1); else { cur.push(id); if (cur.length > g.multi) cur.shift(); }
+        place[key] = cur;
+      } else place[key] = at > -1 ? '' : id;
+      savePrefs(); renderPrefBox(); renderStyleModal(key + ':' + id);
+    });
+  });
+  var ul = panel.querySelector('.sty-list');
+  items.forEach(function (p) {
+    var li = document.createElement('li'); li.className = 'sty-item' + (p.active ? '' : ' off'); li.dataset.note = p.id;
+    li.innerHTML = '<label class="mini-switch"><input type="checkbox"' + (p.active ? ' checked' : '') + ' aria-label="Use this note"><span class="track"><span class="thumb"></span></span></label>' +
+      '<span><span class="t" lang="' + tag + '" dir="auto">' + esc(p.text) + '</span>' + (p.source === 'suggested' ? '<span class="src">Suggested from your edits</span>' : '') + '</span>' +
+      '<button class="icon-btn" type="button" aria-label="Edit note">' + PEN + '</button><button class="icon-btn del" type="button" aria-label="Delete note">×</button>';
+    li.querySelector('input').addEventListener('change', function (ev) { p.active = ev.target.checked; savePrefs(); renderPrefBox(); renderStyleModal('note:' + p.id); });
+    li.querySelector('.icon-btn:not(.del)').addEventListener('click', function () {
+      var span = li.querySelector('.t'), input = document.createElement('input');
+      input.type = 'text'; input.value = p.text; input.maxLength = 80; input.setAttribute('lang', tag); input.setAttribute('dir', 'auto');
+      span.replaceWith(input); input.focus(); input.select();
+      var finished = false;
+      var done = function (save) {
+        if (finished) return; finished = true;
+        if (save && input.value.trim()) { p.text = input.value.trim(); savePrefs(); renderPrefBox(); }
+        renderStyleModal();
+      };
+      input.addEventListener('keydown', function (k) { if (k.key === 'Enter') { k.preventDefault(); done(true); } if (k.key === 'Escape') { k.preventDefault(); k.stopPropagation(); done(false); } });
+      input.addEventListener('blur', function () { done(true); });
+    });
+    li.querySelector('.del').addEventListener('click', function () {
+      var i = PREF.items.indexOf(p); PREF.items.splice(i, 1); savePrefs(); renderStyleModal(); renderPrefBox();
+      toast('Note deleted.', 'Undo', function () { PREF.items.splice(i, 0, p); savePrefs(); if (!$('sty-modal').hidden) renderStyleModal(); renderPrefBox(); renderStyleOverview(); });
+    });
+    ul.appendChild(li);
+  });
+  var input = panel.querySelector('.sty-add input'), add = function () {
+    var t = input.value.trim(); if (!t) { input.focus(); return; }
+    PREF.items.push({ id: 'p' + randHex(5), context: ctx, text: t, source: 'you', active: true, uses: 0, created: Date.now() });
+    savePrefs(); renderStyleModal(); renderPrefBox();
+    $('sty-panel').querySelector('.sty-add input').focus();
+  };
+  panel.querySelector('.sty-add .chip').addEventListener('click', add);
+  input.addEventListener('keydown', function (k) { if (k.key === 'Enter') { k.preventDefault(); add(); } });
+  $('sty-auto').addEventListener('change', function () { PREF.auto[ctx] = $('sty-auto').checked; savePrefs(); renderPrefBox(); renderStyleModal('auto'); });
+  var eff = effective(ctx === 'all' ? '' : ctx);
+  $('sty-sum').innerHTML = eff.length
+    ? '<b>' + esc(ctx === 'all' ? 'Everywhere' : CTX_LABEL[ctx]) + ', Still Me will aim for:</b> ' + eff.map(function (x) { return x.kind === 'note' ? '<span lang="' + tag + '" dir="auto">' + esc(x.label) + '</span>' : esc(x.label); }).join(', ')
+    : 'Nothing set for ' + esc(CTX_LABEL[ctx]) + ' yet. Tap any choice to start.';
+  if (focusKey) {
+    var f = focusKey === 'auto' ? $('sty-auto') : focusKey.indexOf('note:') === 0 ? panel.querySelector('.sty-item[data-note="' + focusKey.slice(5) + '"] input')
+      : panel.querySelector('.opt[data-key="' + focusKey.split(':')[0] + '"][data-id="' + focusKey.split(':')[1] + '"]');
+    if (f) f.focus({ preventScroll: true });
+  }
+  renderStyleOverview();
+}
+function openStyleModal(ctx, opener) {
+  if (!P) return;
+  STY.ctx = CTX_ORDER.indexOf(ctx) > -1 ? ctx : 'all';
+  STY.opener = opener || document.activeElement;
+  closeSwitcher();
+  renderStyleModal();
+  var m = $('sty-modal'); m.hidden = false; void m.offsetWidth; m.classList.add('is-open');
+  setTimeout(function () { var t = $('sty-tab-' + STY.ctx); if (t) t.focus(); }, 60);
+}
+function closeStyleModal() {
+  var m = $('sty-modal'); if (m.hidden) return;
+  m.classList.remove('is-open'); renderPrefBox(); renderStyleOverview();
+  setTimeout(function () { m.hidden = true; }, reduced() ? 0 : 260);
+  var back = STY.opener;
+  if (back && !document.contains(back) && back.dataset && back.dataset.pref) back = $('pref-box').querySelector('[data-pref="' + back.dataset.pref + '"]');
+  if (back && back.focus && document.contains(back)) back.focus({ preventScroll: true });
+}
+function openStyleSettings(ctx) { openStyleModal(typeof ctx === 'string' ? ctx : prefScope(currentWhere())); }
+$('style-open').addEventListener('click', function () { openStyleModal(prefScope(currentWhere()), $('style-open')); });
+$('sty-close').addEventListener('click', closeStyleModal);
+$('sty-done').addEventListener('click', closeStyleModal);
+$('sty-backdrop').addEventListener('click', closeStyleModal);
+document.addEventListener('keydown', function (e) {
+  if (e.key !== 'Escape' || $('sty-modal').hidden) return;
+  if (e.target && e.target.closest && e.target.closest('.sty-list') && e.target.type === 'text') return;
+  e.preventDefault(); e.stopImmediatePropagation(); closeStyleModal();
+}, true);
+$('sty-modal').addEventListener('keydown', function (e) {
+  if (['ArrowDown', 'ArrowUp', 'ArrowRight', 'ArrowLeft'].indexOf(e.key) > -1 && e.target.getAttribute('role') === 'tab') {
+    var i = CTX_ORDER.indexOf(STY.ctx) + (e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : -1);
+    STY.ctx = CTX_ORDER[(i + CTX_ORDER.length) % CTX_ORDER.length]; renderStyleModal(); $('sty-tab-' + STY.ctx).focus(); e.preventDefault(); return;
+  }
+  if (e.key === 'Tab') {
+    var f = Array.prototype.filter.call($('sty-modal').querySelectorAll('button, input'), function (x) { return !x.disabled && x.offsetParent !== null && x.tabIndex !== -1; });
+    if (!f.length) return;
+    if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+    else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+  }
+});
+
+/* suggestions: after a few comparisons of the same kind were shaped, Claude proposes a note */
+function norm(t) { return String(t || '').replace(/[\s，。,.!！?？、；;：:“”"'‘’]/g, '').toLowerCase(); }
+function maybeSuggest(where) {
+  if (!where || sugBusy || sugShown || !P || !HX.uid) return;
+  var shaped = HX.list.filter(function (e) { return (e.where || '') === where && e.saved && e.saved.length && e.source === P.source && e.target === P.target; });
+  var n = shaped.length, last = PREF.checked[where] || 0;
+  if (n < 3 || (last && n < last + 3)) return;
+  PREF.checked[where] = n; savePrefs();
+  sugBusy = true;
+  var existing = PREF.items.map(function (p) { return p.text; });
+  askClaude(promptSuggest(where, shaped.slice(0, 6), existing), TOOLS.suggest, function (out) { return out && Array.isArray(out.suggestions); }).then(function (out) {
+    var have = existing.map(norm).concat(PREF.dismissed);
+    var pick = out.suggestions.filter(function (x) { return x && typeof x.text === 'string' && x.text.trim() && have.indexOf(norm(x.text)) < 0; })[0];
+    if (pick && !sugShown) showSuggestion(where, pick, shaped);
+  }).catch(function () {}).then(function () { sugBusy = false; });
+}
+var SUG = null;
+function showSuggestion(where, sug, shaped) {
+  var ids = Array.isArray(sug.evidence) ? sug.evidence : [];
+  var ev = shaped.filter(function (e) { return ids.indexOf(e.id) > -1; });
+  if (!ev.length) ev = shaped.slice(0, 3);
+  SUG = { where: where, text: sug.text.trim(), reason: (sug.reason || '').trim(), evidence: ev.map(function (e) { return e.id; }) };
+  var tag = (LANGS[P.source] || {}).tag || '';
+  $('sug-title').innerHTML = STAR + '<span>Noticed in your <b>' + esc(WHERE_LABEL[where]) + '</b> messages</span>';
+  $('sug-text').textContent = '“' + SUG.text + '”'; $('sug-text').setAttribute('lang', tag);
+  $('sug-why').textContent = SUG.reason; $('sug-why').hidden = !SUG.reason; $('sug-why').setAttribute('lang', tag);
+  $('sug-ev-btn').textContent = 'See the ' + ev.length + ' message' + (ev.length === 1 ? '' : 's'); $('sug-ev-btn').setAttribute('aria-expanded', 'false');
+  var ul = $('sug-ev'); ul.hidden = true; ul.innerHTML = '';
+  ev.forEach(function (e) {
+    var li = document.createElement('li'), b = document.createElement('button'); b.type = 'button'; b.setAttribute('lang', tag);
+    b.innerHTML = '<span class="ev-when">' + esc(shortWhen(e.created)) + '</span>' + esc(e.message);
+    b.addEventListener('click', function () { openRecord(e.id); }); li.appendChild(b); ul.appendChild(li);
+  });
+  sugShown = true;
+  $('sug').hidden = false;
+  announce('A suggestion for your ' + WHERE_LABEL[where] + ' style: ' + SUG.text);
+}
+function hideSuggestion() { $('sug').hidden = true; }
+$('sug-ev-btn').addEventListener('click', function () { var ul = $('sug-ev'); ul.hidden = !ul.hidden; $('sug-ev-btn').setAttribute('aria-expanded', String(!ul.hidden)); });
+$('sug-keep').addEventListener('click', function () {
+  if (!SUG) return;
+  PREF.items.push({ id: 'p' + randHex(5), context: SUG.where, text: SUG.text, source: 'suggested', evidence: SUG.evidence, active: true, uses: 0, created: Date.now() });
+  savePrefs(); renderPrefBox(); hideSuggestion();
+  var where = SUG.where;
+  toast('Saved to your ' + WHERE_LABEL[where] + ' style.', 'Edit', function () { openStyleModal(where); });
+});
+$('sug-later').addEventListener('click', hideSuggestion);
+$('sug-x').addEventListener('click', hideSuggestion);
+$('sug-never').addEventListener('click', function () { if (SUG) { PREF.dismissed.push(norm(SUG.text)); savePrefs(); } hideSuggestion(); toast('Got it. That one won’t come up again.'); });
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('sug').hidden && $('drawer').hidden && $('hx-panel').hidden) hideSuggestion(); });
 
 /* ================= boot ================= */
 function boot() {
