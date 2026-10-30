@@ -2434,7 +2434,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <textarea id="set-about" maxlength="240" placeholder="e.g. I joke a lot with friends, and I’m direct at work."></textarea></div>
       <div class="field"><div class="field-head"><label for="set-audience">Who do you usually write to?</label><span>Optional</span></div>
         <input type="text" id="set-audience" maxlength="120" placeholder="e.g. classmates, my team, friends back home"></div>
-      <p class="small muted" style="margin-top:10px">Claude reads these as background when it writes your versions.</p>
+      <p class="small muted" style="margin-top:10px">These details give the model background for your versions.</p>
       <div class="row"><button class="btn" type="button" id="set-save">Save details</button><span class="status" id="set-status" role="status"></span></div>
     </section>
     <section aria-labelledby="set-avatar">
@@ -3658,7 +3658,7 @@ function renderHistory() {
   S.history.slice().reverse().forEach(function (h) {
     var i = S.history.indexOf(h), li = document.createElement('li');
     li.className = (i === S.current ? 'current' : '') + (i === S.flash ? ' is-new' : '');
-    var who = h.who === 'claude' ? '<span class="who claude">Claude</span> ' : '<span class="who">You</span> ';
+    var who = h.who === 'claude' ? '<span class="who claude">AI</span> ' : '<span class="who">You</span> ';
     var body = h.parent && h.parent !== h.text ? diffWords(h.parent, h.text) : esc(h.text);
     var changes = h.changes && h.changes.length ? '<ul class="changes" lang="' + (LANGS[h.lang] ? LANGS[h.lang].tag : 'en') + '">' + h.changes.map(function (c) { return '<li>' + esc(c) + '</li>'; }).join('') + '</ul>' : '';
     li.innerHTML = '<span class="meta">' + who + 'Version ' + (i + 1) + (i === S.current ? ', in the editor' : '') + '. ' + esc(h.reason) + (h.msgId !== S.msgId ? ' (earlier message)' : '') + '</span><p>' + body + '</p>' + changes;
@@ -3717,7 +3717,7 @@ $('rev-go').addEventListener('click', function () {
     var changes = Array.isArray(out.changes) ? out.changes.filter(function (c) { return typeof c === 'string' && c.trim(); }).slice(0, 3) : [];
     S.history.push({ text: out.text.trim(), who: 'claude', parent: base, reason: 'Asked “' + request + '” on ' + parentLabel, changes: changes, lang: code, msgId: S.msgId, workspace: historyWorkspace() });
     st.textContent = '';
-    afterAdd('Claude’s revision is in the editor and saved as version ' + S.history.length + '.' + (stashed ? ' Your edit before it was saved too.' : ''));
+    afterAdd('The revision is in the editor and saved as version ' + S.history.length + '.' + (stashed ? ' Your edit before it was saved too.' : ''));
     announce('Revision ready. It is in the editor.');
   }).catch(function (e) {
     if (state !== S || id !== state.revReq) return;
