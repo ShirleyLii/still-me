@@ -843,75 +843,103 @@ footer .wrap{align-items:center}
 #sm-app .toast{position:fixed;left:50%;bottom:24px;z-index:80;transform:translate(-50%,0);background:var(--ink);color:#fff;padding:12px 18px;border-radius:10px;font-size:15px;max-width:min(560px,calc(100% - 32px));animation:sm-toast .3s cubic-bezier(.2,.8,.2,1)}
 @keyframes sm-toast{from{opacity:0;transform:translate(-50%,10px)}}
 #sm-app #msg.is-latin{font-family:var(--sans);font-size:20px}
+#sm-app .app .top .wrap,#sm-app .app .orig-bar .wrap,#sm-app .app-main.wrap{width:min(860px,calc(100% - 40px))}
 #sm-app .app .top .wrap{min-height:68px}
-#sm-app .app-main{padding:36px 0 80px}
-#sm-app .app-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px 40px;flex-wrap:wrap;margin-bottom:34px}
-#sm-app .app-head h1{font-size:clamp(36px,4.6vw,60px);letter-spacing:-.022em;line-height:1.05}
+#sm-app .app-main{padding:36px 0 96px}
+#sm-app .app-head{margin-bottom:20px}
+#sm-app .app-head .hello{font-size:16px;color:var(--muted);margin:0 0 6px}
+#sm-app .app-head h1{font-size:clamp(30px,3.6vw,42px);letter-spacing:-.02em;line-height:1.1}
 #sm-app .app-head h1:focus{outline:none}
-#sm-app .app-sub{color:var(--muted);font-size:clamp(17px,1.5vw,19px);line-height:1.55;max-width:32ch}
-#sm-app .app-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.55fr);gap:32px 48px;align-items:start}
-@media (max-width:980px){#sm-app .app-grid{grid-template-columns:1fr}}
-#sm-app .compose{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:28px 26px;position:sticky;top:88px}
-@media (max-width:980px){#sm-app .compose{position:static}}
-#sm-app .compose-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:16px}
-#sm-app .compose-head h2{font-size:22px}
-#sm-app .dir{font-size:15px;color:var(--muted);white-space:nowrap}
-#sm-app #msg{background:var(--soft);min-height:170px;font-size:21px;line-height:1.6;font-family:var(--sans)}
+#sm-app .app-sub{color:var(--muted);font-size:17px;margin-top:8px;max-width:none}
+#sm-app .composer{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:6px 6px 16px;transition:border-color .2s,box-shadow .2s}
+#sm-app .composer:focus-within{border-color:var(--accent);box-shadow:0 0 0 4px rgba(143,57,133,.10)}
+#sm-app #msg{display:block;width:100%;border:0;background:transparent;resize:none;padding:16px 18px 10px;font-size:22px;line-height:1.55;min-height:92px;max-height:320px;font-family:var(--sans);overflow-y:auto}
 #sm-app #msg.is-cjk{font-family:var(--sc)}
-#sm-app .examples{margin-top:20px}
-#sm-app .examples > span{font-size:15px;color:var(--muted)}
-#sm-app .ex-links{display:flex;gap:10px 22px;flex-wrap:wrap;margin-top:8px}
-#sm-app .ex-links button{background:none;border:0;border-bottom:1px solid var(--mark);padding:6px 0 7px;color:var(--accent);font-size:17px;transition:border-color .2s}
-#sm-app .ex-links button:hover{border-bottom-color:var(--accent)}
-#sm-app .where{margin-top:26px}
-#sm-app .where legend{font-size:17px;font-weight:500;margin-bottom:12px}
-#sm-app .seg3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-#sm-app .seg3 button{min-height:52px;border:1px solid var(--line);border-radius:6px;background:var(--surface);font-size:16px;padding:6px 8px;transition:background .2s,border-color .2s,color .2s}
-#sm-app .seg3 button:hover{border-color:var(--accent)}
-#sm-app .seg3 button[aria-pressed="true"]{background:var(--tint);border-color:var(--accent);color:var(--accent)}
-#sm-app .compose .field{margin-top:24px}
-#sm-app .compose .field-head label{font-size:17px;font-weight:500}
+#sm-app #msg:focus-visible{outline:none}
+#sm-app .ctx{margin:2px 12px 0;padding:0 6px;border-top:1px solid var(--line)}
+#sm-app .ctx-row{display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;padding-top:12px}
+#sm-app .ctx-label{font-size:15px;color:var(--muted)}
+#sm-app .pills{display:inline-flex;gap:6px;flex-wrap:wrap}
+#sm-app .pills button{min-height:36px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:15px;font-weight:500;transition:background .15s,border-color .15s,color .15s}
+#sm-app .pills button:hover{border-color:var(--accent)}
+#sm-app .pills button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+#sm-app .add{border:1px dashed var(--line);background:transparent;border-radius:999px;min-height:34px;padding:5px 13px;font-size:14px;font-weight:500;color:var(--muted);transition:border-color .15s,color .15s}
+#sm-app .add:hover{border-color:var(--accent);color:var(--accent)}
+#sm-app .opt{padding-top:12px;animation:sm-sm-fadeup .25s cubic-bezier(.2,.8,.2,1)}
+#sm-app .opt label{display:block;font-size:14px;font-weight:500;color:var(--muted);margin-bottom:6px}
+#sm-app .opt input{background:var(--soft)}
 #sm-app #reader.is-cjk,#sm-app #keep.is-cjk{font-family:var(--sc)}
-#sm-app .btn.wide{width:100%;justify-content:space-between;min-height:58px;margin-top:28px;font-size:17px;padding:14px 22px}
-#sm-app .compose .status{margin-top:12px}
-#sm-app .results-head{display:flex;justify-content:space-between;align-items:center;gap:12px 20px;flex-wrap:wrap;margin-bottom:18px}
-#sm-app .results-head h2{font-size:clamp(30px,3.2vw,40px);letter-spacing:-.015em}
+#sm-app .composer-foot{display:flex;justify-content:space-between;align-items:center;gap:12px 16px;flex-wrap:wrap;padding:16px 18px 0}
+#sm-app .examples{display:flex;align-items:center;gap:8px 10px;flex-wrap:wrap}
+#sm-app .examples > span{font-size:14px;color:var(--muted)}
+#sm-app .ex-links{display:flex;gap:6px;flex-wrap:wrap}
+#sm-app .ex-links button{border:0;background:var(--tint);color:var(--accent);border-radius:999px;padding:6px 12px;font-size:14px;transition:background .15s}
+#sm-app .ex-links button:hover{background:var(--mark)}
+#sm-app .go{display:flex;align-items:center;gap:12px;margin-left:auto}
+#sm-app .kbd{font-size:13px;color:var(--muted)}
+#sm-app .go-btn{min-height:48px;padding:12px 22px;border-radius:12px;font-size:16px}
+#sm-app .go-btn[aria-busy="true"]::before{content:"";width:14px;height:14px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:sm-sm-spin .7s linear infinite}
+@keyframes sm-sm-spin{to{transform:rotate(360deg)}}
+#sm-app .composer > .status{padding:10px 18px 0}
+#sm-app .composer > .status:empty{display:none}
+@media (max-width:640px){#sm-app .kbd{display:none}
+#sm-app .go{width:100%}
+#sm-app .go-btn{width:100%}
+#sm-app #msg{font-size:20px}
+#sm-app .composer-foot{padding:14px 12px 0}}
+#sm-app .results{margin-top:34px}
+#sm-app .results-head{display:flex;justify-content:space-between;align-items:center;gap:12px 20px;flex-wrap:wrap;margin-bottom:14px}
+#sm-app .results-head h2{font-size:clamp(24px,2.6vw,30px);letter-spacing:-.012em}
 #sm-app .results-head h2:focus{outline:none}
-#sm-app .details-ctl{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-#sm-app .check{display:inline-flex;align-items:center;gap:10px;font-size:16px;color:var(--muted);cursor:pointer}
-#sm-app .check input{width:20px;height:20px;accent-color:var(--accent);margin:0}
-#sm-app .empty{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:56px 52px}
-#sm-app .empty svg{width:44px;height:44px;color:var(--accent)}
-#sm-app .empty h3{font-size:clamp(26px,2.6vw,34px);margin:52px 0 18px;max-width:22ch;line-height:1.2}
-#sm-app .empty p{color:var(--muted);font-size:18px;max-width:52ch}
-#sm-app .empty p strong{color:var(--ink);font-weight:500}
-#sm-app .empty hr{border:0;border-top:1px solid var(--line);margin:28px 0;max-width:520px}
-#sm-app .empty .small-p{font-size:16px}
-@media (max-width:640px){#sm-app .empty{padding:32px 24px}
-#sm-app .empty h3{margin-top:28px}}
-#sm-app .readback-line{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin-bottom:16px;font-size:16px;line-height:1.55}
-#sm-app .readback-line b{font-weight:500}
+#sm-app .details-ctl{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+#sm-app .switch{position:relative;display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:500;color:var(--ink);cursor:pointer;user-select:none}
+#sm-app .switch input{position:absolute;opacity:0;width:1px;height:1px}
+#sm-app .switch .track{position:relative;width:40px;height:24px;border-radius:999px;background:var(--line);transition:background .2s}
+#sm-app .switch .thumb{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(37,40,61,.25);transition:transform .22s cubic-bezier(.2,.8,.2,1)}
+#sm-app .switch input:checked + .track{background:var(--accent)}
+#sm-app .switch input:checked + .track .thumb{transform:translateX(16px)}
+#sm-app .switch input:focus-visible + .track{outline:3px solid var(--accent);outline-offset:2px}
+#sm-app .ph{display:grid;gap:12px}
+#sm-app .ph-card{border:1px dashed var(--line);border-radius:12px;padding:18px 20px;display:grid;gap:10px;background:rgba(255,255,255,.5)}
+#sm-app .ph-card span{font-size:14px;font-weight:500;color:var(--muted)}
+#sm-app .ph-card i{display:block;height:12px;border-radius:6px;background:var(--line);opacity:.5}
+#sm-app .ph-card i + i{width:62%}
+#sm-app .ph-note{font-size:15px;color:var(--muted);margin-top:2px}
+#sm-app .ph.is-loading .ph-card{border-style:solid;background:var(--surface)}
+#sm-app .ph.is-loading .ph-card i,#sm-app .sk-line{background:linear-gradient(90deg,var(--line) 0%,var(--tint) 50%,var(--line) 100%);background-size:200% 100%;animation:sm-sm-shimmer 1.2s linear infinite;opacity:1}
+#sm-app .ph.is-loading .ph-note{visibility:hidden}
+@keyframes sm-sm-shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
+#sm-app .sk-line{display:block;height:11px;border-radius:6px;margin:7px 0}
+#sm-app .sk-line.short{width:60%}
+#sm-app .readback-line{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:14px;font-size:16px;line-height:1.55}
 #sm-app .readback-line .k{color:var(--muted)}
-#sm-app .vlist{display:grid;gap:14px}
-#sm-app .vlist .card{padding:22px 24px 16px}
-#sm-app .vlist .card .text{font-size:clamp(20px,1.9vw,23px)}
-#sm-app .vnote{border-top:1px dashed var(--line);padding-top:12px;font-size:16px;line-height:1.6;color:var(--ink);animation:sm-fadeup .35s cubic-bezier(.2,.8,.2,1)}
+#sm-app .vlist{display:grid;gap:12px}
+#sm-app .vlist .card{padding:18px 20px 12px;border-radius:12px;gap:12px}
+#sm-app .vlist .card .text{font-size:clamp(19px,1.8vw,22px)}
+#sm-app .card .foot{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid var(--line);padding-top:10px}
+#sm-app .card .foot .pick{border-top:0;padding-top:0;display:inline-flex;gap:8px;align-items:center}
+#sm-app .card.is-selected .foot{border-top-color:var(--accent)}
+#sm-app .mini-btn{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:5px 11px;font-size:13px;font-weight:500;color:var(--muted);transition:border-color .15s,color .15s}
+#sm-app .mini-btn:hover{border-color:var(--accent);color:var(--accent)}
+#sm-app .vnote{border-top:1px dashed var(--line);padding-top:10px;font-size:16px;line-height:1.6;color:var(--ink);animation:sm-sm-fadeup .35s cubic-bezier(.2,.8,.2,1)}
 #sm-app .vnote h4{font-size:15px;font-weight:500;color:var(--muted);margin-bottom:4px}
-#sm-app .vnote.loading{color:var(--muted)}
-@keyframes sm-fadeup{from{opacity:0;transform:translateY(6px)}}
+@keyframes sm-sm-fadeup{from{opacity:0;transform:translateY(6px)}}
 #sm-app .results .shared{margin-top:16px;font-size:16px;border-left:3px solid var(--accent);padding:2px 0 2px 14px}
 #sm-app .results .after{margin-top:10px;font-size:15px;color:var(--muted)}
 #sm-app .results .after strong{color:var(--ink);font-weight:500}
-#sm-app .shape{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:26px}
-#sm-app .shape h3{font-size:24px;margin-bottom:14px}
+#sm-app .shape{margin-top:24px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px}
+#sm-app .shape h3{font-size:22px;margin-bottom:14px}
 #sm-app .shape h3:focus{outline:none}
 #sm-app .shape .status{margin-top:10px}
-#sm-app .revise h4,#sm-app .history h4{font-size:18px;margin-bottom:10px}
-#sm-app .revise .chips{margin-bottom:2px}
+#sm-app .revise h4,#sm-app .history h4{font-size:17px;margin-bottom:10px}
 #sm-app .history{margin-top:26px;padding-top:20px;border-top:1px solid var(--line)}
 #sm-app .history h4 span{font-size:14px;color:var(--muted);font-weight:400;margin-left:6px}
 #sm-app .history ol{border-top:0}
 #sm-app .history .empty-li{padding:10px 0;font-size:15px;color:var(--muted)}
+#sm-app .orig-bar{position:sticky;top:69px;z-index:15;height:0}
+#sm-app .orig-inner{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.97);border:1px solid var(--line);border-top:0;border-radius:0 0 12px 12px;padding:9px 16px;opacity:0;transform:translateY(-6px);visibility:hidden;transition:opacity .2s,transform .2s,visibility .2s}
+#sm-app .orig-bar.is-visible .orig-inner{opacity:1;transform:none;visibility:visible}
+#sm-app .orig-text{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:16px;font-weight:500}
 /* container: the app opens over the website, in the same page */
 html.sm-open,html.sm-open body{overflow:hidden}
 #sm-app{position:fixed;inset:0;z-index:200;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scroll-padding-top:96px}
@@ -921,6 +949,320 @@ html.sm-open,html.sm-open body{overflow:hidden}
 </style>
 <!-- Still Me app: paste your server function address here (see DEPLOY.md). Leave empty to test inside Claude. -->
 <meta name="still-me-api" content="">
+<style id="sm-modern-css">
+/* Shared by the standalone app and the app embedded in the presentation page. */
+body#sm-modern, #sm-app.modern-root {
+  --bg:#F6F6F8; --surface:#FFFFFF; --soft:#F8F8FA; --ink:#25283D;
+  --muted:#686977; --line:#E2E2E9; --accent:#843A7C; --accent-dark:#6E2E68;
+  --tint:#F5EDF4; --mark:#EBD7E8; --r:10px;
+  font-size:16px; line-height:1.55;
+  & button, & a, & input, & textarea { -webkit-tap-highlight-color:transparent; }
+  & button { touch-action:manipulation; }
+  & button:focus-visible, & input:focus-visible, & textarea:focus-visible {
+    outline:3px solid #843A7C; outline-offset:4px;
+  }
+  & .wrap { width:min(1160px,calc(100% - 64px)); }
+  & .brand { font-size:23px; font-weight:600; letter-spacing:-.9px; }
+  & .btn { min-height:46px; padding:12px 19px; border-radius:10px; font-size:14px;
+    transition:background .18s, border-color .18s, transform .18s; }
+  & .btn:active:not(:disabled) { transform:translateY(1px); }
+  & .btn.outline { border-color:var(--line); background:white; color:var(--ink); }
+  & .btn.outline:hover { background:var(--soft); border-color:#B7B6C3; }
+  & .chip { border-radius:8px; font-size:13px; min-height:36px; padding:7px 12px; }
+  & .chip[aria-pressed="true"] { background:var(--tint); border-color:var(--accent); color:var(--accent); }
+  & input[type="text"], & input[type="search"], & textarea { border-color:var(--line); border-radius:9px; }
+  & .small, & .status { font-size:13px; }
+  & .link { font-size:14px; text-underline-offset:4px; }
+
+  /* A quiet header; the working area gets the visual emphasis. */
+  & .top { background:rgba(255,255,255,.94); border-bottom:1px solid var(--line); backdrop-filter:blur(16px); }
+  & .app .top .wrap { width:min(1320px,calc(100% - 64px)); min-height:76px; }
+  & .top-right { gap:14px; }
+  & .lang-chip { min-height:38px; border-color:transparent; background:var(--soft); padding:9px 14px; gap:12px; font-size:13px; }
+  & .lang-chip:hover { border-color:var(--line); background:#EEEFF3; }
+  & .burger { border:0; border-radius:50%; background:transparent; width:38px; height:38px; }
+  & .burger:hover { background:var(--soft); }
+  & .me, & .me svg { width:36px; height:36px; }
+  & .me:hover, & .me:focus-visible { box-shadow:0 0 0 3px white,0 0 0 4px var(--accent); }
+  & .switcher { top:52px; right:42px; padding:9px; border-radius:14px; box-shadow:0 12px 38px #25283D12; }
+
+  /* Message and alternatives share one workspace, rather than separate screens. */
+  & .app-main.wrap { width:min(1160px,calc(100% - 64px)); padding:44px 0 100px; display:grid;
+    grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr); gap:32px 36px; align-items:start; }
+  & .app-head { grid-column:1/-1; margin:0 0 2px; }
+  & .app-head .hello { font-size:14px; margin-bottom:10px; }
+  & .app-head h1 { font-size:clamp(30px,3.4vw,43px); line-height:1.15; letter-spacing:-1.6px; font-weight:500; }
+  & .app-sub { font-size:15px; margin-top:12px; }
+  & .composer { min-width:0; padding:0; border:1px solid var(--line); border-radius:16px; background:white;
+    box-shadow:0 3px 12px #25283D03; overflow:hidden; }
+  & .composer:focus-within { border-color:#B99DB5; box-shadow:0 0 0 3px #843A7C09; }
+  & .compose-top { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:22px 24px 0; }
+  & .compose-top label { font-size:14px; font-weight:500; }
+  & .character-count { font-size:12px; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  & #msg { padding:20px 24px 26px; min-height:216px; max-height:340px; font-size:23px; line-height:1.65; letter-spacing:-.3px; border-radius:0; }
+  & #msg::placeholder { color:#9594A0; }
+  & .ctx { margin:0 24px; padding:16px 0 20px; }
+  & .ctx-row { padding-top:0; gap:12px; }
+  & .ctx-row + .ctx-row { margin-top:16px; }
+  & .ctx-label { width:100%; font-size:12px; color:var(--muted); }
+  & .pills { display:flex; width:100%; gap:7px; }
+  & .pills button { flex:1; border-radius:8px; min-height:38px; font-size:12px; padding:8px 9px; white-space:nowrap; }
+  & .pills button[aria-pressed="true"] { background:var(--tint); color:var(--accent); border-color:#C6A9C1; }
+  & .add { border:0; border-radius:0; padding:3px 0; font-size:12px; min-height:28px; }
+  & .add + .add { margin-left:6px; }
+  & .opt { padding-top:16px; }
+  & .opt label { font-size:12px; }
+  & .opt input { padding:10px 12px; font-size:14px; background:var(--soft); }
+  & .composer-foot { padding:18px 24px 22px; border-top:1px solid var(--line); background:#FCFCFD; gap:20px; }
+  & .examples { gap:9px; width:100%; }
+  & .examples > span { font-size:11px; width:100%; }
+  & .ex-links { gap:6px; }
+  & .ex-links button { border:1px solid var(--line); color:var(--muted); background:white; border-radius:6px; font-size:12px; padding:5px 9px; }
+  & .ex-links button:hover { background:var(--tint); color:var(--accent); border-color:#C6A9C1; }
+  & .go { flex-direction:row-reverse; justify-content:space-between; width:100%; margin:0; }
+  & .go-btn { border-radius:9px; min-height:44px; padding:12px 16px; gap:12px; font-size:14px; }
+  & .go-btn > svg { width:16px; height:16px; flex:none; }
+  & .kbd { font-size:11px; white-space:nowrap; }
+  & .composer > .status { padding:0 24px 18px; }
+
+  & .results { margin:0; min-width:0; }
+  & .results-head { margin:0 0 16px; min-height:24px; }
+  & .results-head h2 { font-size:18px; letter-spacing:-.35px; font-weight:500; }
+  & .details-ctl { gap:10px; }
+  & .switch { font-size:12px; gap:8px; }
+  & .switch .track { width:30px; height:18px; }
+  & .switch .thumb { width:14px; height:14px; top:2px; left:2px; box-shadow:0 1px 2px #25283D1A; }
+  & .switch input:checked + .track .thumb { transform:translateX(12px); }
+  & .seg { border:1px solid var(--line); border-radius:6px; padding:2px; background:#EEEFF3; gap:2px; }
+  & .seg button { min-height:27px; font-size:12px; min-width:42px; padding:5px 8px; background:transparent; border-radius:4px; }
+  & .seg button + button { border:0; }
+  & .seg button[aria-pressed="true"] { color:var(--ink); background:white; box-shadow:0 1px 3px #25283D0A; }
+  & .readback-line { font-size:14px; padding:14px 16px; border:0; border-left:2px solid #CFB7CA; background:transparent; border-radius:0; margin:0 0 16px; }
+  & .vlist { gap:12px; }
+  & .vlist .card { padding:20px 22px 14px; border-radius:12px; gap:14px; transition:background .18s,border-color .18s,box-shadow .18s; }
+  & .card:hover { border-color:#B8B6C5; }
+  & .card .head { font-size:11px; font-weight:500; letter-spacing:.03em; }
+  & .card .dot { width:16px; height:16px; }
+  & .vlist .card .text { font-size:20px; line-height:1.55; letter-spacing:-.25px; overflow-wrap:anywhere; }
+  & .card .foot { padding-top:11px; }
+  & .card .foot .pick { font-size:11px; color:var(--muted); }
+  & .card.is-selected { background:#FCF8FC; transform:none; border-color:var(--accent); box-shadow:inset 0 0 0 .5px var(--accent); }
+  & .card.is-selected .foot { border-color:#E7D4E3; }
+  & .card.is-selected .foot .pick { color:var(--accent); }
+  & .card.is-selected .dot { box-shadow:inset 0 0 0 3px white; }
+  & .mini-btn { border-color:transparent; background:transparent; font-size:11px; padding:4px 6px; border-radius:5px; }
+  & .mini-btn:hover { background:var(--tint); border-color:transparent; }
+  & .vnote { font-size:14px; padding-top:14px; border-top-style:solid; }
+  & .vnote h4 { font-size:12px; margin-bottom:5px; }
+  & .alt { gap:12px; margin-top:18px; }
+  & .alt .radios { font-size:12px; gap:22px; }
+  & .alt input { width:15px; height:15px; }
+  & .choice-row { width:100%; justify-content:space-between; margin-top:4px; }
+  & .results .shared { font-size:14px; }
+  & .results .after { font-size:12px; }
+  & .ph { gap:12px; }
+  & .ph-card { border:1px solid var(--line); padding:20px 22px; border-radius:12px; min-height:137px; background:#FFFFFF99; gap:14px; }
+  & .ph-card span { font-size:11px; color:#777887; }
+  & .ph-card i { height:8px; background:#E7E7ED; opacity:.65; }
+  & .ph-card i + i { width:72%; }
+  & .ph-note { font-size:12px; max-width:46ch; padding:6px 0; line-height:1.65; }
+  & .shape { padding:22px; margin-top:28px; border-radius:12px; }
+  & .shape h3 { font-size:19px; letter-spacing:-.4px; margin-bottom:18px; }
+  & .starts { gap:6px; font-size:12px; }
+  & #editor { font-size:18px; line-height:1.65; padding:14px; min-height:138px; background:var(--soft); }
+  & .diff { border:0; background:transparent; padding:14px 0 0; margin:0; }
+  & .diff .label { font-size:11px; }
+  & .diff p { font-size:14px; }
+  & .ed-actions { gap:8px; margin-top:18px; }
+  & .ed-actions .btn { min-height:38px; font-size:12px; padding:10px 13px; }
+  & .revise { padding-top:22px; margin-top:24px; }
+  & .revise h4, & .history h4 { font-size:14px; }
+  & .revise .row input { min-width:0; font-size:13px; }
+  & .revise .row .btn { min-height:40px; padding:10px 12px; font-size:12px; }
+  & .history li p { font-size:14px; }
+  & .history .meta, & .history .changes { font-size:12px; }
+  & .orig-bar { top:77px; }
+  & .app .orig-bar .wrap { width:min(1160px,calc(100% - 64px)); }
+  & .orig-inner { box-shadow:0 3px 8px #25283D04; }
+
+  /* Language choices remain readable in their own scripts. */
+  & .shell-top { min-height:86px; }
+  & .shell-main { padding:48px 0 100px; justify-content:center; }
+  & .shell h1 { font-size:clamp(30px,4vw,48px); letter-spacing:-1.5px; font-weight:500; max-width:23ch; margin-inline:auto; }
+  & .shell .sub { font-size:15px; margin-top:16px; }
+  & .back { font-size:13px; }
+  & .profiles { gap:32px 56px; margin-top:60px; }
+  & .profile { width:148px; gap:18px; }
+  & .profile .av { width:128px; height:128px; }
+  & .profile:hover .av, & .profile:focus-visible .av { transform:translateY(-8px); box-shadow:0 0 0 6px var(--bg),0 0 0 7px #AA86A4,0 12px 28px #25283D0C; }
+  & .profile .name { font-size:17px; color:var(--ink); overflow-wrap:anywhere; max-width:100%; }
+  & .profile .tag { border:0; background:var(--tint); color:var(--accent); font-size:11px; padding:3px 9px; }
+  & .profile.add .av { border:1px dashed #C9C8D3; background:#EEEFF3; }
+  & .new-form { padding:26px; background:white; border:1px solid var(--line); border-radius:14px; }
+  & .new-form .av-grid { gap:20px; }
+  & .echo { font-size:17px; margin-top:18px; min-height:29px; }
+  & .language-search { width:min(420px,100%); margin:24px auto 0; position:relative; }
+  & .language-search label { display:block; font-size:12px; color:var(--muted); margin-bottom:7px; }
+  & .language-search input { width:100%; min-height:46px; background:white; padding:12px 16px; font:inherit; font-size:14px; border:1px solid var(--line); }
+  & .language-search input::placeholder { color:#8B8B98; }
+  & .language-empty { text-align:center; color:var(--muted); font-size:14px; padding:20px; }
+  & .language-search-empty { font-size:13px; color:var(--muted); padding-top:10px; }
+  & #msg:lang(hi), & [lang|="hi"] { font-family:"Kohinoor Devanagari","Noto Sans Devanagari","Nirmala UI",system-ui,sans-serif; }
+  & #msg:lang(th), & [lang|="th"] { font-family:Thonburi,"Noto Sans Thai",Tahoma,system-ui,sans-serif; }
+  & #msg:lang(kk), & #msg:lang(uk) { font-family:var(--sans); }
+  & .langs { width:min(960px,100%); margin:28px auto 0; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
+  & .lang { min-height:102px; padding:18px 20px; border-radius:10px; gap:8px; background:#FFFFFFC9; }
+  & .lang .native { font-size:22px; line-height:1.5; font-weight:500; }
+  & .lang .en { font-size:12px; }
+  & .lang::before { background:var(--tint); }
+  & .lang:hover, & .lang:focus-visible, & .lang.is-chosen { color:var(--ink); border-color:#B591AF; transform:translateY(-2px); }
+  & .lang:hover .en, & .lang:focus-visible .en, & .lang.is-chosen .en { color:var(--accent); }
+  & .pair { width:min(960px,100%); margin:32px auto 0; grid-template-columns:minmax(0,.75fr) minmax(0,1.75fr); gap:88px; }
+  & .from { width:220px; padding:22px; border-radius:12px; min-height:140px; }
+  & .from .native { font-size:32px; line-height:1.5; }
+  & .from .en { font-size:12px; }
+  & .targets { gap:9px; max-width:none; }
+  & .target { min-height:66px; border-radius:9px; padding:12px 15px; flex-wrap:wrap; gap:4px 10px; }
+  & .target .native { font-size:18px; line-height:1.5; }
+  & .target .en { font-size:11px; }
+  & .target:hover, & .target:focus-visible { transform:translateX(3px); }
+  & .preview { font-size:23px; margin-top:34px; letter-spacing:-.4px; }
+  & .preview .blank { border-bottom-width:1px; }
+  & .link-svg path { stroke-width:1.6; }
+  & .drawer-panel { background:#FCFCFD; padding:24px 28px; width:min(440px,100%); box-shadow:-16px 0 50px #25283D0C; }
+  & .drawer h3 { font-size:15px; }
+  & .drawer .field-head label { font-size:13px; }
+  & .drawer input, & .drawer textarea { font-size:14px; }
+  & .drawer .langs-now { font-size:14px; }
+  & .toast { border-radius:10px; box-shadow:0 6px 24px #25283D16; font-size:13px; }
+
+  @media (min-width:1050px) and (min-height:850px) {
+    & .composer { position:sticky; top:100px; }
+  }
+  @media (max-width:1049px) {
+    & .app-main.wrap { grid-template-columns:1fr; width:min(740px,calc(100% - 48px)); gap:30px; }
+    & .app-head { grid-column:auto; }
+    & #msg { min-height:155px; }
+    & .composer-foot { flex-wrap:nowrap; align-items:flex-end; }
+    & .go { width:auto; flex-shrink:0; }
+    & .kbd { display:none; }
+    & .pair { gap:60px; }
+  }
+  @media (max-width:700px) {
+    & .wrap, & .app .top .wrap, & .app .orig-bar .wrap { width:calc(100% - 36px); }
+    & .app .top .wrap { min-height:66px; }
+    & .app-main.wrap { width:calc(100% - 36px); padding:28px 0 64px; gap:26px; }
+    & .app-head h1 { font-size:32px; letter-spacing:-1.1px; }
+    & .app-sub { font-size:14px; max-width:32ch; line-height:1.65; }
+    & .top-right { gap:8px; min-width:0; flex:1; justify-content:flex-end; }
+    & .brand { font-size:21px; }
+    & .lang-chip { gap:8px; font-size:12px; min-height:42px; padding:8px 10px; min-width:0; max-width:calc(100vw - 238px); }
+    & .lang-chip > span { min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    & .lang-chip svg { flex:none; }
+    & .me { width:42px; height:42px; flex:none; display:grid; place-items:center; }
+    & .burger { width:42px; height:42px; flex:none; }
+    & .lang-chip .full { display:initial; }
+    & .compose-top { padding:18px 18px 0; }
+    & #msg { min-height:170px; padding:18px; font-size:21px; }
+    & .ctx { margin:0 18px; }
+    & .composer-foot { padding:16px 18px 18px; flex-wrap:wrap; }
+    & .go { width:100%; }
+    & .go-btn { width:100%; }
+    & .ex-links button { min-height:36px; }
+    & .pills button { min-height:42px; font-size:12px; }
+    & .add { min-height:36px; }
+    & .results-head { gap:14px; }
+    & .results-head h2 { font-size:18px; }
+    & .details-ctl { gap:8px; }
+    & .switch { font-size:11px; }
+    & .vlist .card { padding:18px; }
+    & .vlist .card .text { font-size:19px; }
+    & .card .foot .pick { min-height:28px; }
+    & .mini-btn { min-height:36px; min-width:44px; }
+    & .choice-row .chip { width:100%; justify-content:center; }
+    & .shape { padding:18px; }
+    & .ed-actions .btn { min-height:42px; }
+    & .orig-bar { top:67px; }
+    & .shell-top { min-height:72px; }
+    & .shell-main { padding:30px 0 64px; }
+    & .shell h1 { font-size:32px; letter-spacing:-1px; }
+    & .profiles { gap:30px 22px; margin-top:40px; }
+    & .profile { width:122px; gap:12px; }
+    & .profile .av { width:108px; height:108px; }
+    & .langs { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-top:22px; }
+    & .lang { min-height:99px; padding:15px; }
+    & .lang .native { font-size:21px; }
+    & .language-search { margin-top:20px; }
+    & .pair { grid-template-columns:1fr; gap:42px; margin-top:26px; }
+    & .from { justify-self:center; min-height:98px; width:190px; padding:14px 18px; gap:4px; }
+    & .from .native { font-size:26px; }
+    & .targets { width:100%; }
+    & .target { min-height:72px; align-content:center; }
+    & .target .native { font-size:19px; }
+    & .preview { font-size:20px; }
+    & .drawer-panel { padding:20px; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    &, & *, & *::before, & *::after { scroll-behavior:auto!important; transition:none!important; animation:none!important; }
+  }
+
+  /* One starting point, then real results. No permanent loading-card wall. */
+  & .app-main.wrap { display:block; width:min(1000px,calc(100% - 64px)); padding:38px 0 80px; }
+  & .app-head { max-width:760px; margin:0 auto 24px; }
+  & .app-head h1 { font-size:36px; letter-spacing:-1.1px; }
+  & .app-head .hello { margin-bottom:7px; }
+  & .app-sub { margin-top:9px; }
+  & .composer { position:static; max-width:760px; margin-inline:auto; border-radius:13px; }
+  & .composer:focus-within { border-color:#BCA7B8; box-shadow:0 0 0 2px #843A7C08; }
+  & #msg { min-height:144px; max-height:260px; padding:16px 24px; font-size:21px; line-height:1.6; }
+  & #msg:focus, & #msg:focus-visible { outline:none; outline-offset:0; box-shadow:none; }
+  & .compose-top { padding-top:19px; }
+  & .ctx { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 16px; padding:16px 0; }
+  & .ctx-row { grid-column:1/-1; }
+  & .ctx-row + .ctx-row { margin-top:0; }
+  & .ctx-label { width:auto; margin-right:5px; }
+  & .pills { width:auto; flex:1; }
+  & .pills button { flex:initial; min-width:94px; }
+  & .opt { padding-top:0; min-width:0; }
+  & .composer-foot { flex-wrap:nowrap; padding-top:16px; padding-bottom:18px; align-items:flex-end; }
+  & .examples { width:auto; min-width:0; flex:1; }
+  & .go { width:auto; flex:none; gap:12px; }
+  & .go-btn { width:auto; }
+  & .kbd { display:none; }
+  & .results { width:100%; margin:32px auto 0; }
+  & .vlist, & .ph { grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+  & .vlist .card { padding:18px 18px 12px; }
+  & .vlist .card .text { font-size:19px; }
+  & .card .foot { flex-wrap:wrap; }
+  & .ph-card { min-height:120px; }
+  & .ph-note { grid-column:1/-1; }
+  & .shape { margin-top:24px; }
+  @media (max-width:850px) {
+    & .app-main.wrap { width:min(760px,calc(100% - 40px)); }
+    & .vlist, & .ph { grid-template-columns:1fr; }
+    & .ctx-label { width:100%; }
+    & .pills { width:100%; }
+    & .pills button { flex:1; }
+  }
+  @media (max-width:700px) {
+    & .app-main.wrap { width:calc(100% - 32px); padding-top:27px; }
+    & .app-head h1 { font-size:30px; }
+    & .compose-top { padding:18px 18px 0; }
+    & #msg { min-height:144px; padding:14px 18px; font-size:20px; }
+    & .ctx { grid-template-columns:1fr; margin-inline:18px; }
+    & .opt input { font-size:16px; }
+    & .composer-foot { flex-wrap:wrap; padding:16px 18px 18px; }
+    & .examples, & .go, & .go-btn { width:100%; }
+    & .results { margin-top:28px; }
+  }
+}
+
+
+[lang|="hi"]{font-family:"Noto Sans Devanagari","Kohinoor Devanagari","Nirmala UI",system-ui,sans-serif;line-height:1.55}
+[lang|="th"]{font-family:"Noto Sans Thai",Thonburi,Tahoma,system-ui,sans-serif;line-height:1.55}
+[lang|="kk"],[lang|="uk"]{font-family:Inter,"Noto Sans",Arial,system-ui,sans-serif}
+
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -1849,7 +2191,7 @@ FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
 </template>
 
-<div id="sm-app" hidden aria-label="Still Me app">
+<div id="sm-app" class="modern-root" hidden aria-label="Still Me app">
 
 <div class="boot" data-screen="boot">Loading profiles…</div>
 
@@ -1885,9 +2227,14 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 <section class="screen shell" data-screen="source" hidden aria-labelledby="src-title">
   <div class="wrap shell-top"><span class="brand">Still Me</span><button class="back" type="button" id="src-back">Back to profiles</button></div>
   <div class="wrap shell-main">
-    <h1 id="src-title" tabindex="-1">Which language feels most like you?</h1>
-    <p class="sub">You’ll write your message in it.</p>
+    <h1 id="src-title" tabindex="-1">What language will you write in?</h1>
+    <p class="sub">Choose the language you’re comfortable writing in.</p>
     <p class="echo" id="echo" aria-hidden="true"></p>
+    <div class="language-search language-search-source">
+      <label for="src-search">Find a language</label>
+      <input type="search" id="src-search" placeholder="Search by name or language code" autocomplete="off" spellcheck="false" aria-controls="src-langs" aria-describedby="src-search-empty">
+      <p id="src-search-empty" class="language-search-empty" role="status" aria-live="polite" hidden></p>
+    </div>
     <div class="langs" id="src-langs" role="group" aria-labelledby="src-title"></div>
   </div>
 </section>
@@ -1895,8 +2242,13 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 <section class="screen shell" data-screen="target" hidden aria-labelledby="tgt-title">
   <div class="wrap shell-top"><span class="brand">Still Me</span><button class="back" type="button" id="tgt-back">Back</button></div>
   <div class="wrap shell-main">
-    <h1 id="tgt-title" tabindex="-1" class="flip-in">Which language do you want to say it in?</h1>
-    <p class="sub flip-in">You’ll see a few versions in it, and what each one changes.</p>
+    <h1 id="tgt-title" tabindex="-1" class="flip-in">Which language do you want to use?</h1>
+    <p class="sub flip-in">Choose the language for your versions. You can change this later.</p>
+    <div class="language-search language-search-target">
+      <label for="tgt-search">Find a language</label>
+      <input type="search" id="tgt-search" placeholder="Search by name or language code" autocomplete="off" spellcheck="false" aria-controls="targets" aria-describedby="tgt-search-empty">
+      <p id="tgt-search-empty" class="language-search-empty" role="status" aria-live="polite" hidden></p>
+    </div>
     <div class="pair" id="pair">
       <div class="from" id="from-slot"><span class="native" id="from-native"></span><span class="en" id="from-en"></span></div>
       <svg class="link-svg" id="link-svg" aria-hidden="true"><path id="link-path" d=""/><path id="link-head" d=""/></svg>
@@ -1920,140 +2272,151 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     </div>
   </header>
 
+  <div class="orig-bar" id="orig-bar">
+    <div class="wrap"><div class="orig-inner">
+      <span class="orig-text" id="orig-text"></span>
+      <button class="link" type="button" id="orig-edit">Edit</button>
+    </div></div>
+  </div>
+
   <main class="wrap app-main">
     <div class="app-head">
-      <div><p class="hello" id="hello"></p><h1 id="app-title" tabindex="-1">What do you want to say?</h1></div>
+      <p class="hello" id="hello"></p>
+      <h1 id="app-title" tabindex="-1">What do you want to say?</h1>
       <p class="app-sub" id="app-sub"></p>
     </div>
 
-    <div class="app-grid">
-      <section class="compose" aria-labelledby="compose-title">
-        <div class="compose-head"><h2 id="compose-title">Your message</h2><span class="dir" id="dir"></span></div>
-        <label class="sr-only" for="msg">Your message</label>
-        <textarea id="msg" maxlength="300" rows="5"></textarea>
-        <div class="examples" id="examples" hidden>
-          <span>Or fill in an example</span>
-          <div class="ex-links" id="ex-links"></div>
-        </div>
-        <fieldset class="where">
-          <legend>Where is this going?</legend>
-          <div class="seg3" id="where">
+    <section class="composer" id="composer" aria-labelledby="app-title">
+      <div class="compose-top"><label for="msg">Your message</label><span class="character-count" id="char-count" aria-hidden="true">0 / 300</span></div>
+      <textarea id="msg" maxlength="300" rows="3"></textarea>
+      <div class="ctx">
+        <div class="ctx-row">
+          <span class="ctx-label" id="where-label">Where is this going?</span>
+          <div class="pills" id="where" role="group" aria-labelledby="where-label">
             <button type="button" data-where="social" aria-pressed="false">Social post</button>
             <button type="button" data-where="friend" aria-pressed="false">To a friend</button>
             <button type="button" data-where="work" aria-pressed="false">At work</button>
           </div>
-        </fieldset>
-        <div class="field">
-          <div class="field-head"><label for="reader">Who is it for?</label><span>Optional</span></div>
+        </div>
+        <div class="ctx-row">
+          <button class="add" type="button" id="add-reader" aria-expanded="false" aria-controls="reader-field">+ Who it’s for</button>
+          <button class="add" type="button" id="add-keep" aria-expanded="false" aria-controls="keep-field">+ What to keep</button>
+        </div>
+        <div class="opt" id="reader-field" hidden>
+          <label for="reader">Who is it for?</label>
           <input type="text" id="reader" maxlength="120">
         </div>
-        <div class="field">
-          <div class="field-head"><label for="keep">What do you want to keep?</label><span>Optional</span></div>
-          <textarea id="keep" rows="2" maxlength="200"></textarea>
+        <div class="opt" id="keep-field" hidden>
+          <label for="keep">What do you want to keep?</label>
+          <input type="text" id="keep" maxlength="200">
         </div>
-        <button class="btn wide" type="button" id="generate"><span id="gen-label">Compare English versions</span>
-          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 12L12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <p class="status" id="gen-status" role="status"></p>
-      </section>
+      </div>
+      <div class="composer-foot">
+        <div class="examples" id="examples" hidden><span>Try an example</span><div class="ex-links" id="ex-links"></div></div>
+        <div class="go">
+          <span class="kbd" id="kbd-hint" aria-hidden="true"></span>
+          <button class="btn go-btn" type="button" id="generate"><span id="gen-label">Compare English versions</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+      <p class="status" id="gen-status" role="status"></p>
+    </section>
 
-      <section class="results" aria-labelledby="results-title">
-        <div class="results-head">
-          <h2 id="results-title" tabindex="-1">Your English versions</h2>
-          <div class="details-ctl">
-            <div class="seg" id="note-lang" role="group" aria-label="Wording details language" hidden>
-              <button type="button" data-lang="target" aria-pressed="true"></button>
-              <button type="button" data-lang="source" aria-pressed="false"></button>
-            </div>
-            <label class="check"><input type="checkbox" id="details"> Wording details</label>
+    <section class="results" id="results" aria-labelledby="results-title">
+      <div class="results-head">
+        <h2 id="results-title" tabindex="-1">Your English versions</h2>
+        <div class="details-ctl">
+          <div class="seg" id="note-lang" role="group" aria-label="Wording details language" hidden>
+            <button type="button" data-lang="target" aria-pressed="true"></button>
+            <button type="button" data-lang="source" aria-pressed="false"></button>
           </div>
+          <label class="switch"><input type="checkbox" id="details" role="switch"><span class="track" aria-hidden="true"><span class="thumb"></span></span>Wording details</label>
         </div>
+      </div>
 
-        <div class="empty" id="empty">
-          <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M10 34L33 11M16 11h17v17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <h3 id="empty-title">Start with a short message in Chinese.</h3>
-          <p id="empty-text">Add a little context, then press <strong>Compare English versions</strong>. Your results will appear here.</p>
-          <hr>
-          <p class="small-p">You can ask for changes, edit the words yourself, and decide what to remember.</p>
+      <div class="ph" id="empty" aria-live="polite">
+        <div class="ph-card"><span>Version A</span><i></i><i></i></div>
+        <div class="ph-card"><span>Version B</span><i></i><i></i></div>
+        <div class="ph-card"><span>Version C</span><i></i><i></i></div>
+        <p class="ph-note">Your versions will appear here. Read them first, then open the wording details if you want to compare more closely.</p>
+      </div>
+
+      <div class="stale" id="stale" hidden>
+        <span>You changed your message.</span>
+        <button class="chip go" type="button" id="stale-go">Compare again</button>
+      </div>
+
+      <div class="ask" id="ask" hidden>
+        <span class="label">One quick question first</span>
+        <p class="q" id="ask-q"></p>
+        <label class="sr-only" for="ask-a">Your answer</label>
+        <input type="text" id="ask-a" maxlength="200">
+        <div class="row">
+          <button class="btn" type="button" id="ask-go">Answer and continue</button>
+          <button class="link" type="button" id="ask-skip">Skip, just write them</button>
         </div>
+      </div>
 
-        <div class="stale" id="stale" hidden>
-          <span>You changed your message.</span>
-          <button class="chip go" type="button" id="stale-go">Compare again</button>
-        </div>
-
-        <div class="ask" id="ask" hidden>
-          <span class="label">Claude has one question first</span>
-          <p class="q" id="ask-q"></p>
-          <label class="sr-only" for="ask-a">Your answer</label>
-          <input type="text" id="ask-a" maxlength="200">
+      <div id="out" hidden>
+        <div class="readback-line" id="readback"></div>
+        <fieldset>
+          <legend class="sr-only">Which version is closest to what you meant?</legend>
+          <div class="vlist" id="cards"></div>
+          <div class="alt">
+            <div class="radios">
+              <label><input type="radio" name="pick" value="none"> None of these</label>
+              <label><input type="radio" name="pick" value="unsure"> I’m not sure</label>
+            </div>
+            <div class="choice-row">
+              <p class="status" id="sm-choice-status" role="status"></p>
+              <button class="chip go" type="button" id="choice-go" hidden></button>
+            </div>
+          </div>
+        </fieldset>
+        <div class="missing" id="missing" hidden>
+          <label class="label" for="missing-text">What’s missing? Optional, but it helps the next try.</label>
           <div class="row">
-            <button class="btn" type="button" id="ask-go">Answer and continue</button>
-            <button class="link" type="button" id="ask-skip">Skip, just write them</button>
+            <input type="text" id="missing-text" maxlength="200" placeholder="e.g. too formal, lost the joke, sounds like an apology">
+            <button class="btn" type="button" id="retry">Try three new versions</button>
           </div>
         </div>
+        <p class="shared" id="shared" hidden></p>
+        <p class="after" id="after" role="status" hidden></p>
 
-        <div id="out" hidden>
-          <div class="readback-line" id="readback"></div>
-          <fieldset>
-            <legend class="sr-only">Which version is closest to what you meant?</legend>
-            <div class="vlist" id="cards"></div>
-            <div class="alt">
-              <div class="radios">
-                <label><input type="radio" name="pick" value="none"> None of these</label>
-                <label><input type="radio" name="pick" value="unsure"> I’m not sure</label>
-              </div>
-              <div class="choice-row">
-                <p class="status" id="sm-choice-status" role="status"></p>
-                <button class="chip go" type="button" id="choice-go" hidden></button>
-              </div>
+        <section class="shape" id="shape" aria-labelledby="shape-title">
+          <h3 id="shape-title" tabindex="-1">Edit your version</h3>
+          <div class="starts" role="group" aria-label="Start from" id="starts"></div>
+          <label class="sr-only" for="editor">Your working version</label>
+          <textarea id="editor" rows="3" maxlength="600" placeholder="Pick a version above, or write your own line."></textarea>
+          <div class="diff" id="diff"><span class="label" id="diff-label">Changes</span><p id="diff-body" class="quiet">Pick a version above, or write your own line.</p></div>
+          <div class="ed-actions">
+            <button class="btn" type="button" id="save">Save this version</button>
+            <button class="btn outline" type="button" id="reset" hidden>Back to the start</button>
+            <button class="btn outline" type="button" id="copy">Copy</button>
+          </div>
+          <p class="status" id="ed-status" role="status"></p>
+          <div class="revise">
+            <h4>Ask for a change</h4>
+            <div class="chips" id="rev-quick">
+              <button class="chip" type="button" data-rev="Make it shorter">Shorter</button>
+              <button class="chip" type="button" data-rev="Make it more casual">More casual</button>
+              <button class="chip" type="button" data-rev="Make it more direct">More direct</button>
+              <button class="chip" type="button" data-rev="Take out any apology or softening">No apology</button>
             </div>
-          </fieldset>
-          <div class="missing" id="missing" hidden>
-            <label class="label" for="missing-text">What’s missing? Optional, but it helps the next try.</label>
             <div class="row">
-              <input type="text" id="missing-text" maxlength="200" placeholder="e.g. too formal, lost the joke, sounds like an apology">
-              <button class="btn" type="button" id="retry">Try three new versions</button>
+              <label class="sr-only" for="rev-text">What should change?</label>
+              <input type="text" id="rev-text" maxlength="200" placeholder="What should change? e.g. keep the joke, sound less like a game">
+              <button class="btn" type="button" id="rev-go">Ask for a revision</button>
             </div>
+            <div class="keep-chips" id="keep-wrap" hidden><span class="label">Must stay</span><div class="chips" id="keep-chips"></div></div>
+            <p class="status" id="rev-status" role="status"></p>
           </div>
-          <p class="shared" id="shared" hidden></p>
-          <p class="after" id="after" role="status" hidden></p>
-
-          <section class="shape" id="shape" aria-labelledby="shape-title">
-            <h3 id="shape-title" tabindex="-1">Make it yours</h3>
-            <div class="starts" role="group" aria-label="Start from" id="starts"></div>
-            <label class="sr-only" for="editor">Your working version</label>
-            <textarea id="editor" rows="3" maxlength="600" placeholder="Pick a version above, or write your own line."></textarea>
-            <div class="diff" id="diff"><span class="label" id="diff-label">Changes</span><p id="diff-body" class="quiet">Pick a version above, or write your own line.</p></div>
-            <div class="ed-actions">
-              <button class="btn" type="button" id="save">Save this version</button>
-              <button class="btn outline" type="button" id="reset" hidden>Back to the start</button>
-              <button class="btn outline" type="button" id="copy">Copy</button>
-            </div>
-            <p class="status" id="ed-status" role="status"></p>
-            <div class="revise">
-              <h4>Ask for a change</h4>
-              <div class="chips" id="rev-quick">
-                <button class="chip" type="button" data-rev="Make it shorter">Shorter</button>
-                <button class="chip" type="button" data-rev="Make it more casual">More casual</button>
-                <button class="chip" type="button" data-rev="Make it more direct">More direct</button>
-                <button class="chip" type="button" data-rev="Take out any apology or softening">No apology</button>
-              </div>
-              <div class="row">
-                <label class="sr-only" for="rev-text">What should change?</label>
-                <input type="text" id="rev-text" maxlength="200" placeholder="What should change? e.g. keep the joke, sound less like a game">
-                <button class="btn" type="button" id="rev-go">Ask for a revision</button>
-              </div>
-              <div class="keep-chips" id="keep-wrap" hidden><span class="label">Must stay</span><div class="chips" id="keep-chips"></div></div>
-              <p class="status" id="rev-status" role="status"></p>
-            </div>
-            <div class="history">
-              <h4>Saved versions <span id="hist-count">0</span></h4>
-              <ol id="hist"></ol>
-            </div>
-          </section>
-        </div>
-      </section>
-    </div>
+          <div class="history">
+            <h4>Saved versions <span id="hist-count">0</span></h4>
+            <ol id="hist"></ol>
+          </div>
+        </section>
+      </div>
+    </section>
   </main>
 </div>
 <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" hidden>
@@ -2125,7 +2488,70 @@ var LANGS = {
   de:  { native: 'Deutsch', name: 'German', model: 'German', tag: 'de',
          ask: 'In welcher Sprache fühlst du dich am meisten wie du selbst?', msg: 'Schreib, was du sagen möchtest…', reader: 'z. B. jemand aus meinem Projektteam', keep: 'z. B. die Uhrzeit klar sagen, etwas Selbstironie behalten…', across: 'In allen dreien: ', comparing: 'Wortwahl wird verglichen…' }
 };
-var ORDER = ['zh', 'yue', 'en', 'es', 'ja', 'ko', 'fr', 'pt', 'vi', 'de'];
+/* still-me expanded languages */
+Object.assign(LANGS, {
+  "hi": {
+    "native": "हिन्दी",
+    "name": "Hindi",
+    "model": "Hindi",
+    "tag": "hi",
+    "ask": "किस भाषा में आप सबसे सहज महसूस करते हैं?",
+    "msg": "आप जो कहना चाहते हैं, लिखें…",
+    "reader": "जैसे: प्रोजेक्ट में साथ काम करने वाला कोई सहकर्मी",
+    "keep": "जैसे: समय साफ़ बताना, थोड़ा मज़ाक बनाए रखना…",
+    "across": "तीनों में साझा बदलाव: ",
+    "comparing": "शब्दों के चुनाव की तुलना हो रही है…"
+  },
+  "th": {
+    "native": "ไทย",
+    "name": "Thai",
+    "model": "Thai",
+    "tag": "th",
+    "ask": "คุณรู้สึกเป็นตัวเองมากที่สุดเมื่อใช้ภาษาไหน?",
+    "msg": "เขียนสิ่งที่คุณอยากบอก…",
+    "reader": "เช่น เพื่อนร่วมโปรเจกต์",
+    "keep": "เช่น บอกเวลาให้ชัด และเก็บมุกแซวตัวเองไว้…",
+    "across": "สิ่งที่เปลี่ยนไปในทั้งสามแบบ: ",
+    "comparing": "กำลังเปรียบเทียบการใช้คำ…"
+  },
+  "kk": {
+    "native": "Қазақша",
+    "name": "Kazakh",
+    "model": "Kazakh",
+    "tag": "kk",
+    "ask": "Қай тілде өзіңізді еркін сезінесіз?",
+    "msg": "Айтқыңыз келген ойды жазыңыз…",
+    "reader": "Мысалы: бірге жоба жасап жүрген әріптес",
+    "keep": "Мысалы: уақытты нақты айтып, өзіме қатысты әзілді сақтау…",
+    "across": "Үш нұсқадағы ортақ өзгеріс: ",
+    "comparing": "Сөз қолданысы салыстырылып жатыр…"
+  },
+  "id": {
+    "native": "Bahasa Indonesia",
+    "name": "Indonesian",
+    "model": "Indonesian",
+    "tag": "id",
+    "ask": "Bahasa apa yang paling terasa seperti diri Anda?",
+    "msg": "Tulis apa yang ingin Anda sampaikan…",
+    "reader": "misalnya: rekan satu proyek",
+    "keep": "misalnya: sebutkan waktunya dengan jelas, pertahankan sedikit humor tentang diri sendiri…",
+    "across": "Perubahan di ketiga versi: ",
+    "comparing": "Sedang membandingkan pilihan kata…"
+  },
+  "uk": {
+    "native": "Українська",
+    "name": "Ukrainian",
+    "model": "Ukrainian",
+    "tag": "uk",
+    "ask": "Якою мовою вам найлегше бути собою?",
+    "msg": "Напишіть те, що хочете сказати…",
+    "reader": "Наприклад: колега зі спільного проєкту",
+    "keep": "Наприклад: чітко вказати час і зберегти трохи самоіронії…",
+    "across": "Спільні зміни в усіх трьох версіях: ",
+    "comparing": "Порівнюємо формулювання…"
+  }
+});
+var ORDER = ["zh","yue","en","es","ja","ko","fr","pt","vi","de","hi","th","kk","id","uk"];
 var EXAMPLES = {
   zh: [
     { label: '工作消息', msg: '这个我今天做不完，明天上午给你。', where: 'work', reader: '一起做项目的同事', keep: '直接说明时间' },
@@ -2201,14 +2627,14 @@ var Store = {
         return Promise.resolve(window.storage.get(key, false)).then(function (r) { return r && r.value ? JSON.parse(r.value) : null; }).catch(function () { return null; });
       }
     } catch (e) {}
-    try { if (!IN_CLAUDE && window.localStorage) { var raw = window.localStorage.getItem(key); if (raw) return Promise.resolve(JSON.parse(raw)); } } catch (e) {}
+    try { if (window.localStorage) { var raw = window.localStorage.getItem(key); if (raw) return Promise.resolve(JSON.parse(raw)); } } catch (e) {}
     return Promise.resolve(memory[key] || null);
   },
   set: function (key, value) {
     memory[key] = value;
     try {
       if (window.storage && typeof window.storage.set === 'function') return Promise.resolve(window.storage.set(key, JSON.stringify(value), false)).catch(function () { return null; });
-      if (!IN_CLAUDE && window.localStorage) window.localStorage.setItem(key, JSON.stringify(value));
+      if (window.localStorage) window.localStorage.setItem(key, JSON.stringify(value));
     } catch (e) {}
     return Promise.resolve();
   }
@@ -2222,28 +2648,97 @@ function defaultProfiles() {
 }
 
 /* ================= model access =================
-   The only function that talks to the model. Inside Claude, the artifact's Claude access handles auth.
-   On GitHub, point URL at your own server function (which holds the API key) with the same request/response shape. */
-/* Where requests go.
-   On GitHub (any normal website): your own server function, set in <meta name="still-me-api"> at the top of this file.
-   It holds your Anthropic API key, so the tokens are billed to your account, and the key never reaches the browser.
-   Inside a Claude preview: straight to Claude through the preview's built-in access, for testing. */
+   Where requests go:
+   - Inside a Claude preview: straight to Claude, using the preview's built-in access (for testing).
+   - Anywhere else (GitHub Pages): your own server function, set in <meta name="still-me-api">.
+     It holds your Anthropic API key, so tokens are billed to your account and the key never reaches the browser. */
 var API_PROXY = ((document.querySelector('meta[name="still-me-api"]') || {}).content || '').trim();
-var IN_CLAUDE = /(^|\.)claudeusercontent\.com$|(^|\.)claude\.ai$/.test(location.hostname);
-function askClaude(prompt) {
+var IN_CLAUDE = /(^|\.)claudeusercontent\.com$|(^|\.)claude\.ai$/.test(location.hostname) || (!API_PROXY && !!window.storage);
+var toolsOk = true;
+var TOOLS = {
+  versions: { name: 'give_versions', description: 'Return the readback and the versions, or one clarifying question.',
+    input_schema: { type: 'object', properties: {
+      clarify: { type: ['string', 'null'], description: 'One short question, only if truly needed. Otherwise null.' },
+      readback: { type: ['object', 'null'], properties: { meaning: { type: 'string' }, tone: { type: 'string' }, keep: { type: 'array', items: { type: 'string' } } } },
+      versions: { type: ['array', 'null'], items: { type: 'string' } } } } },
+  notes: { name: 'give_notes', description: 'Return one wording note per version, in order.',
+    input_schema: { type: 'object', properties: {
+      notes: { type: 'array', items: { type: 'object', properties: { title: { type: 'string' }, note: { type: 'string' }, phrases: { type: 'array', items: { type: 'string' } } }, required: ['title', 'note', 'phrases'] } },
+      shared: { type: ['string', 'null'] } }, required: ['notes'] } },
+  revision: { name: 'give_revision', description: 'Return the revised version and short notes on what changed.',
+    input_schema: { type: 'object', properties: { text: { type: 'string' }, changes: { type: 'array', items: { type: 'string' } } }, required: ['text', 'changes'] } }
+};
+function callModel(prompt, tool) {
   var url, body;
-  if (API_PROXY && !IN_CLAUDE) { url = API_PROXY; body = { prompt: prompt }; }
-  else if (IN_CLAUDE) { url = 'https://api.anthropic.com/v1/messages'; body = { model: 'claude-sonnet-4-6', max_tokens: 1000, messages: [{ role: 'user', content: prompt }] }; }
-  else return Promise.reject({ kind: 'setup' });
-  return fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
-    .then(function (res) { if (!res.ok) throw { kind: 'net', status: res.status }; return res.json(); })
-    .then(function (data) { return parseJSON((data.content || []).map(function (b) { return b.type === 'text' ? b.text : ''; }).join('\n')); });
+  if (IN_CLAUDE) {
+    url = 'https://api.anthropic.com/v1/messages';
+    body = { model: 'claude-sonnet-4-6', max_tokens: 1000, messages: [{ role: 'user', content: prompt }] };
+    if (tool) { body.tools = [tool]; body.tool_choice = { type: 'tool', name: tool.name }; }
+  } else if (API_PROXY) {
+    url = API_PROXY; body = { prompt: prompt }; if (tool) body.tool = tool;
+  } else return Promise.reject({ kind: 'setup' });
+  return fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(function (res) {
+    return res.json().catch(function () { return null; }).then(function (data) {
+      if (!res.ok) throw { kind: res.status === 400 && tool ? 'tool' : 'net', status: res.status };
+      if (!data || data.type === 'error' || data.error || !Array.isArray(data.content)) throw { kind: 'shape' };
+      return data;
+    });
+  });
 }
+function readReply(data) {
+  var blocks = data.content;
+  for (var i = 0; i < blocks.length; i++) if (blocks[i] && blocks[i].type === 'tool_use' && blocks[i].input && typeof blocks[i].input === 'object') return blocks[i].input;
+  return parseJSON(blocks.map(function (b) { return b && b.type === 'text' ? b.text : ''; }).join('\n'));
+}
+/* Reads JSON even when it arrives slightly malformed: code fences, text around it, raw line breaks
+   inside strings, unescaped quotes inside strings, or trailing commas. */
 function parseJSON(text) {
-  var clean = String(text).replace(/```json|```/g, '').trim(), a = clean.indexOf('{'), b = clean.lastIndexOf('}');
-  if (a < 0 || b < a) throw { kind: 'shape' };
-  try { return JSON.parse(clean.slice(a, b + 1)); } catch (e) { throw { kind: 'shape' }; }
+  var t = String(text || '').replace(/```(?:json)?/gi, ''), start = t.indexOf('{');
+  if (start < 0) throw { kind: 'shape' };
+  var out = '', depth = 0, inStr = false, escp = false;
+  for (var i = start; i < t.length; i++) {
+    var ch = t[i];
+    if (inStr) {
+      if (escp) { out += ch; escp = false; continue; }
+      if (ch === '\\') { out += ch; escp = true; continue; }
+      if (ch === '\n' || ch === '\r') { out += '\\n'; continue; }
+      if (ch === '"') {
+        var j = i + 1; while (j < t.length && /\s/.test(t[j])) j++;
+        if (j >= t.length || ',:}]'.indexOf(t[j]) > -1) { inStr = false; out += ch; } else out += '\\"';
+        continue;
+      }
+      out += ch; continue;
+    }
+    if (ch === '"') { inStr = true; out += ch; continue; }
+    out += ch;
+    if (ch === '{' || ch === '[') depth++;
+    else if (ch === '}' || ch === ']') { depth--; if (depth === 0) break; }
+  }
+  var candidates = [out, out.replace(/,\s*([}\]])/g, '$1')];
+  for (var k = 0; k < candidates.length; k++) { try { return JSON.parse(candidates[k]); } catch (e) {} }
+  throw { kind: 'shape' };
 }
+function askClaude(prompt, tool, check) {
+  var retried = false;
+  function run(extra) {
+    return callModel(prompt + extra, toolsOk ? tool : null).then(readReply).then(function (out) {
+      if (check && !check(out)) throw { kind: 'shape' };
+      return out;
+    }).catch(function (e) {
+      if (e && e.kind === 'tool' && toolsOk) { toolsOk = false; return run(extra); }
+      if (e && e.kind === 'shape' && !retried) { retried = true; return run('\n\nYour previous reply could not be read. Reply again with only the requested JSON.'); }
+      if (e && e.kind === 'shape' && window.console) console.warn('Still Me: the reply could not be read after a retry.');
+      throw e;
+    });
+  }
+  return run('');
+}
+function asText(v) {
+  if (typeof v === 'string') return v.trim();
+  if (v && typeof v === 'object') return String(v.text || v.version || v.english || v.content || '').trim();
+  return '';
+}
+function versionsOf(out) { return Array.isArray(out && out.versions) ? out.versions.map(asText).filter(Boolean).slice(0, 3) : []; }
 
 /* ================= prompts ================= */
 function rules(P) {
@@ -2304,10 +2799,10 @@ function scrollToEl(el, block) { el.scrollIntoView({ block: block || 'start', be
 function announce(t) { $('live').textContent = ''; setTimeout(function () { $('live').textContent = t; }, 30); }
 function lc(s) { return s ? s.charAt(0).toLowerCase() + s.slice(1) : s; }
 function errorText(e) {
-  if (e && e.kind === 'setup') return 'This copy isn’t connected to Claude yet. Add the server address in still-me-api at the top of the page.';
-  if (e && e.kind === 'shape') return 'The answer came back in a form this page couldn’t read.';
-  if (e && e.kind === 'net' && e.status === 429) return 'Claude is busy or the usage limit was reached. Wait a moment.';
-  return 'Couldn’t reach Claude.';
+  if (e && e.kind === 'setup') return 'AI generation isn’t connected in this preview yet.';
+  if (e && e.kind === 'net' && e.status === 429) return 'Too many requests right now. Wait a few seconds, then try again.';
+  if (e && (e.kind === 'shape' || (e.kind === 'net' && e.status))) return 'That didn’t work this time.';
+  return 'Couldn’t connect. Check your connection, then try again.';
 }
 function busy(btn, on, text) {
   var label = btn.querySelector('span') || btn;
@@ -2315,6 +2810,16 @@ function busy(btn, on, text) {
   else { if (btn.dataset.label) label.textContent = btn.dataset.label; btn.disabled = false; btn.removeAttribute('aria-busy'); }
 }
 function busyLine(el, text) { el.classList.remove('error'); el.innerHTML = '<span class="busy-dot" aria-hidden="true"></span>' + esc(text); }
+function copyText(t) {
+  var fallback = function () {
+    var ta = document.createElement('textarea'); ta.value = t; ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:-1000px;opacity:0'; (document.getElementById('sm-app') || document.body).appendChild(ta);
+    ta.select(); var ok = false; try { ok = document.execCommand('copy'); } catch (e) {} ta.remove();
+    return ok ? Promise.resolve() : Promise.reject();
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(t).catch(fallback);
+  return fallback();
+}
 function errorLine(el, text, retryLabel, onRetry) {
   el.classList.add('error'); el.textContent = text + ' ';
   if (retryLabel) { var b = document.createElement('button'); b.type = 'button'; b.className = 'link'; b.textContent = retryLabel; b.addEventListener('click', onRetry); el.appendChild(b); }
@@ -2430,6 +2935,7 @@ function renderProfiles() {
 }
 function openProfile(p, origin) {
   if (moving) return;
+  normalizeProfileLanguages(p);
   if (P && P.id !== p.id) captureSession();
   P = p;
   var color = (AV[p.avatar] || AV.bao).bg;
@@ -2470,13 +2976,66 @@ $('new-create').addEventListener('click', function () {
 });
 $('new-name').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); $('new-create').click(); } });
 
+/* still-me language search helpers */
+var LANGUAGE_ALIASES = {
+  zh: ['Mandarin', 'Mandarin Chinese', '普通话', '普通話', '汉语', '漢語'],
+  yue: ['Cantonese', '廣東話', '广东话'],
+  hi: ['Hindi', 'हिंदी', 'हिन्दी'],
+  th: ['Thai', 'ภาษาไทย'],
+  kk: ['Kazakh', 'Qazaq', 'Қазақ', 'Қазақ тілі'],
+  id: ['Indonesian', 'Bahasa Indonesia', 'Indonesia'],
+  uk: ['Ukrainian', 'Українська', 'Українська мова']
+};
+function matchesLanguage(code, query) {
+  var L = LANGS[code];
+  if (!L) return false;
+  var normalize = function (value) { return String(value || '').normalize('NFKC').toLocaleLowerCase().trim(); };
+  var needle = normalize(query);
+  var words = [code, L.native, L.name].concat(LANGUAGE_ALIASES[code] || []);
+  return !needle || words.some(function (word) { return normalize(word).indexOf(needle) !== -1; });
+}
+function applyLanguageFilter(kind) {
+  var isSource = kind === 'source';
+  var query = $(isSource ? 'src-search' : 'tgt-search').value;
+  var box = $(isSource ? 'src-langs' : 'targets');
+  var status = $(isSource ? 'src-search-empty' : 'tgt-search-empty');
+  var visible = 0;
+  box.querySelectorAll('button[data-language]').forEach(function (button) {
+    button.hidden = !matchesLanguage(button.dataset.language, query);
+    if (!button.hidden) visible++;
+  });
+  status.hidden = visible > 0;
+  status.textContent = visible ? '' : 'No languages found. Try another name or language code.';
+  if (isSource) {
+    $('echo').classList.remove('on');
+  } else {
+    clearLink();
+    var chosen = box.querySelector('.is-chosen:not([hidden])');
+    if (chosen) { drawLink(chosen); $('preview-lang').textContent = LANGS[chosen.dataset.language].name; }
+    else $('preview-lang').innerHTML = '&nbsp;';
+  }
+}
+function normalizeProfileLanguages(profile) {
+  var owns = function (code) { return typeof code === 'string' && Object.prototype.hasOwnProperty.call(LANGS, code); };
+  if (!owns(profile.source) || !owns(profile.target) || profile.source === profile.target) {
+    profile.source = owns(profile.source) ? profile.source : null;
+    profile.target = owns(profile.target) && profile.target !== profile.source ? profile.target : null;
+    profile.isNew = true;
+  }
+  return profile;
+}
+/* still-me language search bindings */
+$('src-search').addEventListener('input', function () { applyLanguageFilter('source'); });
+$('tgt-search').addEventListener('input', function () { applyLanguageFilter('target'); });
+
 /* ---------- language picker 1: the language that feels like you ---------- */
 function renderSource() {
+  $('src-search').value = '';
   var box = $('src-langs'); box.innerHTML = '';
   $('src-back').textContent = pickerMode === 'change' ? 'Back to writing' : 'Back to profiles';
   $('echo').textContent = ''; $('echo').classList.remove('on');
   ORDER.forEach(function (code) {
-    var L = LANGS[code], b = document.createElement('button'); b.type = 'button'; b.className = 'lang';
+    var L = LANGS[code], b = document.createElement('button'); b.type = 'button'; b.className = 'lang'; b.dataset.language = code;
     b.innerHTML = '<span class="native" lang="' + L.tag + '">' + esc(L.native) + '</span><span class="en">' + esc((L.name !== L.native ? L.name : '') + (P && P.source === code ? (L.name !== L.native ? ', current' : 'Current') : '')) + '</span>';
     var show = function () { var e = $('echo'); e.textContent = L.ask; e.setAttribute('lang', L.tag); e.classList.add('on'); };
     b.addEventListener('mouseenter', show); b.addEventListener('focus', show);
@@ -2484,6 +3043,7 @@ function renderSource() {
     box.appendChild(b);
   });
   box.onmouseleave = function () { $('echo').classList.remove('on'); };
+  applyLanguageFilter('source');
 }
 function pickSource(code, btn) {
   if (moving) return; moving = true; pending.source = code;
@@ -2521,13 +3081,14 @@ $('src-back').addEventListener('click', function () {
 
 /* ---------- language picker 2: the language to say it in ---------- */
 function renderTarget() {
+  $('tgt-search').value = '';
   var S0 = LANGS[pending.source];
   $('from-native').textContent = S0.native; $('from-native').setAttribute('lang', S0.tag); $('from-en').textContent = 'You write in ' + S0.name;
   $('preview-lang').innerHTML = '&nbsp;'; clearLink();
   var box = $('targets'); box.innerHTML = '';
   var order = ['en'].concat(ORDER.filter(function (c) { return c !== 'en'; })).filter(function (c) { return c !== pending.source; });
   order.forEach(function (code) {
-    var L = LANGS[code], b = document.createElement('button'); b.type = 'button'; b.className = 'target';
+    var L = LANGS[code], b = document.createElement('button'); b.type = 'button'; b.className = 'target'; b.dataset.language = code;
     b.innerHTML = '<span class="native" lang="' + L.tag + '">' + esc(L.native) + '</span><span class="en">' + (L.name !== L.native ? esc(L.name) : '') + '</span>';
     var on = function () { drawLink(b); $('preview-lang').textContent = L.name; };
     b.addEventListener('mouseenter', on); b.addEventListener('focus', on);
@@ -2535,6 +3096,7 @@ function renderTarget() {
     box.appendChild(b);
   });
   box.onmouseleave = function () { if (!box.querySelector('.is-chosen')) { clearLink(); $('preview-lang').innerHTML = '&nbsp;'; } };
+  applyLanguageFilter('target');
 }
 function clearLink() { $('link-svg').classList.remove('is-drawn'); $('link-path').setAttribute('d', ''); $('link-head').setAttribute('d', ''); }
 function drawLink(t) {
@@ -2562,6 +3124,7 @@ function pickTarget(code, btn) {
   if (moving) return; moving = true;
   drawLink(btn); btn.classList.add('is-chosen'); $('preview-lang').textContent = LANGS[code].name;
   var firstTime = P.isNew, changed = P.source !== pending.source || P.target !== code;
+  if (pickerMode === 'change') captureSession();
   P.source = pending.source; P.target = code; P.isNew = false; saveProfiles();
   if (changed) resetSessionForLanguages();
   wait(reduced() ? 0 : 700).then(function () { return fadeTo(function () { enterApp(); }); }).then(function () {
@@ -2634,6 +3197,18 @@ function closeDrawer() {
 $('burger').addEventListener('click', openDrawer);
 $('drawer-close').addEventListener('click', closeDrawer);
 $('drawer-backdrop').addEventListener('click', closeDrawer);
+$('drawer').addEventListener('keydown', function (event) {
+  if (event.key !== 'Tab' || !$('drawer').classList.contains('is-open')) return;
+  var controls = Array.prototype.filter.call($('drawer').querySelectorAll('button:not(:disabled), input:not(:disabled), textarea:not(:disabled), select:not(:disabled), a[href], [tabindex="0"]'), function (element) { return element.getClientRects().length; });
+  if (!controls.length) return;
+  var first = controls[0], last = controls[controls.length - 1];
+  if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+  else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+});
+document.addEventListener('focusin', function (event) {
+  var drawer = $('drawer');
+  if (!drawer.hidden && drawer.classList.contains('is-open') && !drawer.contains(event.target)) $('drawer-close').focus();
+});
 document.addEventListener('keydown', function (e) {
   if (e.key !== 'Escape') return;
   if (!$('drawer').hidden) closeDrawer(); else if (!$('switcher').hidden) { closeSwitcher(); $('me').focus(); }
@@ -2665,13 +3240,45 @@ function src() { return LANGS[P.source]; }
 function tgt() { return LANGS[P.target]; }
 function codeFor(key) { return key === 'source' ? P.source : P.target; }
 
-function captureSession() { if (!P) return; S.form = readForm(); S.editorText = editor.value; sessions[P.id] = S; }
+function workspaceKey(profile) {
+  return JSON.stringify([profile.id, profile.source || '', profile.target || '']);
+}
+function copyWorkspace(value) { return value == null ? value : JSON.parse(JSON.stringify(value)); }
+function invalidateRequests(state) {
+  state.req++; state.revReq++; state.notesReq++;
+}
+function resetRequestButtons() {
+  ['generate', 'stale-go', 'ask-go', 'ask-skip', 'retry', 'rev-go'].forEach(function (id) {
+    var button = $(id); if (button) busy(button, false);
+  });
+  if (P && LANGS[P.target] && $('gen-label')) $('gen-label').textContent = 'Compare ' + LANGS[P.target].name + ' versions';
+}
+function captureSession() {
+  if (!P) return;
+  S.form = readForm(); S.editorText = editor.value;
+  invalidateRequests(S);
+  sessions[workspaceKey(P)] = S;
+}
 function resetSessionForLanguages() {
-  var old = sessions[P.id] || S, keep = old.history || [];
-  var fresh = newState(); fresh.history = keep; fresh.msgId = (old.msgId || 0) + 1; sessions[P.id] = fresh;
+  var key = workspaceKey(P);
+  if (!sessions[key]) sessions[key] = newState();
+}
+function historyWorkspace() {
+  return { ctx: copyWorkspace(S.ctx), versions: S.versions.slice(), readback: copyWorkspace(S.readback), keepList: (S.keepList || []).slice() };
+}
+function restoreHistoryWorkspace(entry) {
+  if (!entry.workspace) return;
+  invalidateRequests(S);
+  var saved = entry.workspace;
+  S.ctx = copyWorkspace(saved.ctx); S.versions = saved.versions.slice();
+  S.readback = copyWorkspace(saved.readback); S.keepList = (saved.keepList || []).slice();
+  S.msgId = entry.msgId; S.choice = null; S.before = null; S.notes = {}; S.phrases = null;
+  S.keepSel = []; S.pendingCtx = null; S.pendingQ = null;
+  if (S.ctx) { S.form = copyWorkspace(S.ctx); writeForm(S.form); syncOpt(); grow(); }
+  resetRequestButtons();
 }
 function enterApp() {
-  S = sessions[P.id] || (sessions[P.id] = newState());
+  S = sessions[workspaceKey(P)] || (sessions[workspaceKey(P)] = newState());
   renderHeader(); applyLanguage(); renderWorkspace(); showScreen('app');
 }
 
@@ -2679,15 +3286,13 @@ function enterApp() {
 function applyLanguage() {
   var s = src(), t = tgt();
   $('hello').textContent = 'Hi, ' + P.name + '.';
-  $('app-sub').innerHTML = 'Write a message. Compare the ' + esc(t.name) + '.<br>Tell it what you’d change.';
-  $('dir').innerHTML = '<span lang="' + s.tag + '">' + esc(s.native) + '</span> → <span lang="' + t.tag + '">' + esc(t.native) + '</span>';
+  $('app-sub').textContent = 'Add a message and a little context. Compare the wording.';
+  $('kbd-hint').textContent = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent) ? '⌘ Enter' : 'Ctrl Enter';
   msg.placeholder = s.msg; msg.setAttribute('lang', s.tag); msg.classList.toggle('is-cjk', !!s.cjk);
   $('reader').placeholder = s.reader; $('keep').placeholder = s.keep;
-  ['reader', 'keep'].forEach(function (id) { $(id).classList.toggle('is-cjk', !!s.cjk); });
+  ['reader', 'keep'].forEach(function (id) { $(id).classList.toggle('is-cjk', !!s.cjk); $(id).setAttribute('lang', s.tag); });
   $('gen-label').textContent = 'Compare ' + t.name + ' versions';
   $('results-title').textContent = 'Your ' + t.name + ' versions';
-  $('empty-title').textContent = 'Start with a short message in ' + s.name + '.';
-  $('empty-text').innerHTML = 'Add a little context, then press <strong>Compare ' + esc(t.name) + ' versions</strong>. Your results will appear here.';
   var segs = document.querySelectorAll('#note-lang [data-lang]');
   segs[0].textContent = t.native; segs[0].setAttribute('lang', t.tag);
   segs[1].textContent = s.native; segs[1].setAttribute('lang', s.tag);
@@ -2697,11 +3302,34 @@ function applyLanguage() {
     var b = document.createElement('button'); b.type = 'button'; b.textContent = e.label; b.setAttribute('lang', s.tag);
     b.addEventListener('click', function () {
       msg.value = e.msg; $('reader').value = e.reader; $('keep').value = e.keep; setWhere(e.where);
-      $('gen-status').classList.remove('error'); $('gen-status').textContent = ''; checkStale(); $('generate').focus();
+      syncOpt(); grow(); $('gen-status').classList.remove('error'); $('gen-status').textContent = ''; checkStale(); $('generate').focus();
     });
     box.appendChild(b);
   });
 }
+
+/* ---------- composer ---------- */
+function syncOpt() {
+  ['reader', 'keep'].forEach(function (w) {
+    var has = !!$(w).value.trim(), open = has || $(w + '-field').dataset.open === '1';
+    $(w + '-field').hidden = !open; $('add-' + w).hidden = open; $('add-' + w).setAttribute('aria-expanded', String(open));
+  });
+}
+['reader', 'keep'].forEach(function (w) {
+  $('add-' + w).addEventListener('click', function () { $(w + '-field').dataset.open = '1'; syncOpt(); $(w).focus(); });
+});
+function grow() { if ($('char-count')) $('char-count').textContent = msg.value.length + ' / 300'; msg.style.height = 'auto'; msg.style.height = Math.min(msg.scrollHeight + 2, 260) + 'px'; }
+msg.addEventListener('input', grow);
+[msg, $('reader'), $('keep')].forEach(function (el) {
+  el.addEventListener('keydown', function (e) { if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); $('generate').click(); } });
+});
+$('orig-edit').addEventListener('click', function () { scrollToEl($('composer'), 'center'); setTimeout(function () { msg.focus({ preventScroll: true }); }, reduced() ? 0 : 350); });
+document.addEventListener('scroll', function () {
+  var bar = $('orig-bar'); if (!bar || bar.closest('[hidden]')) return;
+  var show = !$('out').hidden && $('composer').getBoundingClientRect().bottom < 72;
+  if (show) $('orig-text').textContent = (S.ctx && S.ctx.message) || '';
+  bar.classList.toggle('is-visible', show);
+}, true);
 
 /* ---------- form ---------- */
 function setWhere(w) { document.querySelectorAll('#where [data-where]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.where === w)); }); }
@@ -2724,31 +3352,42 @@ function generate(opts) {
   var c = opts.ctx || readForm(), line = opts.line || $('gen-status'), btn = opts.button || $('generate');
   if (!c.message) { line.classList.add('error'); line.textContent = 'Write a short message first.'; msg.focus(); return; }
   if (src().script && !src().script.test(c.message)) { line.classList.add('error'); line.textContent = 'Write the message in ' + src().name + '. Words from other languages inside it are fine.'; msg.focus(); return; }
-  var st = S, id = ++st.req, who = P;
-  busy(btn, true, opts.busyText || 'Writing three versions…');
-  busyLine(line, 'Claude is reading your message.');
-  askClaude(promptGenerate(c, who, opts.avoid)).then(function (out) {
+  var st = S, id = ++st.req, who = copyWorkspace(P);
+  st.revReq++; st.notesReq++; resetRequestButtons();
+  var canAsk = !c.answer && !c.skipAsk && !opts.avoid;
+  busy(btn, true, opts.busyText || 'Comparing…');
+  line.textContent = ''; line.classList.remove('error');
+  setLoading(true);
+  askClaude(promptGenerate(c, who, opts.avoid), TOOLS.versions, function (out) {
+    return (canAsk && out && typeof out.clarify === 'string' && out.clarify.trim()) || versionsOf(out).length >= 2;
+  }).then(function (out) {
     if (st !== S || id !== st.req) return;
-    if (out.clarify && typeof out.clarify === 'string' && !c.answer && !c.skipAsk && !opts.avoid && !(out.versions && out.versions.length)) { line.textContent = ''; showAsk(c, out.clarify.trim()); return; }
-    var vs = (out.versions || []).filter(function (v) { return typeof v === 'string' && v.trim(); }).map(function (v) { return v.trim(); }).slice(0, 3);
-    if (vs.length < 2) throw { kind: 'shape' };
-    line.textContent = '';
-    showResults(c, out.readback || {}, vs, !!opts.avoid);
+    setLoading(false);
+    var vs = versionsOf(out);
+    if (canAsk && typeof out.clarify === 'string' && out.clarify.trim() && vs.length < 2) { showAsk(c, out.clarify.trim()); return; }
+    showResults(c, out.readback && typeof out.readback === 'object' ? out.readback : {}, vs, !!opts.avoid);
   }).catch(function (e) {
     if (st !== S || id !== st.req) return;
+    setLoading(false); paintResults();
     errorLine(line, errorText(e), 'Try again', function () { generate(opts); });
-  }).then(function () { if (st === S && id === st.req) busy(btn, false); });
+  }).then(function () { if (st === S && id === st.req) resetRequestButtons(); });
 }
 $('generate').addEventListener('click', function () { generate(); });
 $('stale-go').addEventListener('click', function () { generate({ button: $('stale-go'), busyText: 'Writing…' }); });
 
+function setLoading(on) {
+  if (on) $('results').hidden = false;
+  var ph = $('empty'); ph.classList.toggle('is-loading', on); ph.setAttribute('aria-busy', String(on));
+  if (on) { ph.hidden = false; $('out').hidden = true; $('ask').hidden = true; $('stale').hidden = true; if (window.innerWidth < 980) scrollToEl($('results'), 'start'); }
+}
 function showAsk(c, q) {
+  $('results').hidden = false;
   S.pendingCtx = c; S.pendingQ = q;
   $('empty').hidden = true; $('out').hidden = true; $('stale').hidden = true;
   $('ask').hidden = false; $('ask-q').textContent = q; $('ask-q').setAttribute('lang', src().tag); $('ask-a').value = '';
   $('ask-a').classList.toggle('is-cjk', !!src().cjk);
   setTimeout(function () { $('ask-a').focus(); }, 60);
-  announce('Claude has one question first: ' + q);
+  announce('One quick question first: ' + q);
 }
 $('ask-go').addEventListener('click', function () {
   var a = $('ask-a').value.trim(); if (!a) { $('ask-a').focus(); return; }
@@ -2759,7 +3398,12 @@ $('ask-skip').addEventListener('click', function () { generate({ ctx: Object.ass
 
 /* ---------- results ---------- */
 function showResults(c, rb, vs, isRetry) {
-  if (!S.ctx || S.ctx.message !== c.message) { S.msgId++; S.round = 0; }
+  if (S.ctx && !sameCtx(S.ctx, c)) {
+    stashDraft('Unsaved edit, set aside before a new message');
+    setSeed('', '', 'blank'); editor.value = ''; S.editorText = ''; S.current = -1;
+  }
+  S.pendingCtx = null; S.pendingQ = null;
+  if (!S.ctx || S.ctx.message !== c.message) { S.msgId = Math.max.apply(null, [S.msgId].concat(S.history.map(function (h) { return h.msgId || 0; }))) + 1; S.round = 0; }
   S.ctx = c; S.round++; S.versions = vs; S.readback = rb;
   S.choice = null; S.before = null; S.notes = {}; S.phrases = null; S.notesReq++;
   S.keepList = Array.isArray(rb.keep) ? rb.keep.filter(function (k) { return typeof k === 'string' && k.trim(); }).slice(0, 4) : [];
@@ -2772,11 +3416,12 @@ function showResults(c, rb, vs, isRetry) {
 }
 function paintResults() {
   var has = S.versions.length > 0;
+  $('results').hidden = !has && !$('empty').classList.contains('is-loading');
   $('empty').hidden = has; $('out').hidden = !has; $('ask').hidden = true;
   $('details').checked = S.details; $('note-lang').hidden = !S.details;
   if (!has) { checkStale(); return; }
   var rb = S.readback || {}, tag = src().tag, k = S.keepList;
-  $('readback').innerHTML = '<span class="k">How Claude read it: </span><span lang="' + tag + '">' + esc(rb.meaning || '') + (rb.tone ? ' ' + esc(rb.tone) : '') + '</span>' +
+  $('readback').innerHTML = '<span class="k">Meaning: </span><span lang="' + tag + '">' + esc(rb.meaning || '') + (rb.tone ? ' ' + esc(rb.tone) : '') + '</span>' +
     (k.length ? '<br><span class="k">Worth keeping: </span><span lang="' + tag + '">' + esc(k.join('; ')) + '</span>' : '');
   renderCards();
   document.querySelectorAll('input[name="pick"]').forEach(function (r) { r.checked = r.value === String(S.choice); });
@@ -2791,11 +3436,19 @@ function renderCards() {
       '<span class="head"><span>Version ' + LETTERS[i] + '</span><span class="dot" aria-hidden="true"></span></span>' +
       '<span class="text" data-text="' + i + '" lang="' + tgt().tag + '">' + esc(v) + '</span>' +
       '<span class="vnote" data-note="' + i + '" hidden></span>' +
-      '<span class="pick"><span data-pickl="' + i + '">This feels closer</span><span aria-hidden="true">+</span></span>';
+      '<span class="foot"><span class="pick"><span data-pickl="' + i + '">This feels closer</span><span aria-hidden="true">+</span></span>' +
+      '<button class="mini-btn" type="button" data-copy="' + i + '" aria-label="Copy version ' + LETTERS[i] + '">Copy</button></span>';
     box.appendChild(lab);
   });
   box.querySelectorAll('input[name="pick"]').forEach(function (r) { r.addEventListener('change', function () { if (r.checked) choose(r.value); }); });
 }
+$('cards').addEventListener('click', function (e) {
+  var b = e.target.closest('[data-copy]'); if (!b) return;
+  e.preventDefault(); e.stopPropagation();
+  var t = S.versions[+b.dataset.copy] || '';
+  copyText(t).then(function () { b.textContent = 'Copied'; }, function () { b.textContent = 'Select the text to copy'; })
+    .then(function () { setTimeout(function () { b.textContent = 'Copy'; }, 1600); });
+});
 document.querySelectorAll('.alt input[name="pick"]').forEach(function (r) { r.addEventListener('change', function () { if (r.checked) choose(r.value); }); });
 function labelOf(v) { return v === 'none' ? 'None of these' : v === 'unsure' ? 'Not sure' : 'Version ' + LETTERS[+v]; }
 function choose(v) {
@@ -2878,13 +3531,14 @@ function loadNotes(key) {
   var code = codeFor(key);
   if (S.notes[code]) { renderNotesState(); return; }
   var st = S, id = ++st.notesReq, round = st.round, who = P;
-  document.querySelectorAll('#cards .vnote').forEach(function (n) { n.hidden = false; n.classList.add('loading'); n.setAttribute('lang', LANGS[code].tag); n.innerHTML = '<span class="busy-dot" aria-hidden="true"></span>' + esc(LANGS[code].comparing); });
-  askClaude(promptExplain(st.ctx, who, st.versions, code)).then(function (out) {
+  document.querySelectorAll('#cards .vnote').forEach(function (n) { n.hidden = false; n.classList.add('loading'); n.setAttribute('lang', LANGS[code].tag); n.innerHTML = '<span class="sk-line" aria-hidden="true"></span><span class="sk-line short" aria-hidden="true"></span><span class="sr-only">' + esc(LANGS[code].comparing) + '</span>'; });
+  askClaude(promptExplain(st.ctx, who, st.versions, code), TOOLS.notes, function (out) {
+    return out && Array.isArray(out.notes) && out.notes.length >= st.versions.length;
+  }).then(function (out) {
     if (st !== S || id !== st.notesReq || round !== st.round) return;
-    if (!out || !Array.isArray(out.notes) || out.notes.length < st.versions.length) throw { kind: 'shape' };
     st.notes[code] = out;
     if (!st.phrases) st.phrases = out.notes.slice(0, st.versions.length).map(function (n, i) {
-      return (Array.isArray(n.phrases) ? n.phrases : []).filter(function (p) { return typeof p === 'string' && p.trim() && st.versions[i].indexOf(p) > -1; }).slice(0, 3);
+      return (Array.isArray(n && n.phrases) ? n.phrases : []).filter(function (p) { return typeof p === 'string' && p.trim() && st.versions[i].indexOf(p) > -1; }).slice(0, 3);
     });
     if (codeFor(st.lang) === code && st.details) renderNotesState();
   }).catch(function (e) {
@@ -2913,7 +3567,7 @@ function isDirty() { return editor.value.trim() !== S.seed.trim(); }
 function stashDraft(reason) {
   var d = editor.value.trim();
   if (!d || !isDirty() || S.history.some(function (h) { return h.text === d; })) return false;
-  S.history.push({ text: d, who: 'you', parent: S.seed, reason: reason, msgId: S.msgId }); return true;
+  S.history.push({ text: d, who: 'you', parent: S.seed, reason: reason, msgId: S.msgId, workspace: historyWorkspace() }); return true;
 }
 function seedEditor(i, fromUser) {
   var stashed = fromUser && stashDraft('Unsaved edit, set aside when you started from version ' + LETTERS[i]);
@@ -2938,8 +3592,15 @@ function renderStarts() {
   });
   box.appendChild(blank);
 }
+function diffTokens(text) {
+  var locale = P && LANGS[P.target] ? LANGS[P.target].tag : 'en';
+  if (typeof Intl.Segmenter === 'function') {
+    return Array.from(new Intl.Segmenter(locale, { granularity: 'word' }).segment(text), function (part) { return part.segment; });
+  }
+  return Array.from(text);
+}
 function diffWords(a, b) {
-  var A = a.split(/\s+/).filter(Boolean), B = b.split(/\s+/).filter(Boolean), m = A.length, n = B.length, i, j, dp = [];
+  var A = diffTokens(a), B = diffTokens(b), m = A.length, n = B.length, i, j, dp = [];
   for (i = 0; i <= m; i++) { dp.push([]); for (j = 0; j <= n; j++) dp[i][j] = 0; }
   for (i = m - 1; i >= 0; i--) for (j = n - 1; j >= 0; j--) dp[i][j] = A[i] === B[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
   var out = []; i = 0; j = 0;
@@ -2950,7 +3611,7 @@ function diffWords(a, b) {
   }
   while (i < m) out.push('<del>' + esc(A[i++]) + '</del>');
   while (j < n) out.push('<ins>' + esc(B[j++]) + '</ins>');
-  return out.join(' ');
+  return out.join('');
 }
 function renderDiff() {
   var box = $('diff'), body = $('diff-body'), label = $('diff-label'), text = editor.value.trim(), seed = S.seed.trim();
@@ -2976,7 +3637,7 @@ $('save').addEventListener('click', function () {
   var cur = S.history[S.current];
   if (cur && cur.text === t) { edStatus('This is already saved version ' + (S.current + 1) + '. Change a word first.'); return; }
   var reason = S.current >= 0 ? 'Edited from saved version ' + (S.current + 1) : S.seedLabel ? (t === S.seed.trim() ? 'Same as ' + lc(S.seedLabel) : 'Edited from ' + lc(S.seedLabel)) : 'Your own line';
-  S.history.push({ text: t, who: 'you', parent: S.seed, reason: reason, msgId: S.msgId });
+  S.history.push({ text: t, who: 'you', parent: S.seed, reason: reason, msgId: S.msgId, workspace: historyWorkspace() });
   afterAdd('Saved as version ' + S.history.length + '. Earlier versions can be restored any time.');
 });
 function afterAdd(message) {
@@ -2988,8 +3649,7 @@ function afterAdd(message) {
 }
 $('copy').addEventListener('click', function () {
   var t = editor.value.trim(); if (!t) { edStatus('Nothing to copy yet.'); return; }
-  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(function () { edStatus('Copied.'); }, function () { editor.select(); edStatus('Select all and copy with your keyboard.'); });
-  else { editor.select(); edStatus('Select all and copy with your keyboard.'); }
+  copyText(t).then(function () { edStatus('Copied.'); }, function () { editor.select(); edStatus('Select all and copy with your keyboard.'); });
 });
 function renderHistory() {
   $('hist-count').textContent = S.history.length;
@@ -3007,8 +3667,9 @@ function renderHistory() {
     b.textContent = inEditor ? 'In the editor' : 'Restore'; b.disabled = inEditor; b.setAttribute('aria-label', 'Restore version ' + (i + 1));
     b.addEventListener('click', function () {
       var stashed = stashDraft('Unsaved edit, set aside before restoring version ' + (i + 1));
+      restoreHistoryWorkspace(h);
       S.current = i; setSeed(h.text, 'saved version ' + (i + 1), 'h' + i); editor.value = h.text;
-      renderHistory(); renderDiff(); renderStarts(); editor.focus();
+      paintResults(); if (S.details && S.versions.length) loadNotes(S.lang); editor.focus();
       edStatus('Restored version ' + (i + 1) + '.' + (stashed ? ' Your unsaved wording was saved below.' : ''));
     });
     li.appendChild(b); list.appendChild(li);
@@ -3037,29 +3698,38 @@ $('rev-go').addEventListener('click', function () {
   var base = editor.value.trim();
   if (!base) { st.textContent = 'Pick a version or type a line first.'; editor.focus(); return; }
   var keepList = S.keepSel.slice(); if (S.ctx.keep) keepList.push(S.ctx.keep);
-  var state = S, id = ++state.revReq, btn = $('rev-go'), code = codeFor(S.lang), who = P;
+  var state = S, id = ++state.revReq, btn = $('rev-go'), code = codeFor(S.lang), who = copyWorkspace(P);
+  var generationId = state.req, messageId = state.msgId;
   var parentLabel = S.current >= 0 ? 'saved version ' + (S.current + 1) : (S.seedLabel ? lc(S.seedLabel) : 'your line');
-  busy(btn, true, 'Revising…'); busyLine(st, 'Claude is revising what’s in the box.');
-  askClaude(promptRevise(state.ctx, who, base, request, keepList, code)).then(function (out) {
-    if (state !== S || id !== state.revReq) return;
-    if (!out || typeof out.text !== 'string' || !out.text.trim()) throw { kind: 'shape' };
+  busy(btn, true, 'Revising…'); st.textContent = '';
+  askClaude(promptRevise(state.ctx, who, base, request, keepList, code), TOOLS.revision, function (out) {
+    return out && typeof out.text === 'string' && out.text.trim();
+  }).then(function (out) {
+    if (state !== S || id !== state.revReq || generationId !== state.req || messageId !== state.msgId) return;
+    if (editor.value.trim() !== base) {
+      st.textContent = 'Your newer edit is still here. Ask for the change again to use that wording.';
+      announce(st.textContent); return;
+    }
     var stashed = false;
     if (isDirty() && !S.history.some(function (h) { return h.text === base; })) {
-      S.history.push({ text: base, who: 'you', parent: S.seed, reason: 'Your edit, saved before the revision', msgId: S.msgId }); stashed = true; parentLabel = 'saved version ' + S.history.length;
+      S.history.push({ text: base, who: 'you', parent: S.seed, reason: 'Your edit, saved before the revision', msgId: S.msgId, workspace: historyWorkspace() }); stashed = true; parentLabel = 'saved version ' + S.history.length;
     }
     var changes = Array.isArray(out.changes) ? out.changes.filter(function (c) { return typeof c === 'string' && c.trim(); }).slice(0, 3) : [];
-    S.history.push({ text: out.text.trim(), who: 'claude', parent: base, reason: 'Asked “' + request + '” on ' + parentLabel, changes: changes, lang: code, msgId: S.msgId });
+    S.history.push({ text: out.text.trim(), who: 'claude', parent: base, reason: 'Asked “' + request + '” on ' + parentLabel, changes: changes, lang: code, msgId: S.msgId, workspace: historyWorkspace() });
     st.textContent = '';
     afterAdd('Claude’s revision is in the editor and saved as version ' + S.history.length + '.' + (stashed ? ' Your edit before it was saved too.' : ''));
     announce('Revision ready. It is in the editor.');
   }).catch(function (e) {
     if (state !== S || id !== state.revReq) return;
     errorLine(st, errorText(e), 'Try again', function () { $('rev-go').click(); });
-  }).then(function () { if (state === S && id === state.revReq) busy(btn, false); });
+  }).then(function () { if (state === S && id === state.revReq) resetRequestButtons(); });
 });
 
 function renderWorkspace() {
+  resetRequestButtons();
   writeForm(S.form); editor.value = S.editorText || '';
+  ['reader', 'keep'].forEach(function (w) { delete $(w + '-field').dataset.open; }); syncOpt(); setTimeout(grow, 0);
+  $('empty').classList.remove('is-loading'); $('orig-bar').classList.remove('is-visible');
   $('gen-status').textContent = ''; $('gen-status').classList.remove('error');
   $('ed-status').textContent = ''; $('rev-status').textContent = ''; $('rev-text').value = '';
   if (S.pendingQ && !S.versions.length && S.pendingCtx) { showAsk(S.pendingCtx, S.pendingQ); return; }
@@ -3126,7 +3796,8 @@ window.StillMeApp = { open: openApp, close: closeApp };
 
 /* ================= boot ================= */
 Store.get(KEY).then(function (saved) {
-  profiles = Array.isArray(saved) && saved.length ? saved : defaultProfiles();
+  profiles = (Array.isArray(saved) && saved.length ? saved : defaultProfiles()).filter(function (p) { return p && typeof p === 'object' && typeof p.id === 'string' && typeof p.name === 'string' && p.name.trim(); }).map(normalizeProfileLanguages);
+  if (!profiles.length) profiles = defaultProfiles();
   if (!saved) saveProfiles();
   renderProfiles();
   ROOT.querySelectorAll('[data-screen]').forEach(function (s) { s.hidden = s.getAttribute('data-screen') !== 'profiles'; });
