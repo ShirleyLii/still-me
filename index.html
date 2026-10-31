@@ -408,7 +408,10 @@ footer { border-color: #d3ccd8; }
 /* A concrete wording comparison leads; the founder story follows in section 02. */
 .hero-message .grid { grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr); gap: 48px; }
 .hero-message h1 { font-size: clamp(44px, 5.3vw, 72px); max-width: 12ch; line-height: 1.05; }
-.hero-message .hero-copy { max-width: 33ch; }
+.hero-message .hero-copy { max-width: 40ch; }
+.hero h1#hero-title.hero-quote { font-size: clamp(34px, 3.5vw, 50px); line-height: 1.14; letter-spacing: -.02em; max-width: 15ch; }
+.hero-quote .second { margin-top: 6px; }
+.hero-lang { font-size: 15px; line-height: 1.55; color: var(--muted); margin-top: 14px; max-width: 44ch; }
 .message-specimen { padding: 26px; }
 .message-specimen:hover { border-color: var(--line); }
 .message-specimen .specimen-top { flex-wrap: wrap; gap: 4px 16px; }
@@ -1334,34 +1337,35 @@ html.sm-open,html.sm-open body{overflow:hidden}
   <div class="wrap">
     <div class="grid">
       <div class="hero-text">
-        <h1 id="hero-title">Would you actually say it <span class="second">that way?</span></h1>
-        <p class="hero-copy">A rewrite can add an apology, soften a refusal, or change a joke. Still Me helps you see those differences, compare a few English versions, and choose the one that feels right to you.</p>
+        <h1 id="hero-title" class="hero-quote">“I’m much funnier in Chinese. <span class="second">At least, I think I am.”</span></h1>
+        <p class="hero-copy">I can study, work, and present in English. Being fluent enough to function isn’t always the same as sounding like myself. Still Me shows a few versions of a message, points out what each one changes, and lets you choose the one that still sounds like you.</p>
+        <p class="hero-lang">My languages are Mandarin and English. Yours might be different, and Still Me works with 18 of them.</p>
         <div class="hero-actions">
           <a class="button app-link" href="#app" data-sm-open>Open the app</a>
           <a class="button outline" href="#experiment">Compare an example</a>
         </div>
       </div>
 
-      <aside class="specimen message-specimen" aria-label="Two ways to give a work update">
+      <aside class="specimen message-specimen" aria-label="One caption, two readings">
         <div class="specimen-top">
-          <span>A work message</span>
+          <span>A caption after boxing</span>
         </div>
         <div class="note-card zh message-original">
-          <p class="specimen-zh" lang="zh-Hans">这个我今天做不完，<br>明天上午给你。</p>
+          <p class="specimen-zh" lang="zh-Hans">我不知道练拳以后力气有没有变大，<br>反正吃甜品的本事是更上一层楼了。</p>
         </div>
-        <div class="message-options" aria-label="Two English expressions">
+        <div class="message-options" aria-label="Two English readings">
           <article class="message-option" aria-labelledby="message-a-title">
-            <h3 id="message-a-title">English A</h3>
-            <p>I won’t be able to finish this today. <span class="wd">I’ll send it over tomorrow morning.</span></p>
+            <h3 id="message-a-title">Wanting more food</h3>
+            <p>I’m not sure boxing made me stronger, but my <span class="wd">dessert appetite</span> definitely leveled up.</p>
           </article>
           <article class="message-option" aria-labelledby="message-b-title">
-            <h3 id="message-b-title">English B</h3>
-            <p><mark>Sorry,</mark> I won’t be able to finish this today. <span class="wd">Would tomorrow morning work?</span></p>
+            <h3 id="message-b-title">Getting better at eating it</h3>
+            <p>Can’t tell if boxing made me stronger, but my <span class="wd">dessert skills</span>? Absolutely leveled up.</p>
           </article>
         </div>
         <div class="message-change">
           <svg viewBox="0 0 160 75" fill="none" aria-hidden="true" focusable="false"><path d="M8 12C66-2 144 8 129 34S44 35 68 56C83 69 113 65 148 56M132 49l17 7-12 13" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <p><strong>What changed?</strong> B adds an apology and turns “tomorrow morning” from a plan into a question.</p>
+          <p><strong>What changed?</strong> “Skills” brings back the joke about eating as an ability. It isn’t just a shorter way to say “appetite.”</p>
         </div>
         <a class="specimen-foot" href="#experiment">
           <span>Try the caption comparison</span>
@@ -1409,8 +1413,6 @@ html.sm-open,html.sm-open body{overflow:hidden}
     <div class="why-grid">
       <div>
         <h2 id="why-title">How this started</h2>
-        <blockquote class="founder-quote">“I’m much funnier in Chinese.<span>At least, I think I am.”</span></blockquote>
-        <p class="lede">I can study, work, and present in English. Being fluent enough to function isn’t always the same as sounding like myself.</p>
       </div>
       <div class="prose">
         <p>I moved from Shanghai to the United States when I was eighteen. In Mandarin and Shanghainese, I know when I’m being playful, sarcastic, or intentionally dramatic. In English, I sometimes lose that certainty.</p>
@@ -1455,7 +1457,7 @@ html.sm-open,html.sm-open body{overflow:hidden}
 <section class="experiment" id="experiment" aria-labelledby="experiment-title">
   <div class="wrap section">
     <div class="heading-row">
-      <h2 id="experiment-title">What do you hear?</h2>
+      <h2 id="experiment-title">Would you actually say it that way?</h2>
       <p>Pick the version that comes closest. Then open the notes if you want another lens, or change a few words yourself.</p>
     </div>
 
